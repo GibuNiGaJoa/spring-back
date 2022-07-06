@@ -1,6 +1,7 @@
 package kakao.valuetogether.domain;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -40,4 +41,25 @@ public class Member {
     @Column(nullable = false, name = "member_birthday")
     private String birthday;
 
+    public Member(String email,
+                  String pw,
+                  String name,
+                  String phone,
+                  String address,
+                  String gender,
+                  String nickname,
+                  String birthday) {
+        this.email = email;
+        this.pw = pw;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.gender = gender;
+        this.nickname = nickname;
+        this.birthday = birthday;
+    }
+
+    public Member() {
+
+    }
 }
