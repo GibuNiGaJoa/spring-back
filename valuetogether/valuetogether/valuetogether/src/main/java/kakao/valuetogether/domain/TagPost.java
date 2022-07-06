@@ -3,20 +3,19 @@ package kakao.valuetogether.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter @Setter
-public class TagPost {
+public class TagPost implements Serializable {
 
     @Id
-    @Column(name = "topic_id")
-    private Long id;
+    @JoinColumn(name = "tag_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Tag tag;
 
-    @Id
-    @Column(name = "post_id")
-    private Long postId;
+    @JoinColumn(name = "post_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Post post;
 }

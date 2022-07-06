@@ -3,10 +3,7 @@ package kakao.valuetogether.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
@@ -16,13 +13,13 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-    @Id
-    @Column(name = "member_id")
-    private Long memberId;
+    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
-    @Id
-    @Column(name = "post_id")
-    private Long postId;
+    @JoinColumn(name = "post_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Post post;
 
     @Column(nullable = false)
     private String content;
