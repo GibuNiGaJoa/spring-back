@@ -15,7 +15,7 @@ public class TargetPost implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Target target;
 
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 }

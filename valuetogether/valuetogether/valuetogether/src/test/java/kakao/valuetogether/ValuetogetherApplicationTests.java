@@ -25,7 +25,7 @@ class ValuetogetherApplicationTests {
     void test() {
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Member findMember = memberRepository.findOne(savedId);
 
         Post post = new Post(findMember, "title", "subtitle", "artice", "imag", 10, new Date(2019, 01, 01), new Date(2019, 03, 03), true);
         Long postSavedId = postRepository.save(post);

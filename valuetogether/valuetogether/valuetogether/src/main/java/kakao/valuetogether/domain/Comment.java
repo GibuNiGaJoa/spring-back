@@ -4,20 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class Comment {
+public class Comment implements Serializable {
 
     @Id @GeneratedValue
     @Column(name = "comment_id")
     private Long id;
 
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
@@ -25,7 +27,8 @@ public class Comment {
     private String content;
 
     @Column(nullable = false)
-    private String date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
-    private Integer like;
+    private Integer likes;
 }
