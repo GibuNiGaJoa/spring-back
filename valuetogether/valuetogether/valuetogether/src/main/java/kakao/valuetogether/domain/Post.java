@@ -1,13 +1,12 @@
 package kakao.valuetogether.domain;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Getter @Setter
+@Getter
 public class Post {
 
     @Id @GeneratedValue
