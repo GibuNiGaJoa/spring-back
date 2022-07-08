@@ -12,12 +12,12 @@ public class CommentRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(Comment comment) {
+    public Long saveComment(Comment comment) {
         em.persist(comment);
         return comment.getId();
     }
 
-    public Long editComment(Comment comment, String content) {
+    public Long updateComment(Comment comment, String content) {
         comment.editContent(content);
         em.persist(comment);
         return comment.getId();
@@ -32,6 +32,15 @@ public class CommentRepository {
     public void addLikes(Comment comment) {
         comment.addLikes();
         em.persist(comment);
+    }
+
+    public boolean minusLikes(Comment comment) {
+        boolean result = comment.minusLikes();
+
+        if(!result)
+            return false;
+
+        return true;
     }
 
     public Comment find(Long id) {

@@ -48,4 +48,12 @@ public class Comment implements Serializable {
     public void addLikes() {
         this.likes += 1;
     }
+
+    public boolean minusLikes() {
+        if(this.likes <= 0)
+            return false;
+
+        this.likes -= 1;
+        return true;
+    }
 }
