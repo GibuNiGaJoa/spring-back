@@ -20,7 +20,12 @@ public class MemberRepository {
         return member.getId();
     }
 
-    public Member findOne(Long id) {
+    public void delete(Long id) {
+        Member findMember = em.find(Member.class, id);
+        em.remove(findMember);
+    }
+
+    public Member findById(Long id) {
         return em.find(Member.class, id);
     }
 
@@ -49,5 +54,16 @@ public class MemberRepository {
                 .getResultList();
         return findMember.stream().findAny();
     }
+
+    //이메일 또는 전화번호로 조회
+    public Optional<Member> findByEP(String email, String phone){
+        List<Member> findMember = em.createQuery("select m from Member m where m.email = :email or " +
+                        "m.phone = :phone")
+                .setParameter("email",email)
+                .setParameter("phone", phone)
+                .getResultList();
+        return findMember.stream().findAny();
+    }
+
 
 }

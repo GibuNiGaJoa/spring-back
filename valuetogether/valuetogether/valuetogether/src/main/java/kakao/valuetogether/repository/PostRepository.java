@@ -17,7 +17,7 @@ public class PostRepository {
         return post.getId();
     }
 
-    public Post find(Long postId) {
+    public Post findById(Long postId) {
         return em.find(Post.class, postId);
     }
 }

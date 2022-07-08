@@ -3,19 +3,24 @@ package kakao.valuetogether.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
 public class Tag {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tag_id")
     private Long id;
 
     @Column(name = "tag_name", nullable = false)
     private String tagName;
+
+    public Tag(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Tag() {
+
+    }
 }

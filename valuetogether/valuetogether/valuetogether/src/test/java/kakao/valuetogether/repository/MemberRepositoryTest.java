@@ -1,4 +1,4 @@
-package kakao.valuetogether.repositorytest;
+package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.repository.MemberRepository;
@@ -20,7 +20,7 @@ public class MemberRepositoryTest {
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.findOne(savedId);
+        Member findMember = memberRepository.findById(savedId);
 
         Assertions.assertThat(member).isEqualTo(findMember);
     }

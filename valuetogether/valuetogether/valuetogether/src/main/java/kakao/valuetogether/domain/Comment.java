@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter @Setter
 public class Comment implements Serializable {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
