@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 
 @Repository
 public class TagRepository {
@@ -13,27 +14,22 @@ public class TagRepository {
     private EntityManager em;
 
     public void save(){
-        Tag tag1 = new Tag("어려운이웃");
-        Tag tag2 = new Tag("행복한노후");
-        Tag tag3 = new Tag("여성인권");
-        Tag tag4 = new Tag("심리상담");
-        Tag tag5 = new Tag("환경교육");
-        Tag tag6 = new Tag("학대아동지원");
-        Tag tag7 = new Tag("환경을위한실천");
-        Tag tag8 = new Tag("우크라이나긴급모금");
-        Tag tag9 = new Tag("세상을바꾸는여성");
-        Tag tag10 = new Tag("언택트프로젝트");
 
-        em.persist(tag1);
-        em.persist(tag2);
-        em.persist(tag3);
-        em.persist(tag4);
-        em.persist(tag5);
-        em.persist(tag6);
-        em.persist(tag7);
-        em.persist(tag8);
-        em.persist(tag9);
-        em.persist(tag10);
+        ArrayList<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("어려운이웃"));
+        tags.add(new Tag("행복한노후"));
+        tags.add(new Tag("여성인권"));
+        tags.add(new Tag("심리상담"));
+        tags.add(new Tag("환경교육"));
+        tags.add(new Tag("학대아동지원"));
+        tags.add(new Tag("환경을위한실천"));
+        tags.add(new Tag("우크라이나긴급모금"));
+        tags.add(new Tag("세상을바꾸는여성"));
+        tags.add(new Tag("언택트프로젝트"));
+
+        for (int i = 0; i < tags.size(); i++) {
+            em.persist(tags.get(i));
+        }
 
         em.flush();
         em.clear();

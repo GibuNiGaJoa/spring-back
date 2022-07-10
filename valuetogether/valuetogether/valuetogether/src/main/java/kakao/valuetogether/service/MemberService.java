@@ -3,11 +3,8 @@ package kakao.valuetogether.service;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.NoResultException;
 import java.util.Optional;
 
 @Service
@@ -15,6 +12,7 @@ public class MemberService {
 
     @Autowired
     MemberRepository memberRepository;
+
     //회원가입
     public Long join(Member member) {
         validateDuplicateMember(member);
@@ -42,7 +40,7 @@ public class MemberService {
     }
 
     //ID 찾기 두번째 방법
-    public String idFindNNP(String nickname, String name, String phone) {
+    public String idFindNicknameOrNameAndPhone(String nickname, String name, String phone) {
         Optional<Member> findMember = memberRepository.findByNNP(nickname, name, phone);
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");

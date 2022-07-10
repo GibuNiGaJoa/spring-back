@@ -1,6 +1,7 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.TopicPost;
 import kakao.valuetogether.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class PostService {
     TopicRepository topicRepository;
 
     //제안하기
-    public Long propose(Post post) {
+    public Long propose(Post post, TopicPost topicPost) {
         Long postSavedId = postRepository.save(post);
         return postSavedId;
     }
