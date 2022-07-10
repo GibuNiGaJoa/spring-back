@@ -1,26 +1,5 @@
 package kakao.valuetogether.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-
-@Entity
-@Getter @Setter
-public class Topic {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "topic_id")
-    private Long id;
-
-    @Column(name = "topic_name", nullable = false)
-    private String topicName;
-
-    public Topic(String topicName) {
-        this.topicName = topicName;
-    }
-
-    public Topic() {
-
-    }
+public enum Topic {
+    모두의교육, 기본생활지원, 안정된일자리, 건강한삶, 인권평화와역사, 동물, 지역공동체, 더나은사회, 환경;
 }
