@@ -14,13 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 @SpringBootTest
+@Transactional
 class ValuetogetherApplicationTests {
 
     @Autowired PostRepository postRepository;
     @Autowired MemberRepository memberRepository;
 
     @Test
-    @Transactional
     @Rollback(value = false)
     void test() {
 //        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
