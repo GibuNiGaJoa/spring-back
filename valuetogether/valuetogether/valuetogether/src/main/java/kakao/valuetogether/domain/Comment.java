@@ -10,23 +10,25 @@ import java.util.Date;
 @Getter
 public class Comment implements Serializable {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
-    @JoinColumn(name = "member_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class, optional = false)
+    @JoinColumn(name = "member_id",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @JoinColumn(name = "post_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
+
     private Post post;
 
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     private Integer likes;
