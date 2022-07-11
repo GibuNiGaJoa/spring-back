@@ -17,6 +17,7 @@ public class CommentRepository {
         return comment.getId();
     }
 
+    // 댓글 수정
     public Long updateComment(Comment comment, String content) {
         comment.editContent(content);
         em.persist(comment);
@@ -34,13 +35,9 @@ public class CommentRepository {
         em.persist(comment);
     }
 
-    public boolean minusLikes(Comment comment) {
-        boolean result = comment.minusLikes();
-
-        if(!result)
-            return false;
-
-        return true;
+    public void minusLikes(Comment comment) {
+        comment.minusLikes();
+        em.persist(comment);
     }
 
     public Comment find(Long id) {

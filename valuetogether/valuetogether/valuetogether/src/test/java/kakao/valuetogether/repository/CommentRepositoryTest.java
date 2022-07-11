@@ -39,10 +39,10 @@ public class CommentRepositoryTest {
     }
 
     @Test
-    public void editComment() {
+    public void updateComment() {
         // given
-        String firstStr = "Content";
-        String secondStr = "This is edit Content";
+        String firstStr = "content";
+        String secondStr = "This is edit content";
 
         Member findMember = getFindMember();
         Post findPost = getFindPost(findMember);
@@ -102,10 +102,6 @@ public class CommentRepositoryTest {
         Integer secondLikes = findComment.getLikes();
 
         assertThat(firstLikes).isEqualTo(secondLikes);
-
-        // 좋아요가 0인 상태에서 minusLieks 했을 경우
-        boolean result = commentRepository.minusLikes(findComment);
-        assertThat(result).isEqualTo(false);
     }
 
     @Test
@@ -122,7 +118,6 @@ public class CommentRepositoryTest {
         Comment findComment = findComment(commentSavedId);
         Long deleteComment = commentRepository.deleteComment(findComment);
     }
-
 
     public Member getFindMember() {
         Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");

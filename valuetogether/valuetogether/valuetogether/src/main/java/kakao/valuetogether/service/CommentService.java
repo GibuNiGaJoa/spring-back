@@ -17,4 +17,15 @@ public class CommentService {
         commentRepository.saveComment(comment);
         return comment.getId();
     }
+
+    // 댓글 수정
+
+    // 댓글 삭제
+
+    // 좋아요
+    public void clickLike(Comment comment) {
+        commentRepository.addLikes(comment);
+    }
+
+    // 좋아요 취소
 }
