@@ -1,20 +1,5 @@
 package kakao.valuetogether.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-@Getter @Setter
-public class Target {
-
-    @Id @GeneratedValue
-    private Long id;
-
-    @Column(name = "target_name", nullable = false)
-    private String targetName;
+public enum Target {
+    아동ㅣ청소년, 청년, 여성, 실버세대, 장애인, 이주민ㅣ다문화, 지구촌, 어려운이웃, 우리사회, 유기동물, 야생동물;
 }

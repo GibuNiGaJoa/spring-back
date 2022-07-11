@@ -19,7 +19,7 @@ public class MemberRepositoryTest {
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Member findMember = memberRepository.findById(savedId);
 
         Assertions.assertThat(member).isEqualTo(findMember);
     }

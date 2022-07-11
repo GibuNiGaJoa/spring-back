@@ -3,13 +3,15 @@ package kakao.valuetogether.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 public class Post {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Long id;
 
@@ -28,6 +30,15 @@ public class Post {
 
     private String image;
 
+    @Enumerated(EnumType.STRING)
+    private Topic topic;
+
+    @Enumerated(EnumType.STRING)
+    private Target target;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "post")
+    private List<Link> links = new ArrayList<>();
+
     @Column(name = "target_amount", nullable = false)
     private Integer targetAmount;
 
@@ -36,17 +47,20 @@ public class Post {
     private Date startDate;
 
     @Column(name = "end_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
     @Column(name = "is_confirm", nullable = false)
     private Boolean isConfirm;
 
-    public Post(Member member, String title, String subTitle, String article, String image, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
         this.title = title;
         this.subTitle = subTitle;
         this.article = article;
         this.image = image;
+        this.topic = topic;
+        this.target = target;
         this.targetAmount = targetAmount;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -56,4 +70,19 @@ public class Post {
     public Post() {
 
     }
+
+    //연관관계 메서드
+    public void addLink(Link link) {
+        link.setPost(this);
+        this.links.add(link);
+    }
+
+    //생성메서드
+    public static Post createPost(Post post, Link... links) {
+        for (Link link : links) {
+            post.addLink(link);
+        }
+        return post;
+    }
+
 }
