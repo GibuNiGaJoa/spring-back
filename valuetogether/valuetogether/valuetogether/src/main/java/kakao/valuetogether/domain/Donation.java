@@ -61,16 +61,16 @@ public class Donation implements Serializable {
         this.amountDirect += amount;
     }
 
-    public void addAmountCheer(Integer amount) {
-        this.amountCheer += amount;
+    public void addAmountCheer() {
+        this.amountCheer += 100;
     }
 
-    public void addAmountShare(Integer amount) {
-        this.amountShare += amount;
+    public void addAmountShare() {
+        this.amountShare += 100;
     }
 
-    public void addAmountComment(Integer amount) {
-        this.amountComment += amount;
+    public void addAmountComment() {
+        this.amountComment += 100;
     }
 
     public void addCountDirect() {

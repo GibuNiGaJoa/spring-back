@@ -60,9 +60,8 @@ public class DonationRepositoryTest {
 
     @Test
     public void donateCheer() {
-        donationRepository.addAmountCheer(donation, 10000);
-        Integer cheerDonation = donation.getAmountCheer();
-        assertThat(10000).isEqualTo(cheerDonation);
+        donationRepository.addAmountCheer(donation);
+        assertThat(100).isEqualTo(donation.getAmountCheer());
 
         donationRepository.addCountCheer(donation);
         assertThat(donation.getCountCheer()).isEqualTo(1);
@@ -70,9 +69,8 @@ public class DonationRepositoryTest {
 
     @Test
     public void donateShare() {
-        donationRepository.addAmountShare(donation, 10000);
-        Integer shareDonation = donation.getAmountShare();
-        assertThat(10000).isEqualTo(shareDonation);
+        donationRepository.addAmountShare(donation);
+        assertThat(100).isEqualTo(donation.getAmountShare());
 
         donationRepository.addCountShare(donation);
         assertThat(donation.getCountShare()).isEqualTo(1);
@@ -80,9 +78,8 @@ public class DonationRepositoryTest {
 
     @Test
     public void donateComment() {
-        donationRepository.addAmountComment(donation, 10000);
-        Integer commentDonation = donation.getAmountComment();
-        assertThat(10000).isEqualTo(commentDonation);
+        donationRepository.addAmountComment(donation);
+        assertThat(100).isEqualTo(donation.getAmountComment());
 
         donationRepository.addCountComment(donation);
         assertThat(donation.getCountComment()).isEqualTo(1);

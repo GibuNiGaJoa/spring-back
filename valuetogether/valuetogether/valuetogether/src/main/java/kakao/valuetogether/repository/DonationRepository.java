@@ -34,16 +34,16 @@ public class DonationRepository {
         donation.addAmountDirect(amount);
     }
 
-    public void addAmountCheer(Donation donation, Integer amount) {
-        donation.addAmountCheer(amount);
+    public void addAmountCheer(Donation donation) {
+        donation.addAmountCheer();
     }
 
-    public void addAmountShare(Donation donation, Integer amount) {
-        donation.addAmountShare(amount);
+    public void addAmountShare(Donation donation) {
+        donation.addAmountShare();
     }
 
-    public void addAmountComment(Donation donation, Integer amount) {
-        donation.addAmountComment(amount);
+    public void addAmountComment(Donation donation) {
+        donation.addAmountComment();
     }
 
     public void addCountDirect(Donation donation) {
