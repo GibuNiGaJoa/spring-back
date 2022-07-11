@@ -21,6 +21,9 @@ public class PostService {
     @Autowired
     TagRepository tagRepository;
 
+    @Autowired
+    LinkRepository linkRepository;
+
     //제안하기
     public Long propose(Post post) {
         Long postSavedId = postRepository.save(post);

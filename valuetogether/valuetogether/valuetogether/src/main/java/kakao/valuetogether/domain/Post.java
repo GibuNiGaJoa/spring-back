@@ -54,7 +54,7 @@ public class Post {
     @Column(name = "is_confirm", nullable = false)
     private Boolean isConfirm;
 
-    public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, List<Link> links, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
         this.title = title;
         this.subTitle = subTitle;
@@ -62,7 +62,6 @@ public class Post {
         this.image = image;
         this.topic = topic;
         this.target = target;
-        this.links = links;
         this.targetAmount = targetAmount;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -71,6 +70,20 @@ public class Post {
 
     public Post() {
 
+    }
+
+    //연관관계 메서드
+    public void addLink(Link link) {
+        link.setPost(this);
+        this.links.add(link);
+    }
+
+    //생성메서드
+    public static Post createPost(Post post, Link... links) {
+        for (Link link : links) {
+            post.addLink(link);
+        }
+        return post;
     }
 
 }

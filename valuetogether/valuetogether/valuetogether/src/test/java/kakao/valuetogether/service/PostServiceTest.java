@@ -1,6 +1,7 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.repository.LinkRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
 import org.assertj.core.api.Assertions;
@@ -28,6 +29,9 @@ public class PostServiceTest {
     PostRepository postRepository;
 
     @Autowired
+    LinkRepository linkRepository;
+
+    @Autowired
     PostService postService;
 
     @Test
@@ -40,15 +44,28 @@ public class PostServiceTest {
         Long saveId = memberRepository.save(member);
         Member findMember = memberRepository.findById(saveId);
 
-        List<Link> links = new ArrayList<>();
-        links.add(new Link("asdf"));
-        links.add(new Link("aslkjfhw"));
-
-        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, links,1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
         Long postSaveId1 = postService.propose(post1);
 
-        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, links ,1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Link link1 = new Link("asdf");
+        Link link2 = new Link("aslkjfhw");
+        post1.addLink(link1);
+        post1.addLink(link2);
+
+        linkRepository.save(link1);
+        linkRepository.save(link2);
+
+        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
         Long postSaveId2 = postService.propose(post2);
+
+        Link link3 = new Link("asdf");
+        Link link4 = new Link("aslkjfhw");
+
+        post2.addLink(link3);
+        post2.addLink(link4);
+
+        linkRepository.save(link3);
+        linkRepository.save(link4);
 
         Assertions.assertThat(post1).isEqualTo(postRepository.findById(postSaveId1));
         Assertions.assertThat(post2).isEqualTo(postRepository.findById(postSaveId2));
@@ -64,17 +81,13 @@ public class PostServiceTest {
         Long saveId = memberRepository.save(member);
         Member findMember = memberRepository.findById(saveId);
 
-        List<Link> links = new ArrayList<>();
-        links.add(new Link("asdf"));
-        links.add(new Link("aslkjfhw"));
-
-        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, links ,1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
         Long postSaveId1 = postService.propose(post1);
 
-        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, links ,1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
         Long postSaveId2 = postService.propose(post2);
 
-        Post post3 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, links ,1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post3 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
         Long postSaveId3 = postService.propose(post3);
 
         List<Post> findPostByTopic = postService.searchByTopic(Topic.건강한삶);

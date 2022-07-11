@@ -12,7 +12,7 @@ public class Link {
 
     @Id @GeneratedValue
     @Column(name = "link_id")
-    private Long linkId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
@@ -27,4 +27,5 @@ public class Link {
     public Link() {
 
     }
+
 }
