@@ -17,7 +17,6 @@ public class CommentRepository {
         return comment.getId();
     }
 
-    // 댓글 수정
     public Long updateComment(Comment comment, String content) {
         comment.editContent(content);
         em.persist(comment);

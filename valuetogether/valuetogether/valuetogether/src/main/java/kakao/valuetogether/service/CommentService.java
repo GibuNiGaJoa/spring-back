@@ -18,14 +18,19 @@ public class CommentService {
         return comment.getId();
     }
 
-    // 댓글 수정
+    public Long editComment(Comment comment, String content) {
+        return commentRepository.updateComment(comment, content);
+    }
 
-    // 댓글 삭제
+    public void removeComment(Comment comment) {
+        commentRepository.deleteComment(comment);
+    }
 
-    // 좋아요
     public void clickLike(Comment comment) {
         commentRepository.addLikes(comment);
     }
 
-    // 좋아요 취소
+    public void disLike(Comment comment) {
+        commentRepository.minusLikes(comment);
+    }
 }

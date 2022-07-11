@@ -79,6 +79,7 @@ public class MemberServiceTest {
         } catch (IllegalStateException e) {
             return;
         }
+
         Assert.fail("예외가 발생해야 한다."); // 이 메서드가 실행되면 테스트는 실패!
     }
 

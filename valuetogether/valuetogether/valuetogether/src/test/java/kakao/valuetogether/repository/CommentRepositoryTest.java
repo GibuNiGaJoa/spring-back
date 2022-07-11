@@ -1,8 +1,7 @@
 package kakao.valuetogether.repository;
 
-import kakao.valuetogether.domain.Comment;
-import kakao.valuetogether.domain.Member;
-import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,63 +21,45 @@ public class CommentRepositoryTest {
     @Autowired MemberRepository memberRepository;
     @Autowired PostRepository postRepository;
 
+    private Member findMember;
+    private Post findPost;
+    private Comment comment, findComment;
+    private Long savedCommentId;
+
+    @BeforeEach
+    void beforeEach() {
+        findMember = getFindMember();
+        findPost = getFindPost(findMember);
+        comment = createComment(findMember, findPost);
+        savedCommentId = saveComment(comment);
+        findComment = findComment(savedCommentId);
+    }
+
     @Test
     public void save() {
-        // given
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // when
-        Comment findComment = findComment(commentSavedId);
-
-        // then
         assertThat(comment).isEqualTo(findComment);
     }
 
     @Test
     public void updateComment() {
-        // given
-        String firstStr = "content";
-        String secondStr = "This is edit content";
-
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // when
-        Comment findComment = findComment(commentSavedId);
         String firstContent = findComment.getContent();
 
+        String secondStr = "This is edit content";
         Long editCommentId = commentRepository.updateComment(findComment, secondStr);
         Comment editComment = commentRepository.find(editCommentId);
         String secondContent = editComment.getContent();
 
-        // then
-        assertThat(firstContent).isEqualTo(firstStr);
+        assertThat(firstContent).isNotEqualTo(secondStr);
         assertThat(secondContent).isEqualTo(secondStr);
     }
 
     @Test
     public void addLikes() {
-        // given
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // when
-        Comment findComment = findComment(commentSavedId);
         Integer firstLikes = findComment.getLikes();
 
         findComment.addLikes();
 
-        Comment reFindComment = commentRepository.find(commentSavedId);
+        Comment reFindComment = commentRepository.find(savedCommentId);
         Integer secondLikes = reFindComment.getLikes();
 
         // then
@@ -88,12 +69,6 @@ public class CommentRepositoryTest {
 
     @Test
     public void minusLikes() {
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-        Comment comment = createComment(findMember, findPost);
-        Long savedId = saveComment(comment);
-        Comment findComment = findComment(savedId);
-
         Integer firstLikes = findComment.getLikes();
 
         commentRepository.addLikes(findComment);
@@ -118,17 +93,18 @@ public class CommentRepositoryTest {
         Comment findComment = findComment(commentSavedId);
         Long deleteComment = commentRepository.deleteComment(findComment);
     }
+    // end of Test Methods
 
     public Member getFindMember() {
         Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");
         Long memberSavedId = memberRepository.save(member);
-        return memberRepository.find(memberSavedId);
+        return memberRepository.findById(memberSavedId);
     }
 
     public Post getFindPost(Member findMember) {
-        Post post = new Post(findMember, "title", "subtitle", "article", "img", 100, new Date(1020, 12, 12), new Date(231, 12, 12), true);
+        Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
         Long postSavedId = postRepository.save(post);
-        return postRepository.find(postSavedId);
+        return postRepository.findById(postSavedId);
     }
 
     public Comment createComment(Member findMember, Post findPost) {
