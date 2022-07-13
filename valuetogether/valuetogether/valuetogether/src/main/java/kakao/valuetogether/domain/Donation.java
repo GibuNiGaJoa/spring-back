@@ -50,13 +50,6 @@ public class Donation implements Serializable {
 
     public Donation() {}
 
-    public Integer getTotalAmount() {
-        return this.getAmountDirect() +
-                this.getAmountCheer() +
-                this.getAmountComment() +
-                this.getAmountShare();
-    }
-
     public void addAmountDirect(Integer amount) {
         this.amountDirect += amount;
     }
@@ -87,6 +80,13 @@ public class Donation implements Serializable {
 
     public void addCountComment() {
         this.countComment += 1;
+    }
+
+    public Integer getTotalAmount() {
+        return this.getAmountDirect() +
+                this.getAmountCheer() +
+                this.getAmountComment() +
+                this.getAmountShare();
     }
 
 }

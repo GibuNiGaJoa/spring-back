@@ -51,11 +51,14 @@ public class DonationRepositoryTest {
     @Test
     public void donateDirect() {
         donationRepository.addAmountDirect(donation, 1000);
-        Integer directDonation = donation.getAmountDirect();
+
+        Donation findDonation = donationRepository.findByMember(findMember);
+
+        Integer directDonation = findDonation.getAmountDirect();
         assertThat(directDonation).isEqualTo(1000);
 
         donationRepository.addCountDirect(donation);
-        assertThat(donation.getCountDirect()).isEqualTo(1);
+        assertThat(findDonation.getCountDirect()).isEqualTo(1);
     }
 
     @Test

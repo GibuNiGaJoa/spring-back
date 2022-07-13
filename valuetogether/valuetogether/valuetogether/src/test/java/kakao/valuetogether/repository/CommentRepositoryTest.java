@@ -46,7 +46,7 @@ public class CommentRepositoryTest {
 
         String secondStr = "This is edit content";
         Long editCommentId = commentRepository.updateComment(findComment, secondStr);
-        Comment editComment = commentRepository.find(editCommentId);
+        Comment editComment = commentRepository.findById(editCommentId);
         String secondContent = editComment.getContent();
 
         assertThat(firstContent).isNotEqualTo(secondStr);
@@ -59,7 +59,7 @@ public class CommentRepositoryTest {
 
         findComment.addLikes();
 
-        Comment reFindComment = commentRepository.find(savedCommentId);
+        Comment reFindComment = commentRepository.findById(savedCommentId);
         Integer secondLikes = reFindComment.getLikes();
 
         // then
@@ -81,15 +81,12 @@ public class CommentRepositoryTest {
 
     @Test
     public void deleteComment() {
-        // given
         Member findMember = getFindMember();
         Post findPost = getFindPost(findMember);
 
-        // when
         Comment comment = createComment(findMember, findPost);
         Long commentSavedId = saveComment(comment);
 
-        // then
         Comment findComment = findComment(commentSavedId);
         Long deleteComment = commentRepository.deleteComment(findComment);
     }
@@ -116,7 +113,7 @@ public class CommentRepositoryTest {
     }
 
     public Comment findComment(Long id) {
-        return commentRepository.find(id);
+        return commentRepository.findById(id);
     }
 
 }

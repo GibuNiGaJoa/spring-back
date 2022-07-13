@@ -1,6 +1,8 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Comment;
+import kakao.valuetogether.domain.Donation;
+import kakao.valuetogether.domain.Post;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -39,7 +41,13 @@ public class CommentRepository {
         em.persist(comment);
     }
 
-    public Comment find(Long id) {
+    public Comment findByPost(Post post) {
+        return em.createQuery("select c from Comment c where c.post = :post", Comment.class)
+                .setParameter("post", post)
+                .getSingleResult();
+    }
+
+    public Comment findById(Long id) {
         return em.find(Comment.class, id);
     }
 }

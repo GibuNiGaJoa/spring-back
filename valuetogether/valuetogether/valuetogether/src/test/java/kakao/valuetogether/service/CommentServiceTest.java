@@ -4,7 +4,6 @@ import kakao.valuetogether.domain.*;
 import kakao.valuetogether.repository.CommentRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class CommentServiceTest {
         findMember = getFindMember();
         findPost = getFindPost(findMember);
         comment = createComment(findMember, findPost);
-        savedCommentId = enrollComment(comment);
+        savedCommentId = enrollComment(comment.getId());
         findComment = findComment(savedCommentId);
     }
 
@@ -104,11 +103,11 @@ public class CommentServiceTest {
         return new Comment(findMember, findPost, "content", new Date(2022, 6, 8), 0);
     }
 
-    public Long enrollComment(Comment comment) {
-        return commentService.enrollComment(comment);
+    public Long enrollComment(Long id) {
+        return commentService.enrollComment(id);
     }
 
     public Comment findComment(Long id) {
-        return commentRepository.find(id);
+        return commentRepository.findById(id);
     }
 }
