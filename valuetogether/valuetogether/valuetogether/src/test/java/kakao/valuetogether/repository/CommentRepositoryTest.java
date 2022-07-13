@@ -54,6 +54,18 @@ public class CommentRepositoryTest {
     }
 
     @Test
+    public void deleteComment() {
+        Member findMember = getFindMember();
+        Post findPost = getFindPost(findMember);
+
+        Comment comment = createComment(findMember, findPost);
+        Long commentSavedId = saveComment(comment);
+
+        Comment findComment = findComment(commentSavedId);
+        Long deleteComment = commentRepository.deleteComment(findComment);
+    }
+
+    @Test
     public void addLikes() {
         Integer firstLikes = findComment.getLikes();
 
@@ -80,15 +92,9 @@ public class CommentRepositoryTest {
     }
 
     @Test
-    public void deleteComment() {
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        Comment findComment = findComment(commentSavedId);
-        Long deleteComment = commentRepository.deleteComment(findComment);
+    public void findByPost() {
+        Comment byPost = commentRepository.findByPost(findPost);
+        assertThat(byPost).isEqualTo(findComment);
     }
     // end of Test Methods
 

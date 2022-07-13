@@ -7,19 +7,17 @@ import kakao.valuetogether.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final PostRepository postRepository;
 
-    public Long enrollComment(Long postId) {
-        Post findPost = postRepository.findById(postId);
-
-        Comment findComment = commentRepository.findByPost(findPost);
-        commentRepository.saveComment(findComment);
-        return findComment.getId();
+    public Long enrollComment(Comment comment) {
+        commentRepository.saveComment(comment);
+        return comment.getId();
     }
 
     public Long editComment(Comment comment, String content) {

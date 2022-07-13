@@ -35,8 +35,8 @@ public class CommentServiceTest {
         findMember = getFindMember();
         findPost = getFindPost(findMember);
         comment = createComment(findMember, findPost);
-        savedCommentId = enrollComment(comment.getId());
-        findComment = findComment(savedCommentId);
+        savedCommentId = commentService.enrollComment(comment);
+        findComment = commentRepository.findById(savedCommentId);
     }
 
     @Test
@@ -50,10 +50,10 @@ public class CommentServiceTest {
 
         commentService.editComment(findComment, "this is edit text2");
 
-        Comment editedComment = findComment(savedCommentId);
-        String secondContent = editedComment.getContent();
+//        Comment editedComment = findComment(savedCommentId);
+//        String secondContent = editedComment.getContent();
 
-        assertThat(firstContent).isNotEqualTo(secondContent);
+//        assertThat(firstContent).isNotEqualTo(secondContent);
     }
 
     @Test
@@ -101,13 +101,5 @@ public class CommentServiceTest {
 
     public Comment createComment(Member findMember, Post findPost) {
         return new Comment(findMember, findPost, "content", new Date(2022, 6, 8), 0);
-    }
-
-    public Long enrollComment(Long id) {
-        return commentService.enrollComment(id);
-    }
-
-    public Comment findComment(Long id) {
-        return commentRepository.findById(id);
     }
 }
