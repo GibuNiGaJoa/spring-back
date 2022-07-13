@@ -4,10 +4,12 @@ import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional
 public class MemberService {
 
     @Autowired
@@ -26,6 +28,15 @@ public class MemberService {
         findMember.ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
+    }
+
+    //로그인
+    public Long login(String email, String pw) {
+        Optional<Member> findMember = memberRepository.findByEmailAndPw(email, pw);
+        if(findMember.isEmpty()) {
+            throw new IllegalStateException("존재하지 않는 계정입니다.");
+        }
+        return findMember.get().getId();
     }
 
     //ID 찾기 첫번째 방법
