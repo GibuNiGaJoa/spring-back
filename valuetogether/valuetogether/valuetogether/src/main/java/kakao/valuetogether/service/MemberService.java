@@ -15,6 +15,11 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    public Member findOne(Long id) {
+        Member findMember = memberRepository.findById(id);
+        return findMember;
+    }
+
     //회원가입
     public Long join(Member member) {
         validateDuplicateMember(member);
@@ -40,18 +45,18 @@ public class MemberService {
     }
 
     //ID 찾기 첫번째 방법
-    public String idFindPhone(String phone) {
+    public String findIdByPhone(String phone) {
         Optional<Member> findPhone = memberRepository.findByPhone(phone);
         if(findPhone.isEmpty()){
             throw new IllegalStateException("존재하지 않는 번호입니다.");
         }
         else {
-            return findPhone.get().getPhone();
+            return findPhone.get().getEmail();
         }
     }
 
     //ID 찾기 두번째 방법
-    public String idFindNicknameOrNameAndPhone(String nickname, String name, String phone) {
+    public String findIdByNNP(String nickname, String name, String phone) {
         Optional<Member> findMember = memberRepository.findByNNP(nickname, name, phone);
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");
@@ -71,11 +76,9 @@ public class MemberService {
     }
 
     //PW 재설정
-    public Member changePw(Long id, String pw) {
+    public void changePw(Long id, String pw) {
         Member findMember = memberRepository.findById(id);
         findMember.setPw(pw);
-
-        return findMember;
     }
 
     //회원탈퇴 (게시글 있을때는 어떻게 할지 고민필요)
