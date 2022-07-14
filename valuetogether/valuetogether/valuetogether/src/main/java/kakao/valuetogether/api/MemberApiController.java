@@ -5,6 +5,7 @@ import kakao.valuetogether.service.MemberService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,7 +67,7 @@ public class MemberApiController {
     //-------------------------------여기까지 회원가입부분------------------
 
     //로그인 api
-    @PostMapping("/api/login")
+    @GetMapping("/api/login")
     public LoginMemberResponse loginMember(@RequestBody @Valid LoginMemberRequest request) {
 
         Long id = memberService.login(request.getEmail(), request.getPw());
@@ -87,5 +88,5 @@ public class MemberApiController {
             this.id = id;
         }
     }
-
+    //-------------------------------여기까지 로그인부분------------------
 }
