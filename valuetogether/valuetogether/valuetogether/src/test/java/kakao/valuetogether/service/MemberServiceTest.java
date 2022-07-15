@@ -75,7 +75,7 @@ public class MemberServiceTest {
         assertThat(member1.getPhone()).isEqualTo(findPhone);
 
         try {
-            memberService.idFindPhone("asdf"); // 예외 발생해야함.
+            memberService.findIdByPhone("asdf"); // 예외 발생해야함.
         } catch (IllegalStateException e) {
             return;
         }
@@ -102,15 +102,15 @@ public class MemberServiceTest {
 
         Long saveId1 = memberRepository.save(member1);
 
-        String findEmail1 = memberService.idFindNicknameOrNameAndPhone("nickname", "name", "phone");
-        String findEmail2 = memberService.idFindNicknameOrNameAndPhone(null, "name", "phone");
-        String findEmail3 = memberService.idFindNicknameOrNameAndPhone("nickname", null, "phone");
+        String findEmail1 = memberService.findIdByNNP("nickname", "name", "phone");
+        String findEmail2 = memberService.findIdByNNP(null, "name", "phone");
+        String findEmail3 = memberService.findIdByNNP("nickname", null, "phone");
         assertThat(findEmail1).isEqualTo(member1.getEmail());
         assertThat(findEmail2).isEqualTo(member1.getEmail());
         assertThat(findEmail3).isEqualTo(member1.getEmail());
 
         try {
-            memberService.idFindNicknameOrNameAndPhone("ㅁ","ㅁ","phone"); // 예외 발생해야함.
+            memberService.findIdByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.
         } catch (IllegalStateException e) {
             return;
         }

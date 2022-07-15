@@ -179,4 +179,11 @@ public class MemberApiController {
             this.pw = pw;
         }
     }
+    //-------------------------------여기까지 회원검증 및 PW재설정------------------
+    //회원탈퇴
+    @DeleteMapping("member/{id}")
+    public void deleteMember(@PathVariable("id") Long id) {
+        memberService.deleteMember(id);
+    }
+
 }
