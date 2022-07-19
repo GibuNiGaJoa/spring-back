@@ -1,10 +1,7 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.*;
-<<<<<<< HEAD
 import org.junit.jupiter.api.BeforeEach;
-=======
->>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-<<<<<<< HEAD
-=======
-//@Rollback(value = false)
->>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
 public class CommentRepositoryTest {
 
     @Autowired CommentRepository commentRepository;
@@ -47,23 +40,7 @@ public class CommentRepositoryTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void updateComment() {
-=======
-    public void editComment() {
-        // given
-        String firstStr = "content";
-        String secondStr = "This is edit Content";
-
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // when
-        Comment findComment = findComment(commentSavedId);
->>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
         String firstContent = findComment.getContent();
 
         String secondStr = "This is edit content";
@@ -127,11 +104,7 @@ public class CommentRepositoryTest {
     }
 
     public Post getFindPost(Member findMember) {
-<<<<<<< HEAD
         Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
-=======
-        Post post = new Post(findMember, "title", "subtitle", "article", "img", Topic.건강한삶, Target.실버세대,100, new Date(2019-11-11) , new Date(2019-11-11), true);
->>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
         Long postSavedId = postRepository.save(post);
         return postRepository.findById(postSavedId);
     }
