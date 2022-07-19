@@ -40,7 +40,19 @@ public class CommentServiceTest {
 
     @Test
     public void enroll() {
+<<<<<<< HEAD
         assertThat(comment).isEqualTo(findComment);
+=======
+        Member findMember = getFindMember();
+        Post findPost = getFindPost(findMember);
+        Comment comment = createComment(findMember, findPost);
+
+        Long savedId = commentService.enrollComment(comment);
+
+        Comment findComment = findComment(savedId);
+
+        Assertions.assertThat(comment).isEqualTo(findComment);
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
     }
 
     @Test
@@ -93,7 +105,11 @@ public class CommentServiceTest {
     }
 
     public Post getFindPost(Member findMember) {
+<<<<<<< HEAD
         Post post = new Post(findMember, "title", "subtitle", "article", "image", Topic.건강한삶, Target.아동ㅣ청소년, 100000, new Date(20, 07, 01), new Date(22, 07, 01), false);
+=======
+        Post post = new Post(findMember, "title", "subtitle", "article", "img", Topic.건강한삶, Target.실버세대,100, new Date(2019-11-11) , new Date(2019-11-11), true);
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
         Long postSavedId = postRepository.save(post);
         return postRepository.findById(postSavedId);
     }

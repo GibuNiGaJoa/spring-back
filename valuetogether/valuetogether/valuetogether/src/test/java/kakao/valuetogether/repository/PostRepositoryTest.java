@@ -23,7 +23,7 @@ public class PostRepositoryTest {
 
     @Test
     @Transactional
-    @Rollback(value = false)
+    //@Rollback(value = false)
     public void save(){
 //        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 //
