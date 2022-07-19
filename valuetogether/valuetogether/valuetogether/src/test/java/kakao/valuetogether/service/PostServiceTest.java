@@ -36,7 +36,7 @@ public class PostServiceTest {
 
     @Test
     @Transactional
-    @Rollback(value = false)
+    //@Rollback(value = false)
     public void 제안하기() {
         postService.basicSetting();
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
@@ -73,7 +73,7 @@ public class PostServiceTest {
 
     @Test
     @Transactional
-    @Rollback(value = false)
+    //@Rollback(value = false)
     public void 주제별대상별게시글검색하기() {
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 

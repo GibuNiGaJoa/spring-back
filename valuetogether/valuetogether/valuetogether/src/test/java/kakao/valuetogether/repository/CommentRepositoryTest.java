@@ -1,8 +1,6 @@
 package kakao.valuetogether.repository;
 
-import kakao.valuetogether.domain.Comment;
-import kakao.valuetogether.domain.Member;
-import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class CommentRepositoryTest {
 
     @Autowired CommentRepository commentRepository;
@@ -41,7 +39,7 @@ public class CommentRepositoryTest {
     @Test
     public void editComment() {
         // given
-        String firstStr = "Content";
+        String firstStr = "content";
         String secondStr = "This is edit Content";
 
         Member findMember = getFindMember();
@@ -127,13 +125,13 @@ public class CommentRepositoryTest {
     public Member getFindMember() {
         Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");
         Long memberSavedId = memberRepository.save(member);
-        return memberRepository.find(memberSavedId);
+        return memberRepository.findById(memberSavedId);
     }
 
     public Post getFindPost(Member findMember) {
-        Post post = new Post(findMember, "title", "subtitle", "article", "img", 100, new Date(1020, 12, 12), new Date(231, 12, 12), true);
+        Post post = new Post(findMember, "title", "subtitle", "article", "img", Topic.건강한삶, Target.실버세대,100, new Date(2019-11-11) , new Date(2019-11-11), true);
         Long postSavedId = postRepository.save(post);
-        return postRepository.find(postSavedId);
+        return postRepository.findById(postSavedId);
     }
 
     public Comment createComment(Member findMember, Post findPost) {
