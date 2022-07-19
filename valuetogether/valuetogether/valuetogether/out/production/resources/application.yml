@@ -1,13 +1,21 @@
 spring:
+#  h2데이터베이스 설정
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/valuetogether
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+
   datasource:
-    url: jdbc:h2:tcp://localhost/~/valuetogether
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/valuetogether?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
 #        show_sql: true

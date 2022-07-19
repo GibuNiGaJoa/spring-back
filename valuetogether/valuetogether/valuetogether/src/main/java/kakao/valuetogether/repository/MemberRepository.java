@@ -16,6 +16,10 @@ public class MemberRepository {
     @PersistenceContext
     private EntityManager em;
 
+    public void clearStore() {
+        em.clear();
+    }
+
     //회원 저장하기
     public Long save(Member member) {
         em.persist(member);

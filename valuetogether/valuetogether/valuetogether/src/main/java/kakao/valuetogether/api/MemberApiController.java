@@ -185,5 +185,4 @@ public class MemberApiController {
     public void deleteMember(@PathVariable("id") Long id) {
         memberService.deleteMember(id);
     }
-
 }
