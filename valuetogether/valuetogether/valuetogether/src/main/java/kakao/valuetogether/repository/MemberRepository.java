@@ -59,6 +59,7 @@ public class MemberRepository {
                 .getResultList();
         return findMember.stream().findAny();
     }
+
     //닉네임 또는 이름과 폰번호로 조회
     public Optional<Member> findByNNP(String nickname, String name, String phone){
         List<Member> findMember = em.createQuery("select m from Member m where (m.nickname = :nickname or " +
@@ -79,6 +80,5 @@ public class MemberRepository {
                 .getResultList();
         return findMember.stream().findAny();
     }
-
 
 }

@@ -1,6 +1,10 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.*;
+<<<<<<< HEAD
+import org.junit.jupiter.api.BeforeEach;
+=======
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,30 +17,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+<<<<<<< HEAD
+=======
 //@Rollback(value = false)
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
 public class CommentRepositoryTest {
 
     @Autowired CommentRepository commentRepository;
     @Autowired MemberRepository memberRepository;
     @Autowired PostRepository postRepository;
 
+    private Member findMember;
+    private Post findPost;
+    private Comment comment, findComment;
+    private Long savedCommentId;
+
+    @BeforeEach
+    void beforeEach() {
+        findMember = getFindMember();
+        findPost = getFindPost(findMember);
+        comment = createComment(findMember, findPost);
+        savedCommentId = saveComment(comment);
+        findComment = findComment(savedCommentId);
+    }
+
     @Test
     public void save() {
-        // given
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // when
-        Comment findComment = findComment(commentSavedId);
-
-        // then
         assertThat(comment).isEqualTo(findComment);
     }
 
     @Test
+<<<<<<< HEAD
+    public void updateComment() {
+=======
     public void editComment() {
         // given
         String firstStr = "content";
@@ -50,33 +63,37 @@ public class CommentRepositoryTest {
 
         // when
         Comment findComment = findComment(commentSavedId);
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
         String firstContent = findComment.getContent();
 
+        String secondStr = "This is edit content";
         Long editCommentId = commentRepository.updateComment(findComment, secondStr);
-        Comment editComment = commentRepository.find(editCommentId);
+        Comment editComment = commentRepository.findById(editCommentId);
         String secondContent = editComment.getContent();
 
-        // then
-        assertThat(firstContent).isEqualTo(firstStr);
+        assertThat(firstContent).isNotEqualTo(secondStr);
         assertThat(secondContent).isEqualTo(secondStr);
     }
 
     @Test
-    public void addLikes() {
-        // given
+    public void deleteComment() {
         Member findMember = getFindMember();
         Post findPost = getFindPost(findMember);
 
         Comment comment = createComment(findMember, findPost);
         Long commentSavedId = saveComment(comment);
 
-        // when
         Comment findComment = findComment(commentSavedId);
+        Long deleteComment = commentRepository.deleteComment(findComment);
+    }
+
+    @Test
+    public void addLikes() {
         Integer firstLikes = findComment.getLikes();
 
         findComment.addLikes();
 
-        Comment reFindComment = commentRepository.find(commentSavedId);
+        Comment reFindComment = commentRepository.findById(savedCommentId);
         Integer secondLikes = reFindComment.getLikes();
 
         // then
@@ -86,12 +103,6 @@ public class CommentRepositoryTest {
 
     @Test
     public void minusLikes() {
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-        Comment comment = createComment(findMember, findPost);
-        Long savedId = saveComment(comment);
-        Comment findComment = findComment(savedId);
-
         Integer firstLikes = findComment.getLikes();
 
         commentRepository.addLikes(findComment);
@@ -100,27 +111,14 @@ public class CommentRepositoryTest {
         Integer secondLikes = findComment.getLikes();
 
         assertThat(firstLikes).isEqualTo(secondLikes);
-
-        // 좋아요가 0인 상태에서 minusLieks 했을 경우
-        boolean result = commentRepository.minusLikes(findComment);
-        assertThat(result).isEqualTo(false);
     }
 
     @Test
-    public void deleteComment() {
-        // given
-        Member findMember = getFindMember();
-        Post findPost = getFindPost(findMember);
-
-        // when
-        Comment comment = createComment(findMember, findPost);
-        Long commentSavedId = saveComment(comment);
-
-        // then
-        Comment findComment = findComment(commentSavedId);
-        Long deleteComment = commentRepository.deleteComment(findComment);
+    public void findByPost() {
+        Comment byPost = commentRepository.findByPost(findPost);
+        assertThat(byPost).isEqualTo(findComment);
     }
-
+    // end of Test Methods
 
     public Member getFindMember() {
         Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");
@@ -129,7 +127,11 @@ public class CommentRepositoryTest {
     }
 
     public Post getFindPost(Member findMember) {
+<<<<<<< HEAD
+        Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
+=======
         Post post = new Post(findMember, "title", "subtitle", "article", "img", Topic.건강한삶, Target.실버세대,100, new Date(2019-11-11) , new Date(2019-11-11), true);
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
         Long postSavedId = postRepository.save(post);
         return postRepository.findById(postSavedId);
     }
@@ -143,7 +145,7 @@ public class CommentRepositoryTest {
     }
 
     public Comment findComment(Long id) {
-        return commentRepository.find(id);
+        return commentRepository.findById(id);
     }
 
 }

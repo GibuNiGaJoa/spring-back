@@ -2,7 +2,6 @@ package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +11,11 @@ import java.util.Optional;
 @Transactional
 public class MemberService {
 
-    @Autowired
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     public Member findOne(Long id) {
         Member findMember = memberRepository.findById(id);

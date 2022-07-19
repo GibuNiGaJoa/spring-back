@@ -1,12 +1,16 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Comment;
+import kakao.valuetogether.domain.Donation;
+import kakao.valuetogether.domain.Post;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
+@Transactional
 public class CommentRepository {
 
     @PersistenceContext
@@ -34,16 +38,18 @@ public class CommentRepository {
         em.persist(comment);
     }
 
-    public boolean minusLikes(Comment comment) {
-        boolean result = comment.minusLikes();
-
-        if(!result)
-            return false;
-
-        return true;
+    public void minusLikes(Comment comment) {
+        comment.minusLikes();
+        em.persist(comment);
     }
 
-    public Comment find(Long id) {
+    public Comment findByPost(Post post) {
+        return em.createQuery("select c from Comment c where c.post = :post", Comment.class)
+                .setParameter("post", post)
+                .getSingleResult();
+    }
+
+    public Comment findById(Long id) {
         return em.find(Comment.class, id);
     }
 }

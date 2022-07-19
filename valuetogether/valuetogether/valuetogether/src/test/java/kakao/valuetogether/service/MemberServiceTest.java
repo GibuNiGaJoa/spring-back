@@ -78,7 +78,19 @@ public class MemberServiceTest {
 
         String findEmail = memberService.findIdByPhone(member1.getPhone());
 
+<<<<<<< HEAD
+        assertThat(member1.getPhone()).isEqualTo(findPhone);
+
+        try {
+            memberService.idFindPhone("asdf"); // 예외 발생해야함.
+        } catch (IllegalStateException e) {
+            return;
+        }
+
+        Assert.fail("예외가 발생해야 한다."); // 이 메서드가 실행되면 테스트는 실패!
+=======
         assertThat(member1.getEmail()).isEqualTo(findEmail);
+>>>>>>> d64865fe4cc30812a3053bec11f440b1264fa6dc
     }
 
     @Test(expected = IllegalStateException.class)

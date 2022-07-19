@@ -18,7 +18,7 @@ public class Comment implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @JoinColumn(name = "post_id",nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
 
     private Post post;
@@ -51,11 +51,7 @@ public class Comment implements Serializable {
         this.likes += 1;
     }
 
-    public boolean minusLikes() {
-        if(this.likes <= 0)
-            return false;
-
+    public void minusLikes() {
         this.likes -= 1;
-        return true;
     }
 }
