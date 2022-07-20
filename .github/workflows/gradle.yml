@@ -22,9 +22,10 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         
-    # 3) Gradle 사용. arguments를 붙이면 뒤에 그대로 실행
-    # 이 워크 플로우는 gradle clean build를 실행
+    # 3) gradlew 권한 설정
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+        
+    # 4) Build Gradle
     - name: Build with Gradle
-      uses: ./gradlew build
-      with:
-        arguments: clean build
+      uses: ./gradlew clean build
