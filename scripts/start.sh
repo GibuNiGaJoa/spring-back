@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT_ROOT="/home/ubuntu/app"
+PROJECT_ROOT="/home/ubuntu/app/valuetogether/valuetogether/valuetogether"
 JAR_FILE="$PROJECT_ROOT/valuetogether.jar"
 
 APP_LOG="$PROJECT_ROOT/application.log"
