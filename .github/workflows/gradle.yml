@@ -25,6 +25,6 @@ jobs:
     # 3) Gradle 사용. arguments를 붙이면 뒤에 그대로 실행
     # 이 워크 플로우는 gradle clean build를 실행
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      uses: ./gradlew build
       with:
         arguments: clean build
