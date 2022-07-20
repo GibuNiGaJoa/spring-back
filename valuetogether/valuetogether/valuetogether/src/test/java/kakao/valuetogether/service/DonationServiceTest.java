@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
 public class DonationServiceTest {
 
     @Autowired MemberRepository memberRepository;
