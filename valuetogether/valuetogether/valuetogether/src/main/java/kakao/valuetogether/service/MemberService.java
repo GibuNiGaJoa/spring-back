@@ -87,4 +87,13 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.delete(id);
     }
+
+    // 회원 존재 유무 확인
+    public boolean isExist(String email) {
+        Optional<Member> findMember = memberRepository.findByEmail(email);
+
+        if(findMember.isPresent())
+            return true;
+        return false;
+    }
 }

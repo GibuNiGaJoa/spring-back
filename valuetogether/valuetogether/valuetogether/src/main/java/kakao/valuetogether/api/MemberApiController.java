@@ -64,11 +64,12 @@ public class MemberApiController {
     //-------------------------------여기까지 회원가입부분------------------
 
     //로그인 api
-    @GetMapping("/login")
-    public LoginMemberResponse loginMember(@RequestBody @Valid LoginMemberRequest request) {
+    @PostMapping("/login")
+    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
+        //        Long id = memberService.login(request.getEmail(), request.getPw());
+//        return new LoginMemberResponse(id);
 
-        Long id = memberService.login(request.getEmail(), request.getPw());
-        return new LoginMemberResponse(id);
+        return memberService.isExist(request.getEmail());
     }
 
     @Data
@@ -77,14 +78,14 @@ public class MemberApiController {
         private String pw;
     }
 
-    @Data
-    static class LoginMemberResponse {
-        private Long id;
-
-        public LoginMemberResponse(Long id) {
-            this.id = id;
-        }
-    }
+//    @Data
+//    static class LoginMemberResponse {
+//        private Long id;
+//
+//        public LoginMemberResponse(Long id) {
+//            this.id = id;
+//        }
+//    }
 
     //-------------------------------여기까지 로그인부분------------------
     //ID찾기
