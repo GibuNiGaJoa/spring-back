@@ -66,10 +66,7 @@ public class MemberApiController {
     //로그인 api
     @PostMapping("/login")
     public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
-        //        Long id = memberService.login(request.getEmail(), request.getPw());
-//        return new LoginMemberResponse(id);
-
-        return memberService.isExist(request.getEmail());
+        return memberService.login(request.getEmail(), request.getPw());
     }
 
     @Data

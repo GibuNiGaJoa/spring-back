@@ -38,12 +38,12 @@ public class MemberService {
     }
 
     //로그인
-    public Long login(String email, String pw) {
+    public boolean login(String email, String pw) {
         Optional<Member> findMember = memberRepository.findByEmailAndPw(email, pw);
-        if(findMember.isEmpty()) {
-            throw new IllegalStateException("존재하지 않는 계정입니다.");
-        }
-        return findMember.get().getId();
+        if(findMember.isEmpty())
+            return false;
+
+        return true;
     }
 
     //ID 찾기 첫번째 방법
@@ -86,14 +86,5 @@ public class MemberService {
     //회원탈퇴 (게시글 있을때는 어떻게 할지 고민필요)
     public void deleteMember(Long id) {
         memberRepository.delete(id);
-    }
-
-    // 회원 존재 유무 확인
-    public boolean isExist(String email) {
-        Optional<Member> findMember = memberRepository.findByEmail(email);
-
-        if(findMember.isPresent())
-            return true;
-        return false;
     }
 }
