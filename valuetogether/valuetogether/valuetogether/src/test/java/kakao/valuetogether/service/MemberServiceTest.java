@@ -157,27 +157,4 @@ public class MemberServiceTest {
         assertTrue(Optional.ofNullable(memberRepository.findById(saveId1)).isEmpty());
     }
 
-    @Test
-    public void isExist_true() {
-        String email = "hkim4410@naver.com";
-
-        Member member = new Member(email, "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-        memberRepository.save(member);
-
-        boolean result = memberService.isExist(email);
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    public void isExist_false() {
-        String email = "hkim4410@naver.com";
-        String wrongEmail = "hkim4410@gmail.com";
-
-        Member member = new Member(email, "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-        memberRepository.save(member);
-
-        boolean result = memberService.isExist(wrongEmail);
-        assertThat(result).isEqualTo(false);
-    }
-
 }
