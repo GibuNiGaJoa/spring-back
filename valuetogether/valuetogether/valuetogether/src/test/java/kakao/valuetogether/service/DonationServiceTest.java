@@ -47,10 +47,7 @@ public class DonationServiceTest {
         assertThat(donationByMember.getAmountDirect()).isEqualTo(1000);
         assertThat(donationByMember.getCountDirect()).isEqualTo(1);
 
-        /**
-         * null을 주었을 때 오류 발생
-         * donationService.donateByDirect(null, Optional.of(findPost), 10000);
-         */
+        // TODO: member 파라미터에 null을 주었을 때 오류 발생 원인 알아보기
         donationService.donateByDirect(Optional.empty(), Optional.of(findPost), 10000);
         Donation donationByPost = donationRepository.findByPost(findPost);
         assertThat(donationByPost.getAmountDirect()).isEqualTo(11000);

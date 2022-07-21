@@ -21,8 +21,8 @@ public class CommentRepository {
         return comment.getId();
     }
 
-    public Long updateComment(Comment comment, String content) {
-        comment.editContent(content);
+    public Long updateComment(Comment comment, String newContent) {
+        comment.editContent(newContent);
         em.persist(comment);
         return comment.getId();
     }

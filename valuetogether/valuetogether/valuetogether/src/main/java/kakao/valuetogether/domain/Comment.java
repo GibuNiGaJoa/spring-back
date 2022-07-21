@@ -31,7 +31,7 @@ public class Comment implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    private Integer likes;
+    private Integer likes = 0;
 
     public Comment(Member member, Post post, String content, Date date, Integer likes) {
         this.member = member;

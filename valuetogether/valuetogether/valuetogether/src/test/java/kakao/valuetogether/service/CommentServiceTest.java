@@ -47,12 +47,11 @@ public class CommentServiceTest {
     public void edit() {
         String firstContent = findComment.getContent();
 
-        commentService.editComment(findComment, "this is edit text2");
+        Long editId = commentService.editComment(findComment, "this is new content");
+        Comment editComment = commentRepository.findById(editId);
+        String editContent = editComment.getContent();
 
-//        Comment editedComment = findComment(savedCommentId);
-//        String secondContent = editedComment.getContent();
-
-//        assertThat(firstContent).isNotEqualTo(secondContent);
+        assertThat(firstContent).isNotEqualTo(editContent);
     }
 
     @Test
