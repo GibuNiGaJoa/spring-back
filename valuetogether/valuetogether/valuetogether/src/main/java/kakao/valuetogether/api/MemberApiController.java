@@ -1,7 +1,10 @@
 package kakao.valuetogether.api;
 
+import io.jsonwebtoken.Claims;
 import kakao.valuetogether.domain.Member;
+import kakao.valuetogether.service.JwtService;
 import kakao.valuetogether.service.MemberService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ import javax.validation.Valid;
 public class MemberApiController {
 
     private final MemberService memberService;
+
+    private final JwtService jwtService;
 
     //회원가입 api
     @PostMapping("/login/create_account")
@@ -64,9 +69,21 @@ public class MemberApiController {
     //-------------------------------여기까지 회원가입부분------------------
 
     //로그인 api
+//    @PostMapping("/login")
+//    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
+//        return memberService.login(request.getEmail(), request.getPw());
+//    }
     @PostMapping("/login")
-    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
-        return memberService.login(request.getEmail(), request.getPw());
+    public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
+        Member findMember = memberService.login(request.getEmail(), request.getPw());
+
+        String token = jwtService.createToken(findMember.getEmail());//토큰 생성
+        Claims claims = jwtService.parseJwtToken("Bearer "+ token); //토큰 검증
+
+        TokenDataResponse tokenDataResponse = new TokenDataResponse(token, claims.getSubject(), claims.getIssuedAt().toString(), claims.getExpiration().toString());
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse);
+
+        return tokenResponse;
     }
 
     @Data
@@ -75,14 +92,23 @@ public class MemberApiController {
         private String pw;
     }
 
-//    @Data
-//    static class LoginMemberResponse {
-//        private Long id;
-//
-//        public LoginMemberResponse(Long id) {
-//            this.id = id;
-//        }
-//    }
+    @Data
+    @AllArgsConstructor
+    static class TokenResponse<T> {
+        private String code;
+        private String msg;
+        private T data;
+    }
+
+    //==Response DTO==//
+    @Data
+    @AllArgsConstructor
+    static class TokenDataResponse {
+        private String token;
+        private String subject;
+        private String issued_time;
+        private String expired_time;
+    }
 
     //-------------------------------여기까지 로그인부분------------------
     //ID찾기

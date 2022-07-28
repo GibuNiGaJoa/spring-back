@@ -38,12 +38,18 @@ public class MemberService {
     }
 
     //로그인
-    public boolean login(String email, String pw) {
+//    public boolean login(String email, String pw) {
+//        Optional<Member> findMember = memberRepository.findByEmailAndPw(email, pw);
+//        if(findMember.isEmpty())
+//            return false;
+//
+//        return true;
+//    }
+    public Member login(String email, String pw) {
         Optional<Member> findMember = memberRepository.findByEmailAndPw(email, pw);
-        if(findMember.isEmpty())
-            return false;
-
-        return true;
+        if (findMember.isEmpty()) {
+            throw new IllegalStateException("존재하지 않는 계정입니다.");
+        } else {return findMember.get();}
     }
 
     //ID 찾기 첫번째 방법
