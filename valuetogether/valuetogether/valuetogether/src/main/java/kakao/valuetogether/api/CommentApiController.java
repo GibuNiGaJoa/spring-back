@@ -4,9 +4,6 @@ import kakao.valuetogether.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
-import java.util.Base64;
-
 /**
  * TODO:
  * 0. 테스트용 API 개발 -> 프론트에서 백으로 제대로 값이 넘어오는지 확인
