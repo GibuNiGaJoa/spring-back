@@ -65,26 +65,26 @@ public class PostServiceTest {
         Assertions.assertThat(post2).isEqualTo(postRepository.findOneById(postSaveId2));
     }
 
-    @Test
-    public void 주제별대상별게시글검색하기() {
-        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.findById(saveId);
-
-        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
-        Long postSaveId1 = postService.propose(post1);
-
-        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
-        Long postSaveId2 = postService.propose(post2);
-
-        Post post3 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
-        Long postSaveId3 = postService.propose(post3);
-
-        List<Post> findPostByTopic = postService.searchByTopic(Topic.건강한삶);
-        assertEquals(3,findPostByTopic.size());
-
-        List<Post> findPostByTarget = postService.searchByTarget(Target.아동ㅣ청소년);
-        assertEquals(3,findPostByTarget.size());
-    }
+//    @Test
+//    public void 주제별대상별게시글검색하기() {
+//        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.findById(saveId);
+//
+//        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+//        Long postSaveId1 = postService.propose(post1);
+//
+//        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+//        Long postSaveId2 = postService.propose(post2);
+//
+//        Post post3 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+//        Long postSaveId3 = postService.propose(post3);
+//
+//        List<Post> findPostByTopic = postService.searchByTopic(Topic.건강한삶);
+//        assertEquals(3,findPostByTopic.size());
+//
+//        List<Post> findPostByTarget = postService.searchByTarget(Target.아동ㅣ청소년);
+//        assertEquals(3,findPostByTarget.size());
+//    }
 }
