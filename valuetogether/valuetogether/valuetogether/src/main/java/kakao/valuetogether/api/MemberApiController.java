@@ -7,10 +7,8 @@ import kakao.valuetogether.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Column;
 import javax.validation.Valid;
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
@@ -73,17 +71,27 @@ public class MemberApiController {
 //    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
 //        return memberService.login(request.getEmail(), request.getPw());
 //    }
+    //로그인시 토큰생성 api
     @PostMapping("/login")
     public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
         Member findMember = memberService.login(request.getEmail(), request.getPw());
 
-        String token = jwtService.createToken(findMember.getEmail());//토큰 생성
-        Claims claims = jwtService.parseJwtToken("Bearer "+ token); //토큰 검증
+        String token = jwtService.createToken(findMember.getId());//토큰 생성
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
-        TokenDataResponse tokenDataResponse = new TokenDataResponse(token, claims.getSubject(), claims.getIssuedAt().toString(), claims.getExpiration().toString());
-        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse);
+        TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
 
         return tokenResponse;
+    }
+
+    //==토큰 인증 컨트롤러==//
+    @GetMapping(value = "/checkToken")
+    public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) throws Exception {
+        Long memberId = jwtService.parseJwtToken(token);
+
+        TokenResponseNoData tokenResponseNoData = new TokenResponseNoData("200", "success",true);
+        return tokenResponseNoData;
     }
 
     @Data
@@ -94,10 +102,11 @@ public class MemberApiController {
 
     @Data
     @AllArgsConstructor
-    static class TokenResponse<T> {
+    static class TokenResponse {
         private String code;
         private String msg;
-        private T data;
+        private String token;
+        private Boolean status;
     }
 
     //==Response DTO==//
@@ -105,10 +114,18 @@ public class MemberApiController {
     @AllArgsConstructor
     static class TokenDataResponse {
         private String token;
-        private String subject;
-        private String issued_time;
-        private String expired_time;
     }
+
+    //==Response DTO==//
+    @Data
+    @AllArgsConstructor
+    static class TokenResponseNoData<T> {
+
+        private String code;
+        private String msg;
+        private Boolean status;
+    }
+    //--------------------------------------
 
     //-------------------------------여기까지 로그인부분------------------
     //ID찾기
