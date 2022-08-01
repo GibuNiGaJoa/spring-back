@@ -1,5 +1,7 @@
 package kakao.valuetogether.domain;
 
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -36,7 +38,7 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Target target;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "post")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Link> links = new ArrayList<>();
 
     @Column(name = "target_amount", nullable = false)
@@ -66,22 +68,21 @@ public class Post {
         this.endDate = endDate;
         this.isConfirm = isConfirm;
     }
-
     public Post() {
-
     }
 
-    //연관관계 메서드
+    // 연관관계 메서드
     public void addLink(Link link) {
         link.setPost(this);
         this.links.add(link);
     }
 
-    //생성메서드
+    // 생성메서드
     public static Post createPost(Post post, Link... links) {
         for (Link link : links) {
             post.addLink(link);
         }
+
         return post;
     }
 

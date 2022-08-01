@@ -1,6 +1,8 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.LinkRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
@@ -9,11 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,22 +21,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Transactional
+//@Rollback(value = false)
 public class PostServiceTest {
-    @Autowired
-    MemberRepository memberRepository;
 
-    @Autowired
-    PostRepository postRepository;
-
-    @Autowired
-    LinkRepository linkRepository;
-
-    @Autowired
-    PostService postService;
+    @Autowired MemberRepository memberRepository;
+    @Autowired PostRepository postRepository;
+    @Autowired LinkRepository linkRepository;
+    @Autowired PostService postService;
 
     @Test
-    @Transactional
-    //@Rollback(value = false)
     public void 제안하기() {
         postService.basicSetting();
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
@@ -67,16 +61,13 @@ public class PostServiceTest {
         linkRepository.save(link3);
         linkRepository.save(link4);
 
-        Assertions.assertThat(post1).isEqualTo(postRepository.findById(postSaveId1));
-        Assertions.assertThat(post2).isEqualTo(postRepository.findById(postSaveId2));
+        Assertions.assertThat(post1).isEqualTo(postRepository.findOneById(postSaveId1));
+        Assertions.assertThat(post2).isEqualTo(postRepository.findOneById(postSaveId2));
     }
 
     @Test
-    @Transactional
-    //@Rollback(value = false)
     public void 주제별대상별게시글검색하기() {
         Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
 
         Long saveId = memberRepository.save(member);
         Member findMember = memberRepository.findById(saveId);
@@ -95,6 +86,5 @@ public class PostServiceTest {
 
         List<Post> findPostByTarget = postService.searchByTarget(Target.아동ㅣ청소년);
         assertEquals(3,findPostByTarget.size());
-
     }
 }

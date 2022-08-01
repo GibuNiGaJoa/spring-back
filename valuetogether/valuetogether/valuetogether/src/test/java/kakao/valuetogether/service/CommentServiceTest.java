@@ -1,6 +1,8 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.CommentRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
@@ -8,9 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -94,10 +97,10 @@ public class CommentServiceTest {
     public Post getFindPost(Member findMember) {
         Post post = new Post(findMember, "title", "subtitle", "article", "image", Topic.건강한삶, Target.아동ㅣ청소년, 100000, new Date(20, 07, 01), new Date(22, 07, 01), false);
         Long postSavedId = postRepository.save(post);
-        return postRepository.findById(postSavedId);
+        return postRepository.findOneById(postSavedId);
     }
 
     public Comment createComment(Member findMember, Post findPost) {
-        return new Comment(findMember, findPost, "content", new Date(2022, 6, 8), 0);
+        return new Comment(findMember, findPost, "content", Timestamp.valueOf(LocalDateTime.now()), 0);
     }
 }

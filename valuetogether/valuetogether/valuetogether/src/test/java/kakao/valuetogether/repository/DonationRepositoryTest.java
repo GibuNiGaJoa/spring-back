@@ -1,11 +1,12 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -96,7 +97,7 @@ public class DonationRepositoryTest {
     public Post getFindPost(Member findMember) {
         Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
         Long postSavedId = postRepository.save(post);
-        return postRepository.findById(postSavedId);
+        return postRepository.findOneById(postSavedId);
     }
 
     public Donation getDonation(Member findMember, Post findPost) {
