@@ -18,7 +18,7 @@ public class CommentApiController {
     private final CommentService commentService;
 
     @PostMapping("/test")
-    public String test(@RequestParam("img") String img) {
+    public String test(@RequestParam(value = "img") String img) {
         return img;
     }
 }
