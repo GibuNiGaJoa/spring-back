@@ -23,11 +23,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-//	implementation 'mysql:mysql-connector-java' // MySql
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-//	runtimeOnly 'com.h2database:h2' // h2
-	runtimeOnly 'mysql:mysql-connector-java' // mysql
+	runtimeOnly 'com.h2database:h2' // h2
+//	runtimeOnly 'mysql:mysql-connector-java' // mysql
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -51,4 +50,11 @@ bootJar{
 
 jar {
 	enabled = false
+}
+
+// build시 경고뜨는거 해결
+allprojects {
+	tasks.withType(JavaCompile) {
+		options.deprecation = true;
+	}
 }

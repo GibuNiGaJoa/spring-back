@@ -34,31 +34,27 @@ public class DonationRepository {
     public void addAmountDirect(Donation donation, Integer amount) {
         donation.addAmountDirect(amount);
     }
+    public void addCountDirect(Donation donation) {
+        donation.addCountDirect();
+    }
 
     public void addAmountCheer(Donation donation) {
         donation.addAmountCheer();
+    }
+    public void addCountCheer(Donation donation) {
+        donation.addCountCheer();
     }
 
     public void addAmountShare(Donation donation) {
         donation.addAmountShare();
     }
-
-    public void addAmountComment(Donation donation) {
-        donation.addAmountComment();
-    }
-
-    public void addCountDirect(Donation donation) {
-        donation.addCountDirect();
-    }
-
-    public void addCountCheer(Donation donation) {
-        donation.addCountCheer();
-    }
-
     public void addCountShare(Donation donation) {
         donation.addCountShare();
     }
 
+    public void addAmountComment(Donation donation) {
+        donation.addAmountComment();
+    }
     public void addCountComment(Donation donation) {
         donation.addCountComment();
     }

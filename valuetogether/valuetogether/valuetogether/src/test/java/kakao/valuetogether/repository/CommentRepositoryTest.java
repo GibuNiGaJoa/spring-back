@@ -1,18 +1,26 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
+//@Rollback(value = false)
 public class CommentRepositoryTest {
 
     @Autowired CommentRepository commentRepository;
@@ -94,6 +102,40 @@ public class CommentRepositoryTest {
         Comment byPost = commentRepository.findByPost(findPost);
         assertThat(byPost).isEqualTo(findComment);
     }
+
+    @Test
+    public void findAllCommentsByPost() {
+        Comment comment = new Comment(findMember, findPost, "content", Timestamp.valueOf(LocalDateTime.now()), 1);
+        Comment comment1 = new Comment(findMember, findPost, "content1", Timestamp.valueOf(LocalDateTime.now()), 1);
+        Comment comment2 = new Comment(findMember, findPost, "content2", Timestamp.valueOf(LocalDateTime.now()), 1);
+
+        commentRepository.saveComment(comment);
+        commentRepository.saveComment(comment1);
+        commentRepository.saveComment(comment2);
+
+        List<Comment> allCommentsByPost = (ArrayList)commentRepository.findAllCommentsByPost(findPost);
+
+        if(allCommentsByPost.size() == 0) fail("list 사이즈가 0. 실패.");
+        allCommentsByPost.forEach(co -> {
+            System.out.println("co.toString() = " + co.toString());
+        });
+    }
+
+    @Test
+    public void findAllCommentsByMember() {
+        Comment comment = new Comment(findMember, findPost, "content", Timestamp.valueOf(LocalDateTime.now()), 1);
+        Comment comment1 = new Comment(findMember, findPost, "content1", Timestamp.valueOf(LocalDateTime.now()), 1);
+        Comment comment2 = new Comment(findMember, findPost, "content2", Timestamp.valueOf(LocalDateTime.now()), 1);
+
+        commentRepository.saveComment(comment);
+        commentRepository.saveComment(comment1);
+        commentRepository.saveComment(comment2);
+
+        List<Comment> allCommentsByMember = commentRepository.findAllCommentsByMember(findMember);
+        if(allCommentsByMember.size() == 0) fail("list 사이즈가 0. 실패.");
+        for (Comment co : allCommentsByMember)
+            System.out.println("co.toString() = " + co.toString());
+    }
     // end of Test Methods
 
     public Member getFindMember() {
@@ -105,11 +147,11 @@ public class CommentRepositoryTest {
     public Post getFindPost(Member findMember) {
         Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
         Long postSavedId = postRepository.save(post);
-        return postRepository.findById(postSavedId);
+        return postRepository.findOneById(postSavedId);
     }
 
     public Comment createComment(Member findMember, Post findPost) {
-        return new Comment(findMember, findPost, "content", new Date(11, 11, 11), 0);
+        return new Comment(findMember, findPost, "content", Timestamp.valueOf(LocalDateTime.now()), 0);
     }
 
     public Long saveComment(Comment comment) {

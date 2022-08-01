@@ -14,8 +14,8 @@ public class TagRepository {
     private EntityManager em;
 
     public void save(){
-
         ArrayList<Tag> tags = new ArrayList<>();
+
         tags.add(new Tag("어려운이웃"));
         tags.add(new Tag("행복한노후"));
         tags.add(new Tag("여성인권"));

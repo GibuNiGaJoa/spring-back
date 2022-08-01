@@ -18,7 +18,7 @@ public class TTTRepositoryTest {
 
     @Test
     @Transactional
-    //@Rollback(value = false)
+//    @Rollback(value = false)
     public void 주제대상태그저장하기() {
         postService.basicSetting();
     }

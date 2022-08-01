@@ -1,15 +1,15 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.domain.enums.Target;
+import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.DonationRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -47,10 +47,7 @@ public class DonationServiceTest {
         assertThat(donationByMember.getAmountDirect()).isEqualTo(1000);
         assertThat(donationByMember.getCountDirect()).isEqualTo(1);
 
-        /**
-         * null을 주었을 때 오류 발생
-         * donationService.donateByDirect(null, Optional.of(findPost), 10000);
-         */
+        // TODO: member 파라미터에 null을 주었을 때 오류 발생 원인 알아보기
         donationService.donateByDirect(Optional.empty(), Optional.of(findPost), 10000);
         Donation donationByPost = donationRepository.findByPost(findPost);
         assertThat(donationByPost.getAmountDirect()).isEqualTo(11000);
@@ -112,7 +109,7 @@ public class DonationServiceTest {
     public Post getFindPost(Member findMember) {
         Post post = new Post(findMember, "title", "subTitle", "article", "image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
         Long postSavedId = postRepository.save(post);
-        return postRepository.findById(postSavedId);
+        return postRepository.findOneById(postSavedId);
     }
 
     public Donation getDonation(Member findMember, Post findPost) {
