@@ -19,22 +19,6 @@ public class MemberApiController {
 
     private final JwtService jwtService;
 
-    //토큰 확인용
-    @PostMapping("/check")
-    public CheckResponse check(){
-        Long findId = jwtService.getUserIdx();
-        return new CheckResponse(findId);
-    }
-
-    @Data
-    static class CheckResponse {
-        private Long id;
-
-        public CheckResponse(Long id) {
-            this.id = id;
-        }
-    }
-
 
     //회원가입 api
     @PostMapping("/login/create_account")
