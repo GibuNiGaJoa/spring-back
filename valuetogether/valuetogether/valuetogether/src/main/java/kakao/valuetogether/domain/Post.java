@@ -53,7 +53,7 @@ public class Post {
     private Date endDate;
 
     @Column(name = "is_confirm", nullable = false)
-    private Boolean isConfirm;
+    private Boolean isConfirm = false;
 
     public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
@@ -71,19 +71,14 @@ public class Post {
     public Post() {
     }
 
-    // 연관관계 메서드
     public void addLink(Link link) {
         link.setPost(this);
         this.links.add(link);
     }
 
-    // 생성메서드
     public static Post createPost(Post post, Link... links) {
-        for (Link link : links) {
+        for (Link link : links)
             post.addLink(link);
-        }
-
         return post;
     }
-
 }

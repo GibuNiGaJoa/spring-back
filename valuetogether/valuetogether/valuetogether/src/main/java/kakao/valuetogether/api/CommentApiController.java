@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * 1. 넘어온 데이터(String)를 base64만 잘라서 ./resources/static/images 에 저장.
  * 2. 해당 파일 URL 반환
  */
+// String 받는 메소드 -> base64 추출하는 메소드 -> base64를 저장하고 URL 반환하는 메소드
 
 @RestController
 @RequiredArgsConstructor
