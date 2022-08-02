@@ -35,4 +35,8 @@ public class PostRepository {
                 .setParameter("target", target)
                 .getResultList();
     }
+
+    public void delete(Post post) {
+        em.remove(post);
+    }
 }

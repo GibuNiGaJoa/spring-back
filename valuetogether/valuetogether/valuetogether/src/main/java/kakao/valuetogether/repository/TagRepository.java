@@ -13,7 +13,7 @@ public class TagRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void save(){
+    public void save() {
         ArrayList<Tag> tags = new ArrayList<>();
 
         tags.add(new Tag("어려운이웃"));

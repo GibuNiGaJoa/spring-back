@@ -15,7 +15,7 @@ public class TagPost implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Tag tag;
 
-    @JoinColumn(name = "post_id",nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 }
