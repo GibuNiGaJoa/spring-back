@@ -19,6 +19,23 @@ public class MemberApiController {
 
     private final JwtService jwtService;
 
+    //토큰 확인용
+    @PostMapping("/check")
+    public CheckResponse check(){
+        Long findId = jwtService.getUserIdx();
+        return new CheckResponse(findId);
+    }
+
+    @Data
+    static class CheckResponse {
+        private Long id;
+
+        public CheckResponse(Long id) {
+            this.id = id;
+        }
+    }
+
+
     //회원가입 api
     @PostMapping("/login/create_account")
     public CreatedMemberResponse saveMember(@RequestBody @Valid CreatedMemberRequest request) {
@@ -66,11 +83,7 @@ public class MemberApiController {
     }
     //-------------------------------여기까지 회원가입부분------------------
 
-    //로그인 api
-//    @PostMapping("/login")
-//    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
-//        return memberService.login(request.getEmail(), request.getPw());
-//    }
+
     //로그인시 토큰생성 api
     @PostMapping("/login")
     public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
