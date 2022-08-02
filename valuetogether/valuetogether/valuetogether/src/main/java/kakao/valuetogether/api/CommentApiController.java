@@ -64,7 +64,7 @@ public class CommentApiController {
 //        imageFile.transferTo(new File("C:\\Users\\kimdongho\\Desktop\\spring-back\\valuetogether\\valuetogether\\valuetogether\\src\\main\\resources\\static\\image\\" + imageFile.getOriginalFilename()));
 //        return "http://localhost:8080/image/" + imageFile.getOriginalFilename();
 
-        imageFile.transferTo(new File("valuetogether\\valuetogether\\valuetogether\\src\\main\\resources\\static\\image\\" + imageFile.getOriginalFilename()));
+        imageFile.transferTo(new File("/home/ubuntu/app/valuetogether/valuetogether/valuetogether/src/main/resources/static/image/" + imageFile.getOriginalFilename()));
         return "http://valuetogether.tk/image/" + imageFile.getOriginalFilename();
     }
 }
