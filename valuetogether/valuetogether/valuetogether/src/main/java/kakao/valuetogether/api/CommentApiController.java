@@ -65,6 +65,6 @@ public class CommentApiController {
 //        return "http://localhost:8080/image/" + imageFile.getOriginalFilename();
 
         imageFile.transferTo(new File("valuetogether\\valuetogether\\valuetogether\\src\\main\\resources\\static\\image\\" + imageFile.getOriginalFilename()));
-        return "http://valuetogether.tk//image/" + imageFile.getOriginalFilename();
+        return "http://valuetogether.tk/image/" + imageFile.getOriginalFilename();
     }
 }
