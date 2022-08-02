@@ -41,7 +41,6 @@ public class JwtService {
         return request.getHeader("X-ACCESS-TOKEN");
     }
 
-
     /*
     JWT에서 userIdx 추출
     @return int
