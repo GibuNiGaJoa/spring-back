@@ -27,7 +27,7 @@ public class JwtService {
                 .setIssuedAt(now) // 발급시간(iat)
                 .setExpiration(expiration) // 만료시간(exp)
                 //.setSubject(subject) //  토큰 제목(subject)
-                .claim("id",id)
+                .claim("userIdx",id)
                 .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(secretKey.getBytes())) // 알고리즘, 시크릿 키
                 .compact();
     }
