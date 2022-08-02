@@ -95,7 +95,7 @@ public class CommentServiceTest {
     }
 
     public Post getFindPost(Member findMember) {
-        Post post = new Post(findMember, "title", "subtitle", "article", "image", Topic.건강한삶, Target.아동ㅣ청소년, 100000, new Date(20, 07, 01), new Date(22, 07, 01), false);
+        Post post = new Post(findMember, "title", "subtitle", "article", "static/image", Topic.건강한삶, Target.아동ㅣ청소년, 100000, new Date(20, 07, 01), new Date(22, 07, 01), false);
         Long postSavedId = postRepository.save(post);
         return postRepository.findOneById(postSavedId);
     }
