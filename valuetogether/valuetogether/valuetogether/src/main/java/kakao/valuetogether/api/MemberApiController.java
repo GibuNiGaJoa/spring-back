@@ -66,12 +66,7 @@ public class MemberApiController {
     }
     //-------------------------------여기까지 회원가입부분------------------
 
-    //로그인 api
-//    @PostMapping("/login")
-//    public boolean loginMember(@RequestBody @Valid LoginMemberRequest request) {
-//        return memberService.login(request.getEmail(), request.getPw());
-//    }
-    //로그인시 토큰생성 api
+    //로그인 및 토큰생성 api
     @PostMapping("/login")
     public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
         Member findMember = memberService.login(request.getEmail(), request.getPw());
