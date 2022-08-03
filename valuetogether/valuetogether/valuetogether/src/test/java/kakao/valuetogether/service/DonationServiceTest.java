@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -107,7 +109,7 @@ public class DonationServiceTest {
     }
 
     public Post getFindPost(Member findMember) {
-        Post post = new Post(findMember, "title", "subTitle", "article", "static/image", Topic.건강한삶, Target.실버세대, 100000, new Date(22, 7, 11), new Date(22, 8, 31), false);
+        Post post = new Post(findMember, "title", "subTitle", "article", "static/image", Topic.건강한삶, Target.실버세대, 100000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
         Long postSavedId = postRepository.save(post);
         return postRepository.findOneById(postSavedId);
     }
