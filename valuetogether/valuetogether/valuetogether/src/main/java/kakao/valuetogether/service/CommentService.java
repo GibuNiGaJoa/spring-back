@@ -1,13 +1,9 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.Comment;
-import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.repository.CommentRepository;
-import kakao.valuetogether.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
