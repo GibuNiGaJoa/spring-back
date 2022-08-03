@@ -1,4 +1,7 @@
 spring:
+  profiles:
+    include: aws
+
   #  datasource:
   #    url: jdbc:h2:tcp://localhost/~/valuetogether
   #    username: sa
@@ -34,16 +37,3 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
-
-cloud:
-  aws:
-    credentials:
-      access-key: AKIA6PF7YFCUZMTA7IKO
-      secret-key: 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
-
-    s3:
-      bucket: valuetogether-bucket
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
