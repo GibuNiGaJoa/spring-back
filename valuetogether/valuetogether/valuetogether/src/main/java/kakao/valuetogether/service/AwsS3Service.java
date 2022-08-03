@@ -21,24 +21,25 @@ public class AwsS3Service {
     private final AmazonS3Client amazonS3Client;
 
     @Value("${profiles.include.cloud.aws.s3.bucket}")
-    private final String bucketName;
+    private final String bucketName; // = "valuetogether-bucket"
 
     public String uploadFileV1(MultipartFile imageFile) {
-        validateFileExists(imageFile);
+//        validateFileExists(imageFile);
+//
+//        String fileName = buildFileName(imageFile.getOriginalFilename());
+//
+//        ObjectMetadata objectMetadata = new ObjectMetadata();
+//        objectMetadata.setContentType(imageFile.getContentType());
+//
+//        try (InputStream inputStream = imageFile.getInputStream()) {
+//            amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, inputStream, objectMetadata)
+//                    .withCannedAcl(CannedAccessControlList.PublicRead));
+//        } catch (IOException ex) {
+//            throw new RuntimeException();
+//        }
 
-        String fileName = buildFileName(imageFile.getOriginalFilename());
-
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentType(imageFile.getContentType());
-
-        try (InputStream inputStream = imageFile.getInputStream()) {
-            amazonS3Client.putObject(new PutObjectRequest(bucketName, fileName, inputStream, objectMetadata)
-                    .withCannedAcl(CannedAccessControlList.PublicRead));
-        } catch (IOException ex) {
-            throw new RuntimeException();
-        }
-
-        return amazonS3Client.getUrl(bucketName, fileName).toString();
+//        return amazonS3Client.getUrl(bucketName, fileName).toString();
+        return "temp";
     }
 
     private void validateFileExists(MultipartFile imageFile) {
