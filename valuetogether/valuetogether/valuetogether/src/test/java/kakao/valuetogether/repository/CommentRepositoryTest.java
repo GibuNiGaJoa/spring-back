@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class CommentRepositoryTest {
 
     @Autowired CommentRepository commentRepository;
