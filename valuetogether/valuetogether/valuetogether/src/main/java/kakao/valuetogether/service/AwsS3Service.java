@@ -20,8 +20,8 @@ public class AwsS3Service {
 
     private final AmazonS3Client amazonS3Client;
 
-    @Value("${profiles.include.cloud.aws.s3.bucket}")
-    private static String bucketName; // = "valuetogether-bucket"
+//    @Value("${profiles.include.cloud.aws.s3.bucket}")
+    private static String bucketName = "valuetogether-bucket";
 
     public String uploadFileV1(MultipartFile imageFile) {
         validateFileExists(imageFile);
