@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -21,7 +18,7 @@ public class AwsS3Service {
     private final AmazonS3Client amazonS3Client;
 
     @Value("${profiles.include.cloud.aws.s3.bucket}")
-    private final String bucketName; // = "valuetogether-bucket"
+    private static String bucketName; // = "valuetogether-bucket"
 
     public String uploadFileV1(MultipartFile imageFile) {
 //        validateFileExists(imageFile);
