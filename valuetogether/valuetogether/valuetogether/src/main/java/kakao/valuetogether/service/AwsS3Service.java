@@ -20,8 +20,8 @@ public class AwsS3Service {
 
     private final AmazonS3Client amazonS3Client;
 
-    @Value("${spring.profiles.aws.cloud.aws.s3.bucket}")
-    private String bucketName;
+    @Value("${profiles.include.cloud.aws.s3.bucket}")
+    private final String bucketName;
 
     public String uploadFileV1(MultipartFile imageFile) {
         validateFileExists(imageFile);
