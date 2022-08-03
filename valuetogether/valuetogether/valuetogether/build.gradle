@@ -53,10 +53,3 @@ bootJar{
 jar {
 	enabled = false
 }
-
-// build시 경고뜨는거 해결
-allprojects {
-	tasks.withType(JavaCompile) {
-		options.deprecation = true;
-	}
-}
