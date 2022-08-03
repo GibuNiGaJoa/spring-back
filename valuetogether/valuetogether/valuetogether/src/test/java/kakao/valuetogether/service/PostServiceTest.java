@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class PostServiceTest {
         Long saveId = memberRepository.save(member);
         Member findMember = memberRepository.findById(saveId);
 
-        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post1 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), true);
         Long postSaveId1 = postService.propose(post1);
 
         Link link1 = new Link("asdf");
@@ -49,7 +51,7 @@ public class PostServiceTest {
         linkRepository.save(link1);
         linkRepository.save(link2);
 
-        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, new Date(2019, 01, 01), new Date(2020, 10, 1), true);
+        Post post2 = new Post(findMember, "a", "a", "a", "a", Topic.건강한삶, Target.아동ㅣ청소년, 1000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), true);
         Long postSaveId2 = postService.propose(post2);
 
         Link link3 = new Link("asdf");
