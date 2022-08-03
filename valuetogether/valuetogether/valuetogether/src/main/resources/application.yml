@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    include: aws
-
   #  datasource:
   #    url: jdbc:h2:tcp://localhost/~/valuetogether
   #    username: sa
@@ -32,6 +29,9 @@ spring:
       hibernate:
         #        show_sql: true
         format_sql: true
+
+  profiles:
+    include: aws
 
 logging:
   level:
