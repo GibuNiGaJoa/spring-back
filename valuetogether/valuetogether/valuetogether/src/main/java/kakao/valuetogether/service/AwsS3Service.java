@@ -20,7 +20,7 @@ public class AwsS3Service {
 
     private final AmazonS3Client amazonS3Client;
 
-    @Value("${cloud.aws.s3.bucket}")
+    @Value("${spring.profiles.aws.cloud.aws.s3.bucket}")
     private String bucketName;
 
     public String uploadFileV1(MultipartFile imageFile) {
