@@ -7,10 +7,14 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
+import java.util.logging.Logger;
 
 @RestControllerAdvice
 public class ExceptionController {
@@ -59,6 +63,13 @@ public class ExceptionController {
     public Response SignatureException(Exception e) {
         e.printStackTrace();
         return new Response("404", "SignatureException",false);
+    }
+
+    // 용량 초과시 발생하는 예외처리
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    protected Response handleMaxUploadSizeExceededException(MaxUploadSizeExceededException e) {
+        e.printStackTrace();
+        return new Response("400", "파일 용량 초과", false);
     }
 
     //Response DTO

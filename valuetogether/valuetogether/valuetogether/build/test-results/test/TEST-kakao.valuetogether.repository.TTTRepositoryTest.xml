@@ -1,159 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="kakao.valuetogether.repository.TTTRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-02T03:51:52" hostname="DESKTOP-8DQF55R" time="0.063">
+<testsuite name="kakao.valuetogether.repository.TTTRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-03T04:38:40" hostname="DESKTOP-8DQF55R" time="0.315">
   <properties/>
-  <testcase name="주제대상태그저장하기" classname="kakao.valuetogether.repository.TTTRepositoryTest" time="0.063"/>
-  <system-out><![CDATA[2022-08-02 12:51:52.931  INFO 14464 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6f0df74 testClass = TTTRepositoryTest, testInstance = kakao.valuetogether.repository.TTTRepositoryTest@42bbd21c, testMethod = 주제대상태그저장하기@TTTRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@57f1fbae testClass = TTTRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@791d1f8b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@524c3e54]; rollback [true]
-2022-08-02 12:51:52.942 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
+  <testcase name="주제대상태그저장하기" classname="kakao.valuetogether.repository.TTTRepositoryTest" time="0.315"/>
+  <system-out><![CDATA[2022-08-03 13:38:40.551  INFO 26976 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@18482805 testClass = TTTRepositoryTest, testInstance = kakao.valuetogether.repository.TTTRepositoryTest@84180e2, testMethod = 주제대상태그저장하기@TTTRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@3c3d2a80 testClass = TTTRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@60dce7ea, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@7a791b66, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@61884cb1, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79da1ec0, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1e63ec0b, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@5f20155b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@1ec96512]; rollback [true]
+2022-08-03 13:38:40.561 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-Hibernate: 
+        (?)
+2022-08-03 13:38:40.561 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [어려운이웃]
+2022-08-03 13:38:40.626 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-2022-08-02 12:51:52.943 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [어려운이웃]
-2022-08-02 12:51:52.945 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
+        (?)
+2022-08-03 13:38:40.626 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [행복한노후]
+2022-08-03 13:38:40.639 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-Hibernate: 
+        (?)
+2022-08-03 13:38:40.639 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [여성인권]
+2022-08-03 13:38:40.651 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-2022-08-02 12:51:52.946 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [행복한노후]
-2022-08-02 12:51:52.947 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
+        (?)
+2022-08-03 13:38:40.651 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [심리상담]
+2022-08-03 13:38:40.664 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-Hibernate: 
+        (?)
+2022-08-03 13:38:40.664 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [환경교육]
+2022-08-03 13:38:40.697 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-2022-08-02 12:51:52.947 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [여성인권]
-2022-08-02 12:51:52.950 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
+        (?)
+2022-08-03 13:38:40.698 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [학대아동지원]
+2022-08-03 13:38:40.709 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-Hibernate: 
+        (?)
+2022-08-03 13:38:40.710 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [환경을위한실천]
+2022-08-03 13:38:40.721 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-2022-08-02 12:51:52.950 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [심리상담]
-2022-08-02 12:51:52.952 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
+        (?)
+2022-08-03 13:38:40.722 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [우크라이나긴급모금]
+2022-08-03 13:38:40.748 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-Hibernate: 
+        (?)
+2022-08-03 13:38:40.748 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [세상을바꾸는여성]
+2022-08-03 13:38:40.759 DEBUG 26976 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         tag
-        (tag_id, tag_name) 
+        (tag_name) 
     values
-        (default, ?)
-2022-08-02 12:51:52.952 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [환경교육]
-2022-08-02 12:51:52.955 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-Hibernate: 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-2022-08-02 12:51:52.955 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [학대아동지원]
-2022-08-02 12:51:52.957 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-Hibernate: 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-2022-08-02 12:51:52.958 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [환경을위한실천]
-2022-08-02 12:51:52.959 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-Hibernate: 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-2022-08-02 12:51:52.960 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [우크라이나긴급모금]
-2022-08-02 12:51:52.961 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-Hibernate: 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-2022-08-02 12:51:52.962 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [세상을바꾸는여성]
-2022-08-02 12:51:52.965 DEBUG 14464 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-Hibernate: 
-    insert 
-    into
-        tag
-        (tag_id, tag_name) 
-    values
-        (default, ?)
-2022-08-02 12:51:52.968 TRACE 14464 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [언택트프로젝트]
-2022-08-02 12:51:52.985  INFO 14464 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@6f0df74 testClass = TTTRepositoryTest, testInstance = kakao.valuetogether.repository.TTTRepositoryTest@42bbd21c, testMethod = 주제대상태그저장하기@TTTRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@57f1fbae testClass = TTTRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@791d1f8b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
+        (?)
+2022-08-03 13:38:40.759 TRACE 26976 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [언택트프로젝트]
+2022-08-03 13:38:40.851  INFO 26976 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@18482805 testClass = TTTRepositoryTest, testInstance = kakao.valuetogether.repository.TTTRepositoryTest@84180e2, testMethod = 주제대상태그저장하기@TTTRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@3c3d2a80 testClass = TTTRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@60dce7ea, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@7a791b66, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@61884cb1, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@79da1ec0, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@1e63ec0b, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@5f20155b], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -> false]]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
