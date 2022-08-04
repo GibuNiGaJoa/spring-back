@@ -155,14 +155,13 @@ public class MemberApiController {
     //두번째 방법(닉네임 또는 이름과 휴대폰번호)
     @PostMapping("/login/find_account_guide/second")
     public FindAccountByNNPResponse findEmail(@RequestBody @Valid FindAccountByNNPRequest request) {
-        Member findMember = memberService.findIdByNNP(request.getNickname(), request.getName(), request.getPhone());
+        Member findMember = memberService.findIdByNNP(request.getNicknameOrName(), request.getNicknameOrName(), request.getPhone());
         return new FindAccountByNNPResponse(findMember.getEmail(),findMember.getPhone());
     }
 
     @Data
     static class FindAccountByNNPRequest {
-        private String nickname;
-        private String name;
+        private String nicknameOrName;
         private String phone;
     }
 
