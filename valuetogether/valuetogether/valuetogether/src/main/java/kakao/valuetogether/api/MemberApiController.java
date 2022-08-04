@@ -70,7 +70,7 @@ public class MemberApiController {
 
     //로그인시 토큰생성 api
     @PostMapping("/login")
-    public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
+    public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request){
         Member findMember = memberService.login(request.getEmail(), request.getPw());
 
         String token = jwtService.createToken(findMember.getId());//토큰 생성
@@ -84,7 +84,7 @@ public class MemberApiController {
 
     //==토큰 인증 컨트롤러==//
     @GetMapping(value = "/checkToken")
-    public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) throws Exception {
+    public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) {
         Long memberId = jwtService.parseJwtToken(token);
 
         TokenResponseNoData tokenResponseNoData = new TokenResponseNoData("200", "success",true);
@@ -175,7 +175,7 @@ public class MemberApiController {
     //-------------------------------여기까지 ID찾기부분------------------
     //회원검증 및 PW재설정
     //회원검증
-    @GetMapping("/login/find_password")
+    @PostMapping("/login/find_password")
     public FindPasswordByEPResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
         Long id = memberService.validateMember(request.getEmailOrPhone(), request.getEmailOrPhone());
         return new FindPasswordByEPResponse(id);
