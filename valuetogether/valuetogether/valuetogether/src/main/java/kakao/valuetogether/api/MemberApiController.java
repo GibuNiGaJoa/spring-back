@@ -20,16 +20,10 @@ public class MemberApiController {
 
     private final JwtService jwtService;
 
-    @GetMapping("/asdf")
-    public List<Member> find(){
-        List<Member> members = memberService.findMembers();
-        return members;
-    }
-
     
     //회원가입 api
     @PostMapping("/login/create_account")
-    public Boolean saveMember(@RequestBody @Valid CreatedMemberRequest request) {
+    public CreatedMemberResponse saveMember(@RequestBody @Valid CreatedMemberRequest request) {
 
         Member member = new Member();
         member.setEmail(request.getEmail());
@@ -41,8 +35,8 @@ public class MemberApiController {
         member.setNickname(request.getNickname());
         member.setBirthday(request.getBirthday());
 
-        Long id = memberService.join(member);
-        return true;
+        memberService.join(member);
+        return new CreatedMemberResponse(true);
     }
 
     @Data
@@ -64,6 +58,15 @@ public class MemberApiController {
         private String birthday;
     }
 
+    @Data
+    static class CreatedMemberResponse {
+        private Boolean status;
+
+        public CreatedMemberResponse(Boolean status) {
+            this.status = status;
+        }
+    }
+
     //-------------------------------여기까지 회원가입부분------------------
 
 
@@ -73,7 +76,7 @@ public class MemberApiController {
         Member findMember = memberService.login(request.getEmail(), request.getPw());
 
         String token = jwtService.createToken(findMember.getId());//토큰 생성
-        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+        jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
         TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
         TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
