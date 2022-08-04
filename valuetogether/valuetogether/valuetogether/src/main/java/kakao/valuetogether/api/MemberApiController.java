@@ -177,10 +177,10 @@ public class MemberApiController {
     //회원검증
     @PostMapping("/login/find_password")
     public TokenResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
-        Long findId = memberService.validateMember(request.getEmail(), request.getPhone());
+        Member findMember = memberService.validateMember(request.getEmail(), request.getPhone());
 
-        String token = jwtService.createToken(findId);//토큰 생성
-        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+        String token = jwtService.createToken(findMember.getId());//토큰 생성
+        jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
         TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
         TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);

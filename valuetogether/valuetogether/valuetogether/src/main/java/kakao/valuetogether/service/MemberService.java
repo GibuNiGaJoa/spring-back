@@ -75,12 +75,12 @@ public class MemberService {
     }
 
     //PW 재설정 시 회원 검증
-    public Long validateMember(String email, String phone){
+    public Member validateMember(String email, String phone){
         Optional<Member> findMember = memberRepository.findByEP(email, phone);
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");
         }
-        return findMember.get().getId();
+        return findMember.get();
     }
 
     //PW 재설정
