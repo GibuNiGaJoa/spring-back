@@ -73,7 +73,7 @@ public class MemberRepository {
 
     //이메일 또는 전화번호로 조회
     public Optional<Member> findByEP(String email, String phone){
-        List<Member> findMember = em.createQuery("select m from Member m where m.email = :email or " +
+        List<Member> findMember = em.createQuery("select m from Member m where m.email = :email and " +
                         "m.phone = :phone")
                 .setParameter("email",email)
                 .setParameter("phone", phone)

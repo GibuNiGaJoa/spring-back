@@ -127,7 +127,7 @@ public class MemberApiController {
     //-------------------------------여기까지 로그인부분------------------
     //ID찾기
     //첫번째 방법(휴대폰번호)
-    @GetMapping("/login/find_account_guide/first")
+    @PostMapping("/login/find_account_guide/first")
     public FindAccountByPhoneResponse findEmail(@RequestBody @Valid FindAccountByPhoneRequest request) {
         String email = memberService.findIdByPhone(request.getPhone());
         return new FindAccountByPhoneResponse(email);
@@ -149,7 +149,7 @@ public class MemberApiController {
     }
 
     //두번째 방법(닉네임 또는 이름과 휴대폰번호)
-    @GetMapping("/login/find_account_guide/second")
+    @PostMapping("/login/find_account_guide/second")
     public FindAccountByNNPResponse findEmail(@RequestBody @Valid FindAccountByNNPRequest request) {
         String email = memberService.findIdByNNP(request.getNickname(), request.getName(), request.getPhone());
         return new FindAccountByNNPResponse(email);
@@ -176,29 +176,32 @@ public class MemberApiController {
     //회원검증 및 PW재설정
     //회원검증
     @PostMapping("/login/find_password")
-    public FindPasswordByEPResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
-        Long id = memberService.validateMember(request.getEmailOrPhone(), request.getEmailOrPhone());
-        return new FindPasswordByEPResponse(id);
+    public TokenResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
+        Long findId = memberService.validateMember(request.getEmail(), request.getPhone());
+
+        String token = jwtService.createToken(findId);//토큰 생성
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+
+        TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
+
+        return tokenResponse;
     }
 
     @Data
     static class FindPasswordByEPRequest {
-        private String emailOrPhone;
+        private String email;
+        private String phone;
     }
-    @Data
-    static class FindPasswordByEPResponse {
-        private Long id;
 
-        public FindPasswordByEPResponse(Long id) {
-            this.id = id;
-        }
-    }
 
     //PW재설정
-    @PutMapping("/login/find_password/{id}")
-    public ChangePasswordResponse changePw(@PathVariable("id") Long id, @RequestBody @Valid ChangePasswordRequest request) {
-        memberService.changePw(id, request.getPw());
-        Member findMember = memberService.findOne(id);
+    @PutMapping("/login/find_password/change_password")
+    public ChangePasswordResponse changePw(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid ChangePasswordRequest request) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+
+        memberService.changePw(memberId, request.getPw());
+        Member findMember = memberService.findOne(memberId);
         return new ChangePasswordResponse(findMember.getId(),findMember.getPw());
     }
 
