@@ -26,6 +26,12 @@ public class MemberRepository {
         return member.getId();
     }
 
+    //모두 조회
+    public List<Member> findAll() {
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+    }
+
     //이메일과 pw로 조회
     public Optional<Member> findByEmailAndPw(String email, String pw) {
         List<Member> findMember = em.createQuery("select m from Member m where m.email = :email and " +

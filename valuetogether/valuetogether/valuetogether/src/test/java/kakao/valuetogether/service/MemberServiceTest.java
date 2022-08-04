@@ -127,13 +127,13 @@ public class MemberServiceTest {
         Long saveId2 = memberRepository.save(member2);
 
         String password = "asdf";
-        Long findId = memberService.validateMember("email9", null);
+        Member findMember = memberService.validateMember("email9", "null");
 
-        memberService.changePw(findId, password);
+        memberService.changePw(findMember.getId(), password);
 
         try {
-            Long findId2 = memberService.validateMember("ema", "one");
-            memberService.changePw(findId2, "15967");// 예외 발생해야함.
+            Member findMember2 = memberService.validateMember("ema", "one");
+            memberService.changePw(findMember2.getId(), "15967");// 예외 발생해야함.
 
         } catch (IllegalStateException e) {
             return;

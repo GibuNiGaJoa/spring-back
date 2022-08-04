@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
 @RequiredArgsConstructor
@@ -19,7 +20,13 @@ public class MemberApiController {
 
     private final JwtService jwtService;
 
+    @GetMapping("/asdf")
+    public List<Member> find(){
+        List<Member> members = memberService.findMembers();
+        return members;
+    }
 
+    
     //회원가입 api
     @PostMapping("/login/create_account")
     public CreatedMemberResponse saveMember(@RequestBody @Valid CreatedMemberRequest request) {
