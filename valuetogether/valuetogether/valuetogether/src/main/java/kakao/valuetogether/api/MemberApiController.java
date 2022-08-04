@@ -208,8 +208,7 @@ public class MemberApiController {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
         memberService.changePw(memberId, request.getPw());
-        Member findMember = memberService.findOne(memberId);
-        return new ChangePasswordResponse(findMember.getId(),findMember.getPw());
+        return new ChangePasswordResponse(true);
     }
 
     @Data
@@ -218,12 +217,10 @@ public class MemberApiController {
     }
     @Data
     static class ChangePasswordResponse {
-        private Long id;
-        private String pw;
+        private Boolean status;
 
-        public ChangePasswordResponse(Long id, String pw) {
-            this.id = id;
-            this.pw = pw;
+        public ChangePasswordResponse(Boolean status) {
+            this.status = status;
         }
     }
     //-------------------------------여기까지 회원검증 및 PW재설정------------------
