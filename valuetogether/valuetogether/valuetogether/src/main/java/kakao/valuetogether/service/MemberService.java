@@ -86,7 +86,9 @@ public class MemberService {
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");
         }
-        return findMember.get();
+        else {
+            return findMember.get();
+        }
     }
 
     //PW 재설정
