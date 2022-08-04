@@ -29,7 +29,7 @@ public class MemberApiController {
     
     //회원가입 api
     @PostMapping("/login/create_account")
-    public CreatedMemberResponse saveMember(@RequestBody @Valid CreatedMemberRequest request) {
+    public Boolean saveMember(@RequestBody @Valid CreatedMemberRequest request) {
 
         Member member = new Member();
         member.setEmail(request.getEmail());
@@ -42,7 +42,7 @@ public class MemberApiController {
         member.setBirthday(request.getBirthday());
 
         Long id = memberService.join(member);
-        return new CreatedMemberResponse(id);
+        return true;
     }
 
     @Data
@@ -64,18 +64,10 @@ public class MemberApiController {
         private String birthday;
     }
 
-    @Data
-    static class CreatedMemberResponse {
-        private Long id;
-
-        public CreatedMemberResponse(Long id) {
-            this.id = id;
-        }
-    }
     //-------------------------------여기까지 회원가입부분------------------
 
 
-    //로그인시 토큰생성 api
+    //로그인 + 토큰생성 api
     @PostMapping("/login")
     public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request){
         Member findMember = memberService.login(request.getEmail(), request.getPw());
@@ -136,8 +128,8 @@ public class MemberApiController {
     //첫번째 방법(휴대폰번호)
     @PostMapping("/login/find_account_guide/first")
     public FindAccountByPhoneResponse findEmail(@RequestBody @Valid FindAccountByPhoneRequest request) {
-        String email = memberService.findIdByPhone(request.getPhone());
-        return new FindAccountByPhoneResponse(email);
+        Member findMember = memberService.findIdByPhone(request.getPhone());
+        return new FindAccountByPhoneResponse(findMember.getEmail(),findMember.getPhone());
     }
 
     @Data
@@ -149,17 +141,19 @@ public class MemberApiController {
     static class FindAccountByPhoneResponse {
 
         private String email;
+        private String phone;
 
-        public FindAccountByPhoneResponse(String email) {
+        public FindAccountByPhoneResponse(String email, String phone) {
             this.email = email;
+            this.phone = phone;
         }
     }
 
     //두번째 방법(닉네임 또는 이름과 휴대폰번호)
     @PostMapping("/login/find_account_guide/second")
     public FindAccountByNNPResponse findEmail(@RequestBody @Valid FindAccountByNNPRequest request) {
-        String email = memberService.findIdByNNP(request.getNickname(), request.getName(), request.getPhone());
-        return new FindAccountByNNPResponse(email);
+        Member findMember = memberService.findIdByNNP(request.getNickname(), request.getName(), request.getPhone());
+        return new FindAccountByNNPResponse(findMember.getEmail(),findMember.getPhone());
     }
 
     @Data
@@ -173,9 +167,11 @@ public class MemberApiController {
     static class FindAccountByNNPResponse {
 
         private String email;
+        private String phone;
 
-        public FindAccountByNNPResponse(String email) {
+        public FindAccountByNNPResponse(String email, String phone) {
             this.email = email;
+            this.phone = phone;
         }
     }
 
@@ -225,8 +221,11 @@ public class MemberApiController {
     }
     //-------------------------------여기까지 회원검증 및 PW재설정------------------
     //회원탈퇴
-    @DeleteMapping("member/{id}")
-    public void deleteMember(@PathVariable("id") Long id) {
-        memberService.deleteMember(id);
+    @DeleteMapping("delete/")
+    public Boolean deleteMember(@RequestHeader(value = "Authorization") String token) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+
+        memberService.deleteMember(memberId);
+        return true;
     }
 }

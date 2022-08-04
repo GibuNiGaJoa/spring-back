@@ -76,9 +76,9 @@ public class MemberServiceTest {
 
         Long saveId1 = memberRepository.save(member1);
 
-        String findEmail = memberService.findIdByPhone(member1.getPhone());
+        Member findMember = memberService.findIdByPhone(member1.getPhone());
 
-        assertThat(member1.getEmail()).isEqualTo(findEmail);
+        assertThat(member1.getEmail()).isEqualTo(findMember.getEmail());
     }
 
     @Test(expected = IllegalStateException.class)
@@ -101,12 +101,12 @@ public class MemberServiceTest {
 
         Long saveId1 = memberRepository.save(member1);
 
-        String findEmail1 = memberService.findIdByNNP("nickname", "name", "phone");
-        String findEmail2 = memberService.findIdByNNP(null, "name", "phone");
-        String findEmail3 = memberService.findIdByNNP("nickname", null, "phone");
-        assertThat(findEmail1).isEqualTo(member1.getEmail());
-        assertThat(findEmail2).isEqualTo(member1.getEmail());
-        assertThat(findEmail3).isEqualTo(member1.getEmail());
+        Member findMember1 = memberService.findIdByNNP("nickname", "name", "phone");
+        Member findMember2 = memberService.findIdByNNP(null, "name", "phone");
+        Member findMember3 = memberService.findIdByNNP("nickname", null, "phone");
+        assertThat(findMember1.getEmail()).isEqualTo(member1.getEmail());
+        assertThat(findMember2.getEmail()).isEqualTo(member1.getEmail());
+        assertThat(findMember3.getEmail()).isEqualTo(member1.getEmail());
 
         try {
             memberService.findIdByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.

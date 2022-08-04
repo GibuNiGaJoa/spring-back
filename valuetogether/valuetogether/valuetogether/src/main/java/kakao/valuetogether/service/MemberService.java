@@ -59,24 +59,24 @@ public class MemberService {
     }
 
     //ID 찾기 첫번째 방법
-    public String findIdByPhone(String phone) {
+    public Member findIdByPhone(String phone) {
         Optional<Member> findPhone = memberRepository.findByPhone(phone);
         if(findPhone.isEmpty()){
             throw new IllegalStateException("존재하지 않는 번호입니다.");
         }
         else {
-            return findPhone.get().getEmail();
+            return findPhone.get();
         }
     }
 
     //ID 찾기 두번째 방법
-    public String findIdByNNP(String nickname, String name, String phone) {
+    public Member findIdByNNP(String nickname, String name, String phone) {
         Optional<Member> findMember = memberRepository.findByNNP(nickname, name, phone);
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");
         }
         else {
-            return findMember.get().getEmail();
+            return findMember.get();
         }
     }
 
