@@ -127,7 +127,7 @@ public class MemberServiceTest {
         Long saveId2 = memberRepository.save(member2);
 
         String password = "asdf";
-        Member findMember = memberService.validateMember("email9", "null");
+        Member findMember = memberService.validateMember("email9", "phone");
 
         memberService.changePw(findMember.getId(), password);
 
