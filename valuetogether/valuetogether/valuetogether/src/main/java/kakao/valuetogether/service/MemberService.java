@@ -5,6 +5,7 @@ import kakao.valuetogether.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,11 @@ public class MemberService {
     public Member findOne(Long id) {
         Member findMember = memberRepository.findById(id);
         return findMember;
+    }
+
+    //회원전체조회
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 
     //회원가입
@@ -75,12 +81,14 @@ public class MemberService {
     }
 
     //PW 재설정 시 회원 검증
-    public Long validateMember(String email, String phone){
+    public Member validateMember(String email, String phone){
         Optional<Member> findMember = memberRepository.findByEP(email, phone);
         if (findMember.isEmpty()){
             throw new IllegalStateException("존재하지 않는 계정입니다.");
         }
-        return findMember.get().getId();
+        else {
+            return findMember.get();
+        }
     }
 
     //PW 재설정

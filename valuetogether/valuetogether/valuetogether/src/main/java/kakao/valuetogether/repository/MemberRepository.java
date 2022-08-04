@@ -26,6 +26,12 @@ public class MemberRepository {
         return member.getId();
     }
 
+    //모두 조회
+    public List<Member> findAll() {
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+    }
+
     //이메일과 pw로 조회
     public Optional<Member> findByEmailAndPw(String email, String pw) {
         List<Member> findMember = em.createQuery("select m from Member m where m.email = :email and " +
@@ -73,7 +79,7 @@ public class MemberRepository {
 
     //이메일 또는 전화번호로 조회
     public Optional<Member> findByEP(String email, String phone){
-        List<Member> findMember = em.createQuery("select m from Member m where m.email = :email or " +
+        List<Member> findMember = em.createQuery("select m from Member m where m.email = :email and " +
                         "m.phone = :phone")
                 .setParameter("email",email)
                 .setParameter("phone", phone)

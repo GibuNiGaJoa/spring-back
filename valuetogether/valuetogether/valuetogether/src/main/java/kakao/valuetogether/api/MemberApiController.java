@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
 @RequiredArgsConstructor
@@ -19,7 +20,13 @@ public class MemberApiController {
 
     private final JwtService jwtService;
 
+    @GetMapping("/asdf")
+    public List<Member> find(){
+        List<Member> members = memberService.findMembers();
+        return members;
+    }
 
+    
     //회원가입 api
     @PostMapping("/login/create_account")
     public CreatedMemberResponse saveMember(@RequestBody @Valid CreatedMemberRequest request) {
@@ -70,7 +77,7 @@ public class MemberApiController {
 
     //로그인시 토큰생성 api
     @PostMapping("/login")
-    public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request) throws Exception{
+    public TokenResponse loginMember(@RequestBody @Valid LoginMemberRequest request){
         Member findMember = memberService.login(request.getEmail(), request.getPw());
 
         String token = jwtService.createToken(findMember.getId());//토큰 생성
@@ -84,7 +91,7 @@ public class MemberApiController {
 
     //==토큰 인증 컨트롤러==//
     @GetMapping(value = "/checkToken")
-    public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) throws Exception {
+    public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) {
         Long memberId = jwtService.parseJwtToken(token);
 
         TokenResponseNoData tokenResponseNoData = new TokenResponseNoData("200", "success",true);
@@ -127,7 +134,7 @@ public class MemberApiController {
     //-------------------------------여기까지 로그인부분------------------
     //ID찾기
     //첫번째 방법(휴대폰번호)
-    @GetMapping("/login/find_account_guide/first")
+    @PostMapping("/login/find_account_guide/first")
     public FindAccountByPhoneResponse findEmail(@RequestBody @Valid FindAccountByPhoneRequest request) {
         String email = memberService.findIdByPhone(request.getPhone());
         return new FindAccountByPhoneResponse(email);
@@ -149,7 +156,7 @@ public class MemberApiController {
     }
 
     //두번째 방법(닉네임 또는 이름과 휴대폰번호)
-    @GetMapping("/login/find_account_guide/second")
+    @PostMapping("/login/find_account_guide/second")
     public FindAccountByNNPResponse findEmail(@RequestBody @Valid FindAccountByNNPRequest request) {
         String email = memberService.findIdByNNP(request.getNickname(), request.getName(), request.getPhone());
         return new FindAccountByNNPResponse(email);
@@ -175,10 +182,17 @@ public class MemberApiController {
     //-------------------------------여기까지 ID찾기부분------------------
     //회원검증 및 PW재설정
     //회원검증
-    @GetMapping("/login/find_password")
-    public FindPasswordByEPResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
-        Long id = memberService.validateMember(request.getEmail(), request.getPhone());
-        return new FindPasswordByEPResponse(id);
+    @PostMapping("/login/find_password")
+    public TokenResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
+        Member findMember = memberService.validateMember(request.getEmail(), request.getPhone());
+
+        String token = jwtService.createToken(findMember.getId());//토큰 생성
+        jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+
+        TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
+
+        return tokenResponse;
     }
 
     @Data
@@ -186,20 +200,15 @@ public class MemberApiController {
         private String email;
         private String phone;
     }
-    @Data
-    static class FindPasswordByEPResponse {
-        private Long id;
 
-        public FindPasswordByEPResponse(Long id) {
-            this.id = id;
-        }
-    }
 
     //PW재설정
-    @PutMapping("/login/find_password/{id}")
-    public ChangePasswordResponse changePw(@PathVariable("id") Long id, @RequestBody @Valid ChangePasswordRequest request) {
-        memberService.changePw(id, request.getPw());
-        Member findMember = memberService.findOne(id);
+    @PutMapping("/login/find_password/change_password")
+    public ChangePasswordResponse changePw(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid ChangePasswordRequest request) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+
+        memberService.changePw(memberId, request.getPw());
+        Member findMember = memberService.findOne(memberId);
         return new ChangePasswordResponse(findMember.getId(),findMember.getPw());
     }
 
