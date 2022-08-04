@@ -221,7 +221,7 @@ public class MemberApiController {
     }
     //-------------------------------여기까지 회원검증 및 PW재설정------------------
     //회원탈퇴
-    @DeleteMapping("delete/")
+    @DeleteMapping("/delete")
     public Boolean deleteMember(@RequestHeader(value = "Authorization") String token) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
