@@ -177,14 +177,13 @@ public class MemberApiController {
     //회원검증
     @GetMapping("/login/find_password")
     public FindPasswordByEPResponse verifyMember(@RequestBody @Valid FindPasswordByEPRequest request) {
-        Long id = memberService.validateMember(request.getEmail(), request.getPhone());
+        Long id = memberService.validateMember(request.getEmailOrPhone(), request.getEmailOrPhone());
         return new FindPasswordByEPResponse(id);
     }
 
     @Data
     static class FindPasswordByEPRequest {
-        private String email;
-        private String phone;
+        private String emailOrPhone;
     }
     @Data
     static class FindPasswordByEPResponse {
