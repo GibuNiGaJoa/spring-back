@@ -28,11 +28,15 @@ public class Post {
     private String subTitle;
 
     @Column(nullable = false)
-    private String content;
+    private String article;
 
-    private Tag topic;
+    private String image;
 
-    private Tag target;
+    @Enumerated(EnumType.STRING)
+    private Topic topic;
+
+    @Enumerated(EnumType.STRING)
+    private Target target;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Link> links = new ArrayList<>();
@@ -51,11 +55,11 @@ public class Post {
     @Column(name = "is_confirm", nullable = false)
     private Boolean isConfirm = false;
 
-    public Post(Member member, String title, String subTitle, String content, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
         this.title = title;
         this.subTitle = subTitle;
-        this.content = content;
+        this.article = article;
         this.image = image;
         this.topic = topic;
         this.target = target;

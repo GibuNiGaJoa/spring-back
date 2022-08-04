@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class Link {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     @Column(name = "link_id")
     private Long id;
 
