@@ -34,11 +34,10 @@ public class PostApiController {
         jwtService.parseJwtToken(token);
         List<Tag> topicList = tagService.findTopic();
         List<Tag> targetList = tagService.findTarget();
-        //List<Tag> tagList = tagService.findTopicTarget();
         List<TopicTargetDto> topicCollect = topicList.stream()
                 .map(m -> new TopicTargetDto(m.getTagName()))
                 .collect(Collectors.toList());
-        List<TopicTargetDto> targetCollect = topicList.stream()
+        List<TopicTargetDto> targetCollect = targetList.stream()
                 .map(m -> new TopicTargetDto(m.getTagName()))
                 .collect(Collectors.toList());
         return new ProposeResponse(topicCollect,targetCollect);
