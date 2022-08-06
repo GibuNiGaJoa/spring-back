@@ -5,6 +5,7 @@ import kakao.valuetogether.repository.TagRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,15 @@ public class TagService {
         return findTag.get();
     }
 
+    public List<Tag> findTopic() {
+        return tagRepository.findTopic();
+    }
 
+    public List<Tag> findTarget() {
+        return tagRepository.findTarget();
+    }
+
+    public List<Tag> findTopicTarget() {
+        return tagRepository.findTopicTarget();
+    }
 }

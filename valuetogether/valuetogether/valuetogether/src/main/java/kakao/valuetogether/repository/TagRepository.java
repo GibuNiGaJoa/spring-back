@@ -43,4 +43,12 @@ public class TagRepository {
                 .setMaxResults(11)
                 .getResultList();
     }
+
+    //주제와 대상에 해당하는 태그값 조회하기
+    public List<Tag> findTopicTarget() {
+        return em.createQuery("select t from Tag t", Tag.class)
+                .setFirstResult(0)
+                .setMaxResults(21)
+                .getResultList();
+    }
 }
