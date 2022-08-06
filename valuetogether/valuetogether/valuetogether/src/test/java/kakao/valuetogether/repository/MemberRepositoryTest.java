@@ -16,7 +16,7 @@ public class MemberRepositoryTest {
     @Test
     //@Rollback(value = false)
     public void save() {
-        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+        Member member = new Member("1", "1", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long savedId = memberRepository.save(member);
         Member findMember = memberRepository.findById(savedId);

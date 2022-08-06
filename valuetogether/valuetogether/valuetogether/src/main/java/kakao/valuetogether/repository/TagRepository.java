@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TagRepository {
@@ -13,25 +15,32 @@ public class TagRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void save() {
-        ArrayList<Tag> tags = new ArrayList<>();
+    public Long save(Tag tag) {
+        em.persist(tag);
+        return tag.getId();
+    }
 
-        tags.add(new Tag("어려운이웃"));
-        tags.add(new Tag("행복한노후"));
-        tags.add(new Tag("여성인권"));
-        tags.add(new Tag("심리상담"));
-        tags.add(new Tag("환경교육"));
-        tags.add(new Tag("학대아동지원"));
-        tags.add(new Tag("환경을위한실천"));
-        tags.add(new Tag("우크라이나긴급모금"));
-        tags.add(new Tag("세상을바꾸는여성"));
-        tags.add(new Tag("언택트프로젝트"));
+    //이름으로 태그조회하기
+    public Optional<Tag> findByName(String name) {
+        List<Tag> findTag = em.createQuery("select t from Tag t where t.tagName = :tagName", Tag.class)
+                .setParameter("tagName", name)
+                .getResultList();
 
-        for (int i = 0; i < tags.size(); i++) {
-            em.persist(tags.get(i));
-        }
+        return findTag.stream().findAny();
+    }
 
-        em.flush();
-        em.clear();
+    //주제에 해당하는 태그값 조회하기
+    public List<Tag> findTopic() {
+        return em.createQuery("select t from Tag t", Tag.class)
+                .setFirstResult(0)
+                .setMaxResults(9)
+                .getResultList();
+    }
+    //대상에 해당하는 태그값 조회하기
+    public List<Tag> findTarget() {
+        return em.createQuery("select t from Tag t", Tag.class)
+                .setFirstResult(9)
+                .setMaxResults(11)
+                .getResultList();
     }
 }
