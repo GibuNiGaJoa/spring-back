@@ -37,21 +37,21 @@ public class MemberServiceTest {
         memberRepository.clearStore();
     }
 
-    @Test
-    //@Transactional
-    //@Rollback(value = false)
-    public void 회원가입성공() {
-        Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-        Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
-        Long saveId1 = memberRepository.save(member1);
-        Long saveId2 = memberRepository.save(member2);
-
-        Member member = new Member("email3", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
-        Long saveId = memberService.join(member);
-
-    }
+//    @Test
+//    //@Transactional
+//    //@Rollback(value = false)
+//    public void 회원가입성공() {
+//        Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//        Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//
+//        Long saveId1 = memberRepository.save(member1);
+//        Long saveId2 = memberRepository.save(member2);
+//
+//        Member member = new Member("email3", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//
+//        Long saveId = memberService.join(member);
+//
+//    }
 
     @Test(expected = IllegalStateException.class)
     //@Transactional
@@ -68,18 +68,18 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member);
     }
 
-    @Test
-    //@Transactional
-    //@Rollback(value = false)
-    public void 폰번호로아이디찾기성공(){
-        Member member1 = new Member("email6", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
-        Long saveId1 = memberRepository.save(member1);
-
-        Member findMember = memberService.findIdByPhone(member1.getPhone());
-
-        assertThat(member1.getEmail()).isEqualTo(findMember.getEmail());
-    }
+//    @Test
+//    //@Transactional
+//    //@Rollback(value = false)
+//    public void 폰번호로아이디찾기성공(){
+//        Member member1 = new Member("email6", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//
+//        Long saveId1 = memberRepository.save(member1);
+//
+//        Member findMember = memberService.findIdByPhone(member1.getPhone());
+//
+//        assertThat(member1.getEmail()).isEqualTo(findMember.getEmail());
+//    }
 
     @Test(expected = IllegalStateException.class)
     //@Transactional
@@ -93,28 +93,28 @@ public class MemberServiceTest {
 
     }
 
-    @Test
-    //@Transactional
-    //@Rollback(value = false)
-    public void 닉네임이름전화번호로아이디찾기성공및예외() {
-        Member member1 = new Member("email8", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-
-        Long saveId1 = memberRepository.save(member1);
-
-        Member findMember1 = memberService.findIdByNNP("nickname", "name", "phone");
-        Member findMember2 = memberService.findIdByNNP(null, "name", "phone");
-        Member findMember3 = memberService.findIdByNNP("nickname", null, "phone");
-        assertThat(findMember1.getEmail()).isEqualTo(member1.getEmail());
-        assertThat(findMember2.getEmail()).isEqualTo(member1.getEmail());
-        assertThat(findMember3.getEmail()).isEqualTo(member1.getEmail());
-
-        try {
-            memberService.findIdByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.
-        } catch (IllegalStateException e) {
-            return;
-        }
-        Assert.fail("예외가 발생해야 한다."); // 이 메서드가 실행되면 테스트는 실패!
-    }
+//    @Test
+//    //@Transactional
+//    //@Rollback(value = false)
+//    public void 닉네임이름전화번호로아이디찾기성공및예외() {
+//        Member member1 = new Member("email8", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+//
+//        Long saveId1 = memberRepository.save(member1);
+//
+//        Member findMember1 = memberService.findIdByNNP("nickname", "name", "phone");
+//        Member findMember2 = memberService.findIdByNNP(null, "name", "phone");
+//        Member findMember3 = memberService.findIdByNNP("nickname", null, "phone");
+//        assertThat(findMember1.getEmail()).isEqualTo(member1.getEmail());
+//        assertThat(findMember2.getEmail()).isEqualTo(member1.getEmail());
+//        assertThat(findMember3.getEmail()).isEqualTo(member1.getEmail());
+//
+//        try {
+//            memberService.findIdByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.
+//        } catch (IllegalStateException e) {
+//            return;
+//        }
+//        Assert.fail("예외가 발생해야 한다."); // 이 메서드가 실행되면 테스트는 실패!
+//    }
 
     @Test
 //    @Transactional
