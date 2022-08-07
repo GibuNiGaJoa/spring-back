@@ -50,12 +50,6 @@ public class PostApiController {
     }
     @Data
     static class ProposeRequest {
-        private String tag;
-
-        private String topic;
-
-        private String target;
-
         private String title;
 
         private String subTitle;
@@ -68,7 +62,6 @@ public class PostApiController {
 
         private Date endDate;
 
-        private String link;
     }
     @Data
     static class ProposeResponse {
