@@ -51,7 +51,7 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 
-    @Column(name = "is_confirm", nullable = false)
+    @Column(name = "is_confirm")
     private Boolean isConfirm = false;
 
     public Post(Member member, String title, String subTitle, String content, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
