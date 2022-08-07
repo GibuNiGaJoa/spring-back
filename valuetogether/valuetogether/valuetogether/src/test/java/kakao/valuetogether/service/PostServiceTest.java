@@ -41,8 +41,8 @@ public class PostServiceTest {
     public void save(){
 
         Post post = new Post();
-        post.setTitle("황재원 골드");
-        post.setSubTitle("황재원 골드");
+        post.setTitle("왜 안되냐고");
+        post.setSubTitle("죽겠다..");
 //        post.setTargetAmount(151565464);
         post.setContent("황재원 골드");
 //        post.setStartDate(new Date());

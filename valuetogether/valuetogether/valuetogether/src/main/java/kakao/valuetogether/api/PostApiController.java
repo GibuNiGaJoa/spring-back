@@ -2,19 +2,15 @@ package kakao.valuetogether.api;
 
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
-import kakao.valuetogether.domain.Tag;
-import kakao.valuetogether.repository.TagRepository;
+
 import kakao.valuetogether.service.*;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
 @RequiredArgsConstructor
@@ -45,14 +41,7 @@ public class PostApiController {
 
         private String subTitle;
 
-        //private Integer targetAmount;
-
         private String content;
-
-//        private Date startDate;
-//
-//        private Date endDate;
-
     }
     @Data
     static class ProposeResponse {
