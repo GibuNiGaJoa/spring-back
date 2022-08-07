@@ -23,23 +23,15 @@ public class PostApiController {
     private final PostService postService;
     private final MemberService memberService;
 
-    private final TagService tagService;
-
-    private final TagPostService tagPostService;
-
-
     //기부 제안하기
     @PostMapping("/propose/project")
     public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
-        //Long MemberId = jwtService.parseJwtToken(token);
 
         Post post = new Post();
         post.setTitle(request.getTitle());
         post.setSubTitle(request.getSubTitle());
-//        post.setTargetAmount(request.getTargetAmount());
         post.setContent(request.getContent());
-//        post.setStartDate(request.getStartDate());
-//        post.setEndDate(request.getEndDate());
+
         Member findMember = memberService.findOne(1L);
         post.setMember(findMember);
 
