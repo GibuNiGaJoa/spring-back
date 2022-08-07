@@ -1,12 +1,10 @@
 package kakao.valuetogether.api;
 
+import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
 import kakao.valuetogether.repository.TagRepository;
-import kakao.valuetogether.service.JwtService;
-import kakao.valuetogether.service.PostService;
-import kakao.valuetogether.service.TagPostService;
-import kakao.valuetogether.service.TagService;
+import kakao.valuetogether.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +20,7 @@ import java.util.stream.Collectors;
 public class PostApiController {
 
     private final PostService postService;
+    private final MemberService memberService;
 
     private final TagService tagService;
 
@@ -41,7 +40,8 @@ public class PostApiController {
         post.setContent(request.getContent());
         post.setStartDate(request.getStartDate());
         post.setEndDate(request.getEndDate());
-        post.setId(1L);
+        Member findMember = memberService.findOne(1L);
+        post.setMember(findMember);
 
         Long postId = postService.propose(post);
 
