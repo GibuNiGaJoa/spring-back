@@ -7,6 +7,7 @@ import kakao.valuetogether.service.PostService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class PostApiController {
 
     private final MemberService memberService;
 
-    @PostMapping("/propose/project")
+    @PutMapping("/propose/project")
     public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
         Member findMember = memberService.findOne(1L);
         Post post = new Post();
