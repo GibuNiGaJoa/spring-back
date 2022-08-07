@@ -29,7 +29,7 @@ public class PostApiController {
 
 
     //기부 제안하기
-    @PostMapping("/fundraisings/propose/project")
+    @PostMapping("/propose/project")
     public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
         //Long MemberId = jwtService.parseJwtToken(token);
 
