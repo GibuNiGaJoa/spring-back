@@ -39,8 +39,8 @@ public class PostApiController {
         post.setSubTitle(request.getSubTitle());
         post.setTargetAmount(request.getTargetAmount());
         post.setContent(request.getContent());
-        post.setStartDate(request.getStartDate());
-        post.setEndDate(request.getEndDate());
+//        post.setStartDate(request.getStartDate());
+//        post.setEndDate(request.getEndDate());
         Member findMember = memberService.findOne(1L);
         post.setMember(findMember);
 
@@ -58,9 +58,9 @@ public class PostApiController {
 
         private String content;
 
-        private Date startDate;
-
-        private Date endDate;
+//        private Date startDate;
+//
+//        private Date endDate;
 
     }
     @Data

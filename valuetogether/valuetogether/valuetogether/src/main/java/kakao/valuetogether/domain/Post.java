@@ -45,11 +45,11 @@ public class Post {
     @Column(name = "target_amount", nullable = false)
     private Integer targetAmount;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     @Temporal(TemporalType.DATE)
     private Date endDate;
 

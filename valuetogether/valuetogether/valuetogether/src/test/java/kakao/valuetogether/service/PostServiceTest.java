@@ -41,10 +41,10 @@ public class PostServiceTest {
     public void save(){
 
         Post post = new Post();
-        post.setTitle("asdfasfwe");
-        post.setSubTitle("qfasdfq");
-        post.setTargetAmount(1564);
-        post.setContent("aslasdfqwfasfhfwlhfsd");
+        post.setTitle("황재원 골드");
+        post.setSubTitle("황재원 골드");
+        post.setTargetAmount(151565464);
+        post.setContent("황재원 골드");
         post.setStartDate(new Date());
         post.setEndDate(new Date());
         Member findMember = memberService.findOne(1L);
