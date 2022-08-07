@@ -24,24 +24,24 @@ public class PostApiController {
     public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
 
         Post post = new Post();
-        post.setTitle(request.getTitle());
-        post.setSubTitle(request.getSubTitle());
-        post.setContent(request.getContent());
+        post.setTitle(request.getA());
+        post.setSubTitle(request.getB());
+        post.setContent(request.getC());
 
         Member findMember = memberService.findOne(1L);
         post.setMember(findMember);
 
-        Long postId = postService.propose(post);
+        postService.propose(post);
 
         return new ProposeResponse(true);
     }
     @Data
     static class ProposeRequest {
-        private String title;
+        private String a;
 
-        private String subTitle;
+        private String b;
 
-        private String content;
+        private String c;
     }
     @Data
     static class ProposeResponse {
