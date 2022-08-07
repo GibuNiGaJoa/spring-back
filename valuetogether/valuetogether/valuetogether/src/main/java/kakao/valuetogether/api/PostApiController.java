@@ -36,8 +36,8 @@ public class PostApiController {
 
         Post post = new Post();
         post.setTitle(request.getTitle());
-        post.setSubTitle(request.getSubtitle());
-        post.setTargetAmount(request.getTargetamount());
+        post.setSubTitle(request.getSubTitle());
+        post.setTargetAmount(request.getTargetAmount());
         post.setContent(request.getContent());
 //        post.setStartDate(request.getStartDate());
 //        post.setEndDate(request.getEndDate());
@@ -52,9 +52,9 @@ public class PostApiController {
     static class ProposeRequest {
         private String title;
 
-        private String subtitle;
+        private String subTitle;
 
-        private Integer targetamount;
+        private int targetAmount;
 
         private String content;
 

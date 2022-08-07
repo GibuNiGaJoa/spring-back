@@ -39,7 +39,7 @@ public class MemberServiceTest {
 
 //    @Test
 //    //@Transactional
-//    //@Rollback(value = false)
+//    @Rollback(value = false)
 //    public void join() {
 //        Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 //        Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
