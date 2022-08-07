@@ -41,7 +41,7 @@ public class PostApiController {
         post.setContent(request.getContent());
 //        post.setStartDate(request.getStartDate());
 //        post.setEndDate(request.getEndDate());
-        Member findMember = memberService.findOne(9L);
+        Member findMember = memberService.findOne(request.getId());
         post.setMember(findMember);
 
         Long postId = postService.propose(post);
@@ -50,11 +50,13 @@ public class PostApiController {
     }
     @Data
     static class ProposeRequest {
+        private Long id;
+
         private String title;
 
         private String subTitle;
 
-        private int targetAmount;
+        private Integer targetAmount;
 
         private String content;
 

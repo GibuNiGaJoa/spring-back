@@ -43,7 +43,7 @@ public class Post {
 //    private List<Link> links = new ArrayList<>();
 
     @Column(name = "target_amount", nullable = false)
-    private int targetAmount;
+    private Integer targetAmount;
 
     @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
@@ -54,9 +54,9 @@ public class Post {
     private Date endDate;
 
     @Column(name = "is_confirm")
-    private Boolean isConfirm = false;
+    private Boolean isConfirm;
 
-    public Post(Member member, String title, String subTitle, String content, int targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String subTitle, String content, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
         this.title = title;
         this.subTitle = subTitle;
