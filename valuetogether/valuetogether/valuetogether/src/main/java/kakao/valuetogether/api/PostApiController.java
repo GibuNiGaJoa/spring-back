@@ -2,8 +2,10 @@ package kakao.valuetogether.api;
 
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.Tag;
 import kakao.valuetogether.service.MemberService;
 import kakao.valuetogether.service.PostService;
+import kakao.valuetogether.service.TagService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,8 @@ public class PostApiController {
     private final PostService postService;
 
     private final MemberService memberService;
+
+    private final TagService tagService;
 
     @PutMapping("/propose/project")
     public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
@@ -46,6 +50,29 @@ public class PostApiController {
         private Boolean status;
 
         public CreatedPostResponse(Boolean status) {
+            this.status = status;
+        }
+    }
+
+    @PostMapping("/savetag")
+    public CreatedTagResponse saveMember(@RequestBody @Valid CreatedTagRequest request) {
+
+        Tag tag = new Tag(request.getTagName());
+        tagService.addTag(tag);
+
+        return new CreatedTagResponse(true);
+    }
+
+    @Data
+    static class CreatedTagRequest {
+        private String tagName;
+    }
+
+    @Data
+    static class CreatedTagResponse {
+        private Boolean status;
+
+        public CreatedTagResponse(Boolean status) {
             this.status = status;
         }
     }
