@@ -41,7 +41,7 @@ public class PostApiController {
         post.setContent(request.getContent());
 //        post.setStartDate(request.getStartDate());
 //        post.setEndDate(request.getEndDate());
-        Member findMember = memberService.findOne(1L);
+        Member findMember = memberService.findOne(9L);
         post.setMember(findMember);
 
         Long postId = postService.propose(post);

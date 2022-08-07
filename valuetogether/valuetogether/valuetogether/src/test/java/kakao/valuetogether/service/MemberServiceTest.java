@@ -37,21 +37,21 @@ public class MemberServiceTest {
         memberRepository.clearStore();
     }
 
-//    @Test
-//    //@Transactional
-//    //@Rollback(value = false)
-//    public void 회원가입성공() {
-//        Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-//        Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-//
-//        Long saveId1 = memberRepository.save(member1);
-//        Long saveId2 = memberRepository.save(member2);
-//
-//        Member member = new Member("email3", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
-//
-//        Long saveId = memberService.join(member);
-//
-//    }
+    @Test
+    //@Transactional
+    //@Rollback(value = false)
+    public void join() {
+        Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+        Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+
+        Long saveId1 = memberRepository.save(member1);
+        Long saveId2 = memberRepository.save(member2);
+
+        Member member = new Member("email3", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+
+        Long saveId = memberService.join(member);
+
+    }
 
     @Test(expected = IllegalStateException.class)
     //@Transactional
