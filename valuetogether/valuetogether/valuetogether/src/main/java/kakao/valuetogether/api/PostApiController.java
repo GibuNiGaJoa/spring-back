@@ -3,15 +3,13 @@ package kakao.valuetogether.api;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
+import kakao.valuetogether.service.JwtService;
 import kakao.valuetogether.service.MemberService;
 import kakao.valuetogether.service.PostService;
 import kakao.valuetogether.service.TagService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,9 +23,12 @@ public class PostApiController {
 
     private final TagService tagService;
 
-    @PutMapping("/propose/project")
-    public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
-        Member findMember = memberService.findOne(1L);
+    private final JwtService jwtService;
+
+    @PostMapping("/propose/project")
+    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,@RequestBody @Valid CreatedPostRequest request) {
+        Long memberId = jwtService.parseJwtToken(token);
+        Member findMember = memberService.findOne(memberId);
         Post post = new Post();
         post.setMember(findMember);
         post.setTitle(request.getA());
