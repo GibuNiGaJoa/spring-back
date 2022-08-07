@@ -27,6 +27,11 @@ public class PostService {
         return postSavedId;
     }
 
+    public Post findOneById(Long id) {
+        return postRepository.findOneById(id);
+    }
+
+
 //    public List<Post> searchByTopic(Topic topic) {
 //        return postRepository.findAllByTopic(topic);
 //    }

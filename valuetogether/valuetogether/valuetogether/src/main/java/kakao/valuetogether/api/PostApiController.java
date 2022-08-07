@@ -1,5 +1,6 @@
 package kakao.valuetogether.api;
 
+import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
 import kakao.valuetogether.repository.TagRepository;
 import kakao.valuetogether.service.JwtService;
@@ -9,10 +10,10 @@ import kakao.valuetogether.service.TagService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,30 +30,51 @@ public class PostApiController {
     private final JwtService jwtService;
 
     //기부 제안하기
-    @GetMapping("/fundraisings/propose/project")
-    public ProposeResponse propose(@RequestHeader(value = "Authorization") String token){
-        jwtService.parseJwtToken(token);
-        List<Tag> topicList = tagService.findTopic();
-        List<Tag> targetList = tagService.findTarget();
-        List<TopicTargetDto> topicCollect = topicList.stream()
-                .map(m -> new TopicTargetDto(m.getTagName()))
-                .collect(Collectors.toList());
-        List<TopicTargetDto> targetCollect = targetList.stream()
-                .map(m -> new TopicTargetDto(m.getTagName()))
-                .collect(Collectors.toList());
-        return new ProposeResponse(topicCollect,targetCollect);
-    }
+    @PostMapping("/fundraisings/propose/project")
+    public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
+        //Long MemberId = jwtService.parseJwtToken(token);
 
-    @Data
-    @AllArgsConstructor
-    static class ProposeResponse<T>{
-        private T topic;
-        private T target;
-    }
+        Post post = new Post();
+        post.setTitle(request.getTitle());
+        post.setSubTitle(request.getSubTitle());
+        post.setTargetAmount(request.getTargetAmount());
+        post.setContent(request.getContent());
+        post.setStartDate(request.getStartDate());
+        post.setEndDate(request.getEndDate());
+        post.setId(1L);
 
+        Long postId = postService.propose(post);
+
+        return new ProposeResponse(true);
+    }
     @Data
-    @AllArgsConstructor
-    static class TopicTargetDto {
-        private String name;
+    static class ProposeRequest {
+        private String tag;
+
+        private String topic;
+
+        private String target;
+
+        private String title;
+
+        private String subTitle;
+
+        private Integer targetAmount;
+
+        private String content;
+
+        private Date startDate;
+
+        private Date endDate;
+
+        private String link;
+    }
+    @Data
+    static class ProposeResponse {
+        private Boolean status;
+
+        public ProposeResponse(Boolean status) {
+            this.status = status;
+        }
     }
 }

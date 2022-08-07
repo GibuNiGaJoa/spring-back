@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class TagPostServiceTest {
 
     @Autowired TagService tagService;
@@ -37,7 +37,7 @@ public class TagPostServiceTest {
 //        Member member = new Member("email3", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 //
 //        Long saveId = memberService.join(member);
-        Member findMember1 = memberService.findOne(1L);
+
 //
 //        tagService.addTag(new Tag("모두의교육"));
 //        tagService.addTag(new Tag("기본생활지원"));
@@ -59,7 +59,7 @@ public class TagPostServiceTest {
 //        tagService.addTag(new Tag("우리사회"));
 //        tagService.addTag(new Tag("유기동물"));
 //        tagService.addTag(new Tag("야생동물"));
-
+        Member findMember1 = memberService.findOne(1L);
 
         Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
 

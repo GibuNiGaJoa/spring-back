@@ -3,6 +3,7 @@ package kakao.valuetogether.domain;
 import kakao.valuetogether.domain.enums.Target;
 import kakao.valuetogether.domain.enums.Topic;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Post {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
