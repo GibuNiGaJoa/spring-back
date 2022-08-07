@@ -30,7 +30,7 @@ public class PostApiController {
     private final JwtService jwtService;
 
     //기부 제안하기
-    @PostMapping("/fundraisings/propose/project")
+    @PostMapping("/fundraising/propose/project")
     public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
         //Long MemberId = jwtService.parseJwtToken(token);
 

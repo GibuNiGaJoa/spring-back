@@ -47,7 +47,7 @@ public class PostServiceTest {
         post.setContent("황재원 골드");
 //        post.setStartDate(new Date());
 //        post.setEndDate(new Date());
-        Member findMember = memberService.findOne(1L);
+        Member findMember = memberService.findOne(9L);
         post.setMember(findMember);
 
         Long postId = postService.propose(post);
