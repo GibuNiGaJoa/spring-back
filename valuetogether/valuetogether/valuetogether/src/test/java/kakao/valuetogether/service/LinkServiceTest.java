@@ -12,7 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +35,7 @@ public class LinkServiceTest {
     public void save() {
         Member findMember1 = memberService.findOne(1L);
 
-        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
+        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, new Date(), new Date(), false);
 
         postService.propose(post1);
         Link link = new Link();

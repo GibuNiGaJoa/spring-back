@@ -4,8 +4,10 @@ import kakao.valuetogether.domain.enums.Target;
 import kakao.valuetogether.domain.enums.Topic;
 import lombok.Getter;
 import lombok.Setter;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,11 +46,11 @@ public class Post {
     private Integer targetAmount;
 
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date startDate;
 
     @Column(name = "end_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date endDate;
 
     @Column(name = "is_confirm")
