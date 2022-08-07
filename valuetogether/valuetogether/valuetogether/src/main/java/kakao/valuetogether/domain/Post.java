@@ -46,11 +46,11 @@ public class Post {
     private Integer targetAmount;
 
     @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
     @Column(name = "end_date", nullable = false)
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
     @Column(name = "is_confirm")
