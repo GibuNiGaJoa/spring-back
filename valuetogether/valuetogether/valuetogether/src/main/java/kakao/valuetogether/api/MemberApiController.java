@@ -87,7 +87,7 @@ public class MemberApiController {
     //==토큰 인증 컨트롤러==//
     @GetMapping(value = "/checkToken")
     public TokenResponseNoData checkToken(@RequestHeader(value = "Authorization") String token) {
-        Long memberId = jwtService.parseJwtToken(token);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
 
         TokenResponseNoData tokenResponseNoData = new TokenResponseNoData("200", "success",true);
         return tokenResponseNoData;

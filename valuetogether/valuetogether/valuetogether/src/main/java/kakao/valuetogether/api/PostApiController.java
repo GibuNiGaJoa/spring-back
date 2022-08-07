@@ -27,7 +27,7 @@ public class PostApiController {
 
     @PostMapping("/propose/project")
     public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,@RequestBody @Valid CreatedPostRequest request) {
-        Long memberId = jwtService.parseJwtToken(token);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
         Post post = new Post();
         post.setMember(findMember);
