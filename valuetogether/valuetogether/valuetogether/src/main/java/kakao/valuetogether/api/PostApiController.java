@@ -30,14 +30,14 @@ public class PostApiController {
     private final JwtService jwtService;
 
     //기부 제안하기
-    @PostMapping("/fundraising/propose/project")
+    @PostMapping("/fundraisings/propose/project")
     public ProposeResponse propose(@RequestBody @Valid ProposeRequest request){
         //Long MemberId = jwtService.parseJwtToken(token);
 
         Post post = new Post();
         post.setTitle(request.getTitle());
-        post.setSubTitle(request.getSubTitle());
-        post.setTargetAmount(request.getTargetAmount());
+        post.setSubTitle(request.getSubtitle());
+        post.setTargetAmount(request.getTargetamount());
         post.setContent(request.getContent());
 //        post.setStartDate(request.getStartDate());
 //        post.setEndDate(request.getEndDate());
@@ -52,9 +52,9 @@ public class PostApiController {
     static class ProposeRequest {
         private String title;
 
-        private String subTitle;
+        private String subtitle;
 
-        private Integer targetAmount;
+        private Integer targetamount;
 
         private String content;
 
