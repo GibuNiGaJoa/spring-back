@@ -43,11 +43,11 @@ public class PostServiceTest {
         Post post = new Post();
         post.setTitle("황재원 골드");
         post.setSubTitle("황재원 골드");
-        post.setTargetAmount(151565464);
+//        post.setTargetAmount(151565464);
         post.setContent("황재원 골드");
 //        post.setStartDate(new Date());
 //        post.setEndDate(new Date());
-        Member findMember = memberService.findOne(9L);
+        Member findMember = memberService.findOne(1L);
         post.setMember(findMember);
 
         Long postId = postService.propose(post);

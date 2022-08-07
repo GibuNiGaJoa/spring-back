@@ -42,7 +42,7 @@ public class Post {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
 //    private List<Link> links = new ArrayList<>();
 
-    @Column(name = "target_amount", nullable = false)
+    @Column(name = "target_amount")
     private Integer targetAmount;
 
     @Column(name = "start_date")

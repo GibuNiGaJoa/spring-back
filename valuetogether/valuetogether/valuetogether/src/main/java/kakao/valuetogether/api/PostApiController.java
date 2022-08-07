@@ -27,7 +27,6 @@ public class PostApiController {
 
     private final TagPostService tagPostService;
 
-    private final JwtService jwtService;
 
     //기부 제안하기
     @PostMapping("/fundraisings/propose/project")
@@ -37,11 +36,11 @@ public class PostApiController {
         Post post = new Post();
         post.setTitle(request.getTitle());
         post.setSubTitle(request.getSubTitle());
-        post.setTargetAmount(request.getTargetAmount());
+//        post.setTargetAmount(request.getTargetAmount());
         post.setContent(request.getContent());
 //        post.setStartDate(request.getStartDate());
 //        post.setEndDate(request.getEndDate());
-        Member findMember = memberService.findOne(request.getId());
+        Member findMember = memberService.findOne(1L);
         post.setMember(findMember);
 
         Long postId = postService.propose(post);
@@ -50,13 +49,11 @@ public class PostApiController {
     }
     @Data
     static class ProposeRequest {
-        private Long id;
-
         private String title;
 
         private String subTitle;
 
-        private Integer targetAmount;
+        //private Integer targetAmount;
 
         private String content;
 
