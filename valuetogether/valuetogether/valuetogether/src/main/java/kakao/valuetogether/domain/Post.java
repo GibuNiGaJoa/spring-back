@@ -30,17 +30,8 @@ public class Post {
     @Column(nullable = false)
     private String subTitle;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 1000)
     private String content;
-
-//    @Enumerated(EnumType.STRING)
-//    private Topic topic;
-//
-//    @Enumerated(EnumType.STRING)
-//    private Target target;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-//    private List<Link> links = new ArrayList<>();
 
     @Column(name = "target_amount")
     private Integer targetAmount;

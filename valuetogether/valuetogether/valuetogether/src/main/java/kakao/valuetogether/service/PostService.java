@@ -8,11 +8,13 @@ import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PostService {
 
     private final MemberRepository memberRepository;

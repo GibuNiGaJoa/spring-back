@@ -1,17 +1,22 @@
 package kakao.valuetogether.api;
 
-import kakao.valuetogether.domain.Member;
-import kakao.valuetogether.domain.Post;
-import kakao.valuetogether.domain.Tag;
-import kakao.valuetogether.service.JwtService;
-import kakao.valuetogether.service.MemberService;
-import kakao.valuetogether.service.PostService;
-import kakao.valuetogether.service.TagService;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import kakao.valuetogether.domain.*;
+import kakao.valuetogether.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
 @RequiredArgsConstructor
@@ -23,27 +28,57 @@ public class PostApiController {
 
     private final TagService tagService;
 
+    private final TagPostService tagPostService;
+
+    private final LinkService linkService;
     private final JwtService jwtService;
 
-    @PostMapping("/propose/project")
-    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,@RequestBody @Valid CreatedPostRequest request) {
-        Long memberId = jwtService.parseJwtToken("Bearer " + token);
-        Member findMember = memberService.findOne(memberId);
+    @PostMapping("fundraisings/propose/project")
+    public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
+        //Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        Member findMember = memberService.findOne(1L);
         Post post = new Post();
         post.setMember(findMember);
-        post.setTitle(request.getA());
-        post.setSubTitle(request.getB());
-        post.setContent(request.getC());
+        post.setTitle(request.getTitle());
+        post.setSubTitle(request.getSubTitle());
+        post.setContent(request.getContent());
+        post.setTargetAmount(request.getTargetAmount());
+        post.setStartDate(request.getStartDate());
+        post.setEndDate(request.getEndDate());
+        Long postId = postService.propose(post);
+        Post findPost = postService.findOneById(postId);
 
-        postService.propose(post);
+        tagPostService.save(new TagPost(tagService.findIdByName(request.getTopic()), findPost));
+        tagPostService.save(new TagPost(tagService.findIdByName(request.getTarget()), findPost));
+
+        request.getTag().forEach(m->{
+            Tag tag = new Tag(m.text);
+            tagService.addTag(tag);
+            tagPostService.save(new TagPost(tagService.findIdByName(m.text), findPost));
+        });
+
+        request.getLink().forEach(m->{
+            Link link = new Link(findPost,m.text);
+            linkService.save(link);
+        });
+
         return new CreatedPostResponse(true);
     }
 
     @Data
     static class CreatedPostRequest {
-        private String a;
-        private String b;
-        private String c;
+        private String title;
+        private String subTitle;
+        private String content;
+        private Integer targetAmount;
+        private Date startDate;
+        private Date endDate;
+        private String topic;
+        private String target;
+        private List<CreatedPostRequest> tag;
+        private List<CreatedPostRequest> link;
+        private String id;
+        private String text;
     }
 
     @Data
@@ -74,6 +109,33 @@ public class PostApiController {
         private Boolean status;
 
         public CreatedTagResponse(Boolean status) {
+            this.status = status;
+        }
+    }
+
+    @PostMapping("/practice")
+    public PracticeResponse practice(@RequestBody @Valid PracticeRequest request) throws ParseException {
+
+        request.getLink().forEach(m->{
+            System.out.println(m.id);
+            System.out.println(m.text);
+        });
+
+
+        return new PracticeResponse(true);
+    }
+    @Data
+    static class PracticeRequest {
+        private List<PracticeRequest> link;
+        private String id;
+        private String text;
+    }
+
+    @Data
+    static class PracticeResponse {
+        private Boolean status;
+
+        public PracticeResponse(Boolean status) {
             this.status = status;
         }
     }
