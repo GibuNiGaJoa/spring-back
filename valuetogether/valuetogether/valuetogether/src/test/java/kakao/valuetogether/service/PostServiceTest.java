@@ -42,7 +42,7 @@ public class PostServiceTest {
 
         Post post = new Post();
         post.setTitle("왜 안되냐고");
-        post.setSubTitle("죽겠다..");
+        post.setProposer("죽겠다..");
 //        post.setTargetAmount(151565464);
         post.setContent("황재원 골드");
 //        post.setStartDate(new Date());
