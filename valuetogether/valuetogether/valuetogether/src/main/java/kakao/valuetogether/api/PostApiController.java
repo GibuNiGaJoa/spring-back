@@ -51,10 +51,10 @@ public class PostApiController {
     }
     //기부 제안하기
     @PostMapping("fundraisings/propose/project")
-    public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
+    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,@RequestBody @Valid CreatedPostRequest request) {
 
-        //Long memberId = jwtService.parseJwtToken("Bearer " + token);
-        Member findMember = memberService.findOne(1L);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        Member findMember = memberService.findOne(memberId);
         Post post = new Post();
         post.setMember(findMember);
         post.setTitle(request.getTitle());
