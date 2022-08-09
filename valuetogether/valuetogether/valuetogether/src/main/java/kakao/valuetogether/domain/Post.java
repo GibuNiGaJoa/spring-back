@@ -28,9 +28,10 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
-    private String subTitle;
+    private String proposer;
 
-    @Column(nullable = false,length = 1000)
+    @Lob
+    @Column(nullable = false)
     private String content;
 
     @Column(name = "target_amount")
@@ -47,10 +48,10 @@ public class Post {
     @Column(name = "is_confirm")
     private Boolean isConfirm;
 
-    public Post(Member member, String title, String subTitle, String content, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String proposer, String content, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
         this.member = member;
         this.title = title;
-        this.subTitle = subTitle;
+        this.proposer = proposer;
         this.content = content;
         this.targetAmount = targetAmount;
         this.startDate = startDate;

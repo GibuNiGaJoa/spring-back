@@ -18,4 +18,6 @@ public class TagPostService {
     public Long save(TagPost tagPost) {
         return tagPostRepository.save(tagPost);
     }
+
+    //public TagPost find
 }

@@ -34,15 +34,30 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
 
+    @GetMapping ("fundraisings/propose")
+    public ProposeResponse propose(@RequestHeader(value = "Authorization") String token) {
+        Long findId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
+        return new ProposeResponse(findId);
+    }
+
+    @Data
+    static class ProposeResponse {
+        private Long id;
+
+        public ProposeResponse(Long id) {
+            this.id = id;
+        }
+    }
     //기부 제안하기
     @PostMapping("fundraisings/propose/project")
     public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
+
         //Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(1L);
         Post post = new Post();
         post.setMember(findMember);
         post.setTitle(request.getTitle());
-        post.setSubTitle(request.getSubTitle());
+        post.setProposer(request.getProposer());
         post.setContent(request.getContent());
         post.setTargetAmount(request.getTargetAmount());
         post.setStartDate(request.getStartDate());
@@ -70,7 +85,7 @@ public class PostApiController {
     @Data
     static class CreatedPostRequest {
         private String title;
-        private String subTitle;
+        private String proposer;
         private String content;
         private Integer targetAmount;
         private Date startDate;
@@ -97,7 +112,7 @@ public class PostApiController {
         Post findPost = postService.findOneById(id);
 
         FindPostResponse findPostResponse = new FindPostResponse(
-                findPost.getTitle(), findPost.getSubTitle(), findPost.getContent(),
+                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
                 findPost.getTargetAmount(), findPost.getStartDate(),findPost.getEndDate());
         return findPostResponse;
     }
