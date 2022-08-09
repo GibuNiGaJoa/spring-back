@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import kakao.valuetogether.domain.*;
 import kakao.valuetogether.service.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
 
+    //기부 제안하기
     @PostMapping("fundraisings/propose/project")
     public CreatedPostResponse proposePost(@RequestBody @Valid CreatedPostRequest request) {
         //Long memberId = jwtService.parseJwtToken("Bearer " + token);
@@ -51,14 +53,14 @@ public class PostApiController {
         tagPostService.save(new TagPost(tagService.findIdByName(request.getTopic()), findPost));
         tagPostService.save(new TagPost(tagService.findIdByName(request.getTarget()), findPost));
 
-        request.getTag().forEach(m->{
+        request.getTag().forEach(m -> {
             Tag tag = new Tag(m.text);
             tagService.addTag(tag);
             tagPostService.save(new TagPost(tagService.findIdByName(m.text), findPost));
         });
 
-        request.getLink().forEach(m->{
-            Link link = new Link(findPost,m.text);
+        request.getLink().forEach(m -> {
+            Link link = new Link(findPost, m.text);
             linkService.save(link);
         });
 
@@ -90,53 +92,24 @@ public class PostApiController {
         }
     }
 
-    @PostMapping("/savetag")
-    public CreatedTagResponse saveMember(@RequestBody @Valid CreatedTagRequest request) {
+    @GetMapping("fundraisings/{id}")
+    public FindPostResponse findPost(@PathVariable("id") Long id) {
+        Post findPost = postService.findOneById(id);
 
-        Tag tag = new Tag(request.getTagName());
-        tagService.addTag(tag);
-
-        return new CreatedTagResponse(true);
+        FindPostResponse findPostResponse = new FindPostResponse(
+                findPost.getTitle(), findPost.getSubTitle(), findPost.getContent(),
+                findPost.getTargetAmount(), findPost.getStartDate(),findPost.getEndDate());
+        return findPostResponse;
     }
 
     @Data
-    static class CreatedTagRequest {
-        private String tagName;
-    }
-
-    @Data
-    static class CreatedTagResponse {
-        private Boolean status;
-
-        public CreatedTagResponse(Boolean status) {
-            this.status = status;
-        }
-    }
-
-    @PostMapping("/practice")
-    public PracticeResponse practice(@RequestBody @Valid PracticeRequest request) throws ParseException {
-
-        request.getLink().forEach(m->{
-            System.out.println(m.id);
-            System.out.println(m.text);
-        });
-
-
-        return new PracticeResponse(true);
-    }
-    @Data
-    static class PracticeRequest {
-        private List<PracticeRequest> link;
-        private String id;
-        private String text;
-    }
-
-    @Data
-    static class PracticeResponse {
-        private Boolean status;
-
-        public PracticeResponse(Boolean status) {
-            this.status = status;
-        }
+    @AllArgsConstructor
+    static class FindPostResponse<T> {
+        private String title;
+        private String subTitle;
+        private String content;
+        private Integer targetAmount;
+        private Date startDate;
+        private Date endDate;
     }
 }
