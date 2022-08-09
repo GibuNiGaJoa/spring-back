@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class PostServiceTest {
 
     @Autowired MemberRepository memberRepository;
