@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -51,7 +52,7 @@ public class PostApiController {
     }
     //기부 제안하기
     @PostMapping("fundraisings/propose/project")
-    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,@RequestBody @Valid CreatedPostRequest request) {
+    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid CreatedPostRequest request) {
 
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
@@ -129,5 +130,29 @@ public class PostApiController {
         private Integer targetAmount;
         private Date startDate;
         private Date endDate;
+    }
+
+    @GetMapping("fundraisings/now")
+    public Result findAllPost(){
+
+        List<Post> findPosts = postService.findAll();
+        List<PostDto> postList = findPosts.stream()
+                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .collect(Collectors.toList());
+
+        return new Result(postList);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Result<T>{
+        private T post;
+    }
+    @Data
+    @AllArgsConstructor
+    static class PostDto {
+        private String image;
+        private String title;
+        private String proposer;
     }
 }

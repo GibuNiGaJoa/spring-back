@@ -33,6 +33,10 @@ public class PostService {
         return postRepository.findOneById(id);
     }
 
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
 
 //    public List<Post> searchByTopic(Topic topic) {
 //        return postRepository.findAllByTopic(topic);

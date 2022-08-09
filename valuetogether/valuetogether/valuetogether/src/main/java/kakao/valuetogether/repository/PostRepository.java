@@ -24,6 +24,11 @@ public class PostRepository {
         return em.find(Post.class, id);
     }
 
+    public List<Post> findAll() {
+        return em.createQuery("select p from Post p", Post.class)
+                .getResultList();
+    }
+
 //    public List<Post> findAllByTopic(Topic topic) {
 //        return em.createQuery("select p from Post p where p.topic = :topic")
 //                .setParameter("topic", topic)
