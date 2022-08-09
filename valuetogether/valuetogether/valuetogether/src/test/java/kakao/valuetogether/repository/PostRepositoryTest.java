@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class PostRepositoryTest {
 
     @Autowired PostRepository postRepository;

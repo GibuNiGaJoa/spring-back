@@ -15,7 +15,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class TagRepositoryTest {
     @Autowired
     TagRepository tagRepository;
