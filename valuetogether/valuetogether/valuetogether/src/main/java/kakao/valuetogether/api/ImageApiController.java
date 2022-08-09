@@ -16,8 +16,8 @@ public class ImageApiController {
     private final AwsS3Service awsS3Service;
 //    private final String local = "C:\\Users\\kimdongho\\Desktop\\spring-back\\valuetogether\\valuetogether\\valuetogether\\src\\main\\resources\\static\\image\\";
 
-    @PostMapping("/upload1")
-    public String uploadImg2(@RequestParam("img") MultipartFile imageFile) throws IOException {
+    @PostMapping("/upload")
+    public String uploadImg(@RequestParam("img") MultipartFile imageFile) throws IOException {
         return awsS3Service.uploadFileV1(imageFile);
 
 //        imageFile.transferTo(new File(local + imageFile.getOriginalFilename()));
@@ -26,14 +26,5 @@ public class ImageApiController {
 //        imageFile.transferTo(new File("/home/ubuntu/app/valuetogether/valuetogether/valuetogether/src/main/resources/static/image" + imageFile.getOriginalFilename()));
 //        return "http://valuetogether.tk/image/" + imageFile.getOriginalFilename();
     }
-    @PostMapping("/upload2")
-    public String uploadImg1(@RequestParam("img") MultipartFile imageFile) throws IOException {
-        return awsS3Service.uploadFileV1(imageFile);
 
-//        imageFile.transferTo(new File(local + imageFile.getOriginalFilename()));
-//        return "http://localhost:8080/image/" + imageFile.getOriginalFilename();
-
-//        imageFile.transferTo(new File("/home/ubuntu/app/valuetogether/valuetogether/valuetogether/src/main/resources/static/image" + imageFile.getOriginalFilename()));
-//        return "http://valuetogether.tk/image/" + imageFile.getOriginalFilename();
-    }
 }

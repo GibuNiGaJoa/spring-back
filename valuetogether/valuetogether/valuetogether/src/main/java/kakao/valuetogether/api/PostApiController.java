@@ -37,15 +37,16 @@ public class PostApiController {
     @GetMapping ("fundraisings/propose")
     public ProposeResponse propose(@RequestHeader(value = "Authorization") String token) {
         Long findId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
-        return new ProposeResponse(findId);
+        Member findMember = memberService.findOne(findId);
+        return new ProposeResponse(findMember.getName());
     }
 
     @Data
     static class ProposeResponse {
-        private Long id;
+        private String proposer;
 
-        public ProposeResponse(Long id) {
-            this.id = id;
+        public ProposeResponse(String proposer) {
+            this.proposer = proposer;
         }
     }
     //기부 제안하기
