@@ -63,7 +63,7 @@ public class TagPostServiceTest {
         tagService.addTag(new Tag("야생동물"));
         Member findMember1 = memberService.findOne(1L);
 
-        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, new Date(), new Date(), false);
+        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, new Date(), new Date(),"asdfasf", false);
 
         postService.propose(post1);
 

@@ -63,6 +63,7 @@ public class PostApiController {
         post.setTargetAmount(request.getTargetAmount());
         post.setStartDate(request.getStartDate());
         post.setEndDate(request.getEndDate());
+        post.setImage(request.getImage());
         Long postId = postService.propose(post);
         Post findPost = postService.findOneById(postId);
 
@@ -95,6 +96,7 @@ public class PostApiController {
         private String target;
         private List<CreatedPostRequest> tag;
         private List<CreatedPostRequest> link;
+        private String image;
         private String id;
         private String text;
     }

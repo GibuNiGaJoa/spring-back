@@ -35,7 +35,7 @@ public class LinkServiceTest {
     public void save() {
         Member findMember1 = memberService.findOne(1L);
 
-        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, new Date(), new Date(), false);
+        Post post1 = new Post(findMember1, "title123", "subtitle123", "content123", 10000, new Date(), new Date(), "aslfksf",false);
 
         postService.propose(post1);
         Link link = new Link();

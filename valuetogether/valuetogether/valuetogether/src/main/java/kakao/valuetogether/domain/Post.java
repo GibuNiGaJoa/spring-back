@@ -34,21 +34,24 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @Column(name = "target_amount")
+    @Column(name = "target_amount",nullable = false)
     private Integer targetAmount;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date endDate;
+
+    @Column(nullable = false)
+    private String image;
 
     @Column(name = "is_confirm")
     private Boolean isConfirm;
 
-    public Post(Member member, String title, String proposer, String content, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    public Post(Member member, String title, String proposer, String content, Integer targetAmount, Date startDate, Date endDate, String image, Boolean isConfirm) {
         this.member = member;
         this.title = title;
         this.proposer = proposer;
@@ -56,6 +59,7 @@ public class Post {
         this.targetAmount = targetAmount;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.image = image;
         this.isConfirm = isConfirm;
     }
 

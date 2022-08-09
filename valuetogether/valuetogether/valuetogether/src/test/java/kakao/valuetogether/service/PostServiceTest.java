@@ -45,6 +45,10 @@ public class PostServiceTest {
         post.setProposer("죽겠다..");
 //        post.setTargetAmount(151565464);
         post.setContent("황재원 골드");
+        post.setImage("asdfhwsdf");
+        post.setEndDate(new Date());
+        post.setStartDate(new Date());
+        post.setTargetAmount(12312);
 //        post.setStartDate(new Date());
 //        post.setEndDate(new Date());
         Member findMember = memberService.findOne(1L);
