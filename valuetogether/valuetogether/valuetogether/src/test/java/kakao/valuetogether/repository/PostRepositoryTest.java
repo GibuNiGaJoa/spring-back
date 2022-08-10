@@ -3,8 +3,6 @@ package kakao.valuetogether.repository;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

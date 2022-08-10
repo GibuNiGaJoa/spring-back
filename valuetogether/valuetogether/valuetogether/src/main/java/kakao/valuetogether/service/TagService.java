@@ -26,14 +26,20 @@ public class TagService {
             tagRepository.save(tag);
         }
     }
-    //이름으로 조회하기
+    //이름으로 id 조회하기
     public Tag findIdByName(String name) {
         Optional<Tag> findTag = tagRepository.findByName(name);
         return findTag.get();
     }
 
+    //id로 조회하기
     public Tag findById(Long id) {
         return tagRepository.findOne(id);
+    }
+
+    //태그 10개 랜덤으로 조회하기
+    public List<Tag> findTenTag() {
+        return tagRepository.findTen();
     }
 
 }

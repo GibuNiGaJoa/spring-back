@@ -24,6 +24,15 @@ public class TagRepository {
         return em.find(Tag.class, id);
     }
 
+    //태그10개 랜덤으로 조회하기
+    public List<Tag> findTen() {
+        return em.createQuery("select t from Tag t order by rand()", Tag.class)
+                .setFirstResult(0)
+                .setMaxResults(10)
+                .getResultList();
+
+    }
+
     //이름으로 태그조회하기
     public Optional<Tag> findByName(String name) {
         List<Tag> findTag = em.createQuery("select t from Tag t where t.tagName = :tagName", Tag.class)

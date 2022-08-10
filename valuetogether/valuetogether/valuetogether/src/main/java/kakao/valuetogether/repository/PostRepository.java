@@ -1,8 +1,7 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Post;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,7 +29,7 @@ public class PostRepository {
     }
 
     public List<Post> findAllNew() {
-        return em.createQuery("select p from Post p where p.endDate>=now() and p.startDate()<=now()  order by p.startDate desc", Post.class)
+        return em.createQuery("select p from Post p where p.endDate>=now() and p.startDate()<=now() order by p.startDate desc", Post.class)
                 .getResultList();
     }
 

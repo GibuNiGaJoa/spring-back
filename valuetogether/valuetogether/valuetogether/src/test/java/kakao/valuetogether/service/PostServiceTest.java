@@ -1,8 +1,6 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.*;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

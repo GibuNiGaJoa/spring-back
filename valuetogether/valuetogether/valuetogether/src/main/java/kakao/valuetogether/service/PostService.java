@@ -3,8 +3,7 @@ package kakao.valuetogether.service;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
 import kakao.valuetogether.domain.TagPost;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
+
 import kakao.valuetogether.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,7 +41,5 @@ public class PostService {
     public List<Post> findAllEnd() {
         return postRepository.findAllEnd();
     }
-
-
 
 }

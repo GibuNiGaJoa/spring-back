@@ -1,7 +1,5 @@
 package kakao.valuetogether.domain;
 
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import lombok.Getter;
 import lombok.Setter;
 import net.bytebuddy.asm.Advice;
