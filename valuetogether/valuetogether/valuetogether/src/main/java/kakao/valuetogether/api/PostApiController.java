@@ -137,7 +137,7 @@ public class PostApiController {
 
         List<Post> findPosts = postService.findAllRandom();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new Result(postList);
@@ -147,7 +147,7 @@ public class PostApiController {
 
         List<Post> findPosts = postService.findAllNew();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new Result(postList);
@@ -157,7 +157,7 @@ public class PostApiController {
 
         List<Post> findPosts = postService.findAllEnd();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new Result(postList);
@@ -171,8 +171,10 @@ public class PostApiController {
     @Data
     @AllArgsConstructor
     static class PostDto {
+        private Long id;
         private String image;
         private String title;
         private String proposer;
+        private Date endDate;
     }
 }
