@@ -56,7 +56,7 @@ public class MemberServiceTest {
     @Test(expected = IllegalStateException.class)
     //@Transactional
     //@Rollback(value = false)
-    public void 회원가입예외() {
+    public void joinExp() {
         Member member1 = new Member("email4", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Member member2 = new Member("email5", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 

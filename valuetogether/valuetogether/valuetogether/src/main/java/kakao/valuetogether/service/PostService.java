@@ -33,8 +33,14 @@ public class PostService {
         return postRepository.findOneById(id);
     }
 
-    public List<Post> findAll() {
-        return postRepository.findAll();
+    public List<Post> findAllRandom() {
+        return postRepository.findAllRandom();
+    }
+    public List<Post> findAllNew() {
+        return postRepository.findAllNew();
+    }
+    public List<Post> findAllEnd() {
+        return postRepository.findAllEnd();
     }
 
 

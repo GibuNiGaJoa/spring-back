@@ -19,7 +19,7 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 public class LinkServiceTest {
 
     @Autowired

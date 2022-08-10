@@ -132,10 +132,30 @@ public class PostApiController {
         private Date endDate;
     }
 
-    @GetMapping("fundraisings/now")
-    public Result findAllPost(){
+    @GetMapping("fundraisings/now/sort1")
+    public Result findAllRandomPost(){
 
-        List<Post> findPosts = postService.findAll();
+        List<Post> findPosts = postService.findAllRandom();
+        List<PostDto> postList = findPosts.stream()
+                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .collect(Collectors.toList());
+
+        return new Result(postList);
+    }
+    @GetMapping("fundraisings/now/sort2")
+    public Result findAllNewPost(){
+
+        List<Post> findPosts = postService.findAllNew();
+        List<PostDto> postList = findPosts.stream()
+                .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
+                .collect(Collectors.toList());
+
+        return new Result(postList);
+    }
+    @GetMapping("fundraisings/now/sort3")
+    public Result findAllEndPost(){
+
+        List<Post> findPosts = postService.findAllEnd();
         List<PostDto> postList = findPosts.stream()
                 .map(m-> new PostDto(m.getImage(), m.getTitle(),m.getProposer()))
                 .collect(Collectors.toList());
