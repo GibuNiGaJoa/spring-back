@@ -5,17 +5,11 @@ import kakao.valuetogether.repository.MemberRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 
 import java.util.Optional;
 
@@ -38,8 +32,6 @@ public class MemberServiceTest {
     }
 
     @Test
-    //@Transactional
-    //@Rollback(value = false)
     public void 회원가입성공() {
         Member member1 = new Member("email1", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Member member2 = new Member("email2", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
@@ -54,8 +46,6 @@ public class MemberServiceTest {
     }
 
     @Test(expected = IllegalStateException.class)
-    //@Transactional
-    //@Rollback(value = false)
     public void 회원가입예외() {
         Member member1 = new Member("email4", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Member member2 = new Member("email5", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
@@ -69,47 +59,41 @@ public class MemberServiceTest {
     }
 
     @Test
-    //@Transactional
-    //@Rollback(value = false)
     public void 폰번호로아이디찾기성공(){
         Member member1 = new Member("email6", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long saveId1 = memberRepository.save(member1);
 
-        String findEmail = memberService.findIdByPhone(member1.getPhone());
+        String findEmail = memberService.findEmailByPhone(member1.getPhone());
 
         assertThat(member1.getEmail()).isEqualTo(findEmail);
     }
 
     @Test(expected = IllegalStateException.class)
-    //@Transactional
-    //@Rollback(value = false)
     public void 폰번호로아이디찾기예외(){
         Member member1 = new Member("email7", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long saveId1 = memberRepository.save(member1);
 
-        memberService.findIdByPhone("asdf");
+        memberService.findEmailByPhone("asdf");
 
     }
 
     @Test
-    //@Transactional
-    //@Rollback(value = false)
     public void 닉네임이름전화번호로아이디찾기성공및예외() {
         Member member1 = new Member("email8", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
 
         Long saveId1 = memberRepository.save(member1);
 
-        String findEmail1 = memberService.findIdByNNP("nickname", "name", "phone");
-        String findEmail2 = memberService.findIdByNNP(null, "name", "phone");
-        String findEmail3 = memberService.findIdByNNP("nickname", null, "phone");
+        String findEmail1 = memberService.findEmailByNNP("nickname", "name", "phone");
+        String findEmail2 = memberService.findEmailByNNP(null, "name", "phone");
+        String findEmail3 = memberService.findEmailByNNP("nickname", null, "phone");
         assertThat(findEmail1).isEqualTo(member1.getEmail());
         assertThat(findEmail2).isEqualTo(member1.getEmail());
         assertThat(findEmail3).isEqualTo(member1.getEmail());
 
         try {
-            memberService.findIdByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.
+            memberService.findEmailByNNP("ㅁ","ㅁ","phone"); // 예외 발생해야함.
         } catch (IllegalStateException e) {
             return;
         }
@@ -117,8 +101,6 @@ public class MemberServiceTest {
     }
 
     @Test
-//    @Transactional
-//    @Rollback(value = false)
     public void 회원검증및PW재설정() {
         Member member1 = new Member("email9", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Long saveId1 = memberRepository.save(member1);
@@ -142,8 +124,6 @@ public class MemberServiceTest {
     }
 
     @Test
-    //@Transactional
-    //@Rollback(value = false)
     public void 회원탈퇴() {
         Member member1 = new Member("email12", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
         Long saveId1 = memberRepository.save(member1);

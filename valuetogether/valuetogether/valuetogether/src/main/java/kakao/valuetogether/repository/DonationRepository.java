@@ -59,4 +59,8 @@ public class DonationRepository {
         donation.addCountComment();
     }
 
+    public void deleteDonation(Donation donation) {
+        em.remove(donation);
+    }
+
 }
