@@ -1,10 +1,13 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.Link;
+import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.repository.LinkRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -17,5 +20,9 @@ public class LinkService {
         Long linkSavedId = linkRepository.save(link);
 
         return linkSavedId;
+    }
+
+    public List<Link> findLinkByPost(Post post) {
+        return linkRepository.findLinkByPost(post);
     }
 }

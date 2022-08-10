@@ -44,11 +44,5 @@ public class PostService {
     }
 
 
-//    public List<Post> searchByTopic(Topic topic) {
-//        return postRepository.findAllByTopic(topic);
-//    }
-//
-//    public List<Post> searchByTarget(Target target) {
-//        return postRepository.findAllByTarget(target);
-//    }
+
 }
