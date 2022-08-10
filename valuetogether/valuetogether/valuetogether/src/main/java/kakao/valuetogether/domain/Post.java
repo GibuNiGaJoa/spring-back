@@ -21,6 +21,9 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @OneToOne(mappedBy = "post")
+    private Donation donation;
+
     @Column(nullable = false)
     private String title;
 

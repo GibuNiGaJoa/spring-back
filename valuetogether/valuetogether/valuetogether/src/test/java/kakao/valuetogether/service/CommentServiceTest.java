@@ -89,7 +89,7 @@ public class CommentServiceTest {
     // end of Test Methods
 
     public Member getFindMember() {
-        Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");
+        Member member = Member.builder().email("hkim4410@naver.com").pw("pw").name("name").phone("0177239811").address("adress").gender("man").birthday("birthday").nickname("nickname").build();
         Long memberSavedId = memberRepository.save(member);
         return memberRepository.findById(memberSavedId);
     }

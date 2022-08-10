@@ -35,7 +35,7 @@ public class PostServiceTest {
     @Test
     public void 제안하기() {
         postService.basicSetting();
-        Member member = new Member("email", "pw", "name", "phone", "address", "gender", "nickname", "birthday");
+        Member member = Member.builder().email("hkim4410@naver.com").pw("pw").name("name").phone("0177239811").address("adress").gender("man").birthday("birthday").nickname("nickname").build();
 
         Long saveId = memberRepository.save(member);
         Member findMember = memberRepository.findById(saveId);

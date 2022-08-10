@@ -7,16 +7,14 @@ import java.io.Serializable;
 
 @Entity
 @Getter
-public class Donation implements Serializable {
+public class Donation {
 
-    @Id
-    @JoinColumn(name = "member_id", referencedColumnName = "member_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    @Id
-    @JoinColumn(name = "post_id", referencedColumnName = "post_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    @MapsId
     private Post post;
 
     @Column(name = "direct_donation")
@@ -34,17 +32,7 @@ public class Donation implements Serializable {
     @Column(name = "count_direct_donation")
     private Integer countDirect = 0;
 
-    @Column(name = "count_cheer_donation")
-    private Integer countCheer = 0;
-
-    @Column(name = "count_share_donation")
-    private Integer countShare = 0;
-
-    @Column(name = "count_comment_donation")
-    private Integer countComment = 0;
-
-    public Donation(Member member, Post post) {
-        this.member = member;
+    public Donation(Post post) {
         this.post = post;
     }
 
@@ -70,23 +58,27 @@ public class Donation implements Serializable {
         this.countDirect += 1;
     }
 
-    public void addCountCheer() {
-        this.countCheer += 1;
-    }
-
-    public void addCountShare() {
-        this.countShare += 1;
-    }
-
-    public void addCountComment() {
-        this.countComment += 1;
-    }
-
     public Integer getTotalAmount() {
         return this.getAmountDirect() +
                 this.getAmountCheer() +
                 this.getAmountComment() +
                 this.getAmountShare();
+    }
+
+    public Integer getCountCheer() {
+        if(this.amountCheer != 0)
+            return this.amountCheer / 100;
+        return 0;
+    }
+    public Integer getCountShare() {
+        if(this.amountShare != 0)
+            return this.amountShare / 100;
+        return 0;
+    }
+    public Integer getCountComment() {
+        if(this.amountComment != 0)
+            return this.amountComment / 100;
+        return 0;
     }
 
 }

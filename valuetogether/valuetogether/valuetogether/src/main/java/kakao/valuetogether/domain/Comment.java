@@ -5,7 +5,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -30,15 +29,15 @@ public class Comment implements Serializable {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date commentSaveDate;
 
     private Integer likes = 0;
 
-    public Comment(Member member, Post post, String content, Date date, Integer likes) {
+    public Comment(Member member, Post post, String content, Date commentSaveDate, Integer likes) {
         this.member = member;
         this.post = post;
         this.content = content;
-        this.date = date;
+        this.commentSaveDate = commentSaveDate;
         this.likes = likes;
     }
 
