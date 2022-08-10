@@ -34,7 +34,7 @@ public class PostRepository {
     }
 
     public List<Post> findAllEnd() {
-        return em.createQuery("select p from Post p where (p.endDate>=now() order by p.endDate", Post.class)
+        return em.createQuery("select p from Post p where p.endDate>=now() order by p.endDate", Post.class)
                 .getResultList();
     }
 
