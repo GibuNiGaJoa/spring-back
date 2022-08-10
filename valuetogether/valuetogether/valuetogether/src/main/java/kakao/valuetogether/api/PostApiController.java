@@ -132,6 +132,7 @@ public class PostApiController {
         private Date endDate;
     }
 
+    //전체조회
     @GetMapping("fundraisings/now/sort1")
     public Result findAllRandomPost(){
 
@@ -158,6 +159,16 @@ public class PostApiController {
         List<Post> findPosts = postService.findAllEnd();
         List<PostDto> postList = findPosts.stream()
                 .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .collect(Collectors.toList());
+
+        return new Result(postList);
+    }
+    @GetMapping("fundraisings/now/sort1/{id}")
+    public Result findAllRandomCategory(@PathVariable("id") Long id){
+
+        List<TagPost> tagPostList = tagPostService.findAllByCategory(id);
+        List<PostDto> postList = tagPostList.stream()
+                .map(m-> new PostDto(m.getPost().getId(),m.getPost().getImage(),m.getPost().getTitle(),m.getPost().getProposer(),m.getPost().getEndDate()))
                 .collect(Collectors.toList());
 
         return new Result(postList);

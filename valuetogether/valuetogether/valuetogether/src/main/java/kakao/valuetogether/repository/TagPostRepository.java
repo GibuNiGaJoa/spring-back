@@ -27,4 +27,11 @@ public class TagPostRepository {
                 .getResultList();
         return findTagPost.stream().findAny();
     }
+
+    public List<TagPost> findAllByCategory(Long id) {
+        List<TagPost> findTagPost = em.createQuery("select t from TagPost t where t.tag = :id", TagPost.class)
+                .setParameter("tag", id)
+                .getResultList();
+        return findTagPost;
+    }
 }

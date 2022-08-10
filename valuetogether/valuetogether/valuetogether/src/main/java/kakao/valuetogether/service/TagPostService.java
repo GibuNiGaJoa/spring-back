@@ -5,6 +5,8 @@ import kakao.valuetogether.repository.TagPostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TagPostService {
@@ -19,5 +21,7 @@ public class TagPostService {
         return tagPostRepository.save(tagPost);
     }
 
-    //public TagPost find
+    public List<TagPost> findAllByCategory(Long id) {
+        return tagPostRepository.findAllByCategory(id);
+    }
 }
