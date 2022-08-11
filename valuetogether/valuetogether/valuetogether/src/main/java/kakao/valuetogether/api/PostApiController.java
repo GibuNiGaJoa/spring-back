@@ -31,7 +31,7 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
 
-    @GetMapping ("fundraisings/propose")
+    @GetMapping("fundraisings/propose")
     public ProposeResponse propose(@RequestHeader(value = "Authorization") String token) {
         Long findId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
         Member findMember = memberService.findOne(findId);
@@ -46,6 +46,7 @@ public class PostApiController {
             this.proposer = proposer;
         }
     }
+
     //기부 제안하기
     @PostMapping("fundraisings/propose/project")
     public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid CreatedPostRequest request) {
@@ -64,13 +65,13 @@ public class PostApiController {
         Long postId = postService.propose(post);
         Post findPost = postService.findOneById(postId);
 
-        tagPostService.save(new TagPost(tagService.findIdByName(request.getTopic()), findPost));
-        tagPostService.save(new TagPost(tagService.findIdByName(request.getTarget()), findPost));
+        tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTopic()), findPost));
+        tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTarget()), findPost));
 
         request.getTag().forEach(m -> {
             Tag tag = new Tag(m.text);
             tagService.addTag(tag);
-            tagPostService.save(new TagPost(tagService.findIdByName(m.text), findPost));
+            tagPostService.save(new TagPost(tagService.findIdByFullName(m.text), findPost));
         });
 
         request.getLink().forEach(m -> {
@@ -123,7 +124,7 @@ public class PostApiController {
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
-                findPost.getTargetAmount(), findPost.getStartDate(), findPost.getEndDate(), tagList, linkList);
+                findPost.getTargetAmount(), findPost.getStartDate(), findPost.getEndDate(), tagList, linkList, findPost.getImage());
         return findPostResponse;
     }
 
@@ -138,12 +139,15 @@ public class PostApiController {
         private Date endDate;
         private T tag;
         private T link;
+        private String image;
     }
+
     @Data
     @AllArgsConstructor
     static class TagDto {
         private String name;
     }
+
     @Data
     @AllArgsConstructor
     static class LinkDto {
@@ -153,33 +157,35 @@ public class PostApiController {
 
     //전체게시글랜덤조회
     @GetMapping("fundraisings/now/sort1")
-    public PostResult findAllRandomPost(){
+    public PostResult findAllRandomPost() {
 
         List<Post> findPosts = postService.findAllRandom();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
     }
+
     //전체게시글최신순조회
     @GetMapping("fundraisings/now/sort2")
-    public PostResult findAllNewPost(){
+    public PostResult findAllNewPost() {
 
         List<Post> findPosts = postService.findAllNew();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
     }
+
     //전체게시글종료임박순조회
     @GetMapping("fundraisings/now/sort3")
-    public PostResult findAllEndPost(){
+    public PostResult findAllEndPost() {
 
         List<Post> findPosts = postService.findAllEnd();
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
@@ -187,36 +193,38 @@ public class PostApiController {
 
     //게시글카테고리별랜덤조회
     @GetMapping("fundraisings/now/sort1/{id}")
-    public PostResult findAllRandomCategory(@PathVariable("id") Long id){
+    public PostResult findAllRandomCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
         List<Post> findPosts = tagPostService.findAllRandomByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
     }
+
     //전체게시글카테고리별최신순조회
     @GetMapping("fundraisings/now/sort2/{id}")
-    public PostResult findAllNewCategory(@PathVariable("id") Long id){
+    public PostResult findAllNewCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
         List<Post> findPosts = tagPostService.findAllNewByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
     }
+
     //전체게시글카테고리별종료임박순조회
     @GetMapping("fundraisings/now/sort3/{id}")
-    public PostResult findAllEndCategory(@PathVariable("id") Long id){
+    public PostResult findAllEndCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
         List<Post> findPosts = tagPostService.findAllEndByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
-                .map(m-> new PostDto(m.getId(),m.getImage(), m.getTitle(),m.getProposer(),m.getEndDate()))
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
 
         return new PostResult(postList);
@@ -224,9 +232,10 @@ public class PostApiController {
 
     @Data
     @AllArgsConstructor
-    static class PostResult<T>{
+    static class PostResult<T> {
         private T post;
     }
+
     @Data
     @AllArgsConstructor
     static class PostDto {
@@ -236,7 +245,6 @@ public class PostApiController {
         private String proposer;
         private Date endDate;
     }
-
 
 
 }

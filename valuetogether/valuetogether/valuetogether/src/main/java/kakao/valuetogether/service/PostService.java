@@ -42,4 +42,12 @@ public class PostService {
         return postRepository.findAllEnd();
     }
 
+    public List<Post> findPostByKeyword(String keyword) {
+        return postRepository.findPostByKeyword(keyword);
+    }
+
+    public List<Post> findPostByTileKeyword(String keyword) {
+        return postRepository.findPostByTileKeyword(keyword);
+    }
+
 }

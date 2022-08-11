@@ -6,15 +6,15 @@ import kakao.valuetogether.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
+//@RequestMapping("/search")
 @RequiredArgsConstructor
 public class TagApiController {
     private final PostService postService;

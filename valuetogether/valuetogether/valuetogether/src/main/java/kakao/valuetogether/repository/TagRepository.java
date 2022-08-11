@@ -1,6 +1,7 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Tag;
+import kakao.valuetogether.domain.TagPost;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -34,7 +35,7 @@ public class TagRepository {
     }
 
     //이름으로 태그조회하기
-    public Optional<Tag> findByName(String name) {
+    public Optional<Tag> findByFullName(String name) {
         List<Tag> findTag = em.createQuery("select t from Tag t where t.tagName = :tagName", Tag.class)
                 .setParameter("tagName", name)
                 .getResultList();
@@ -42,4 +43,9 @@ public class TagRepository {
         return findTag.stream().findAny();
     }
 
+    public List<Tag> findTagByKeyword(String keyword) {
+        return em.createQuery("select t from Tag t where t.tagName like :keyword", Tag.class)
+                .setParameter("keyword", "%" + keyword + "%")
+                .getResultList();
+    }
 }

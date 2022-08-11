@@ -21,14 +21,14 @@ public class TagService {
 
     //태그 추가하기
     public void addTag(Tag tag) {
-        Optional<Tag> findTag = tagRepository.findByName(tag.getTagName());
+        Optional<Tag> findTag = tagRepository.findByFullName(tag.getTagName());
         if (findTag.isEmpty()) {
             tagRepository.save(tag);
         }
     }
     //이름으로 id 조회하기
-    public Tag findIdByName(String name) {
-        Optional<Tag> findTag = tagRepository.findByName(name);
+    public Tag findIdByFullName(String name) {
+        Optional<Tag> findTag = tagRepository.findByFullName(name);
         return findTag.get();
     }
 
@@ -40,6 +40,11 @@ public class TagService {
     //태그 10개 랜덤으로 조회하기
     public List<Tag> findTenTag() {
         return tagRepository.findTen();
+    }
+
+    //키워드로 태그조회
+    public List<Tag> findTagByKeyword(String keyword) {
+        return tagRepository.findTagByKeyword(keyword);
     }
 
 }
