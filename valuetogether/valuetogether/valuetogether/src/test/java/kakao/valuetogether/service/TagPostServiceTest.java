@@ -69,9 +69,9 @@ public class TagPostServiceTest {
 
         Tag tag = new Tag("기부니가좋을걸d");
         tagService.addTag(tag);
-        Tag tag1 = tagService.findIdByName("기부니가좋을걸d");
-        Tag tag2 = tagService.findIdByName("모두의교육");
-        Tag tag3 = tagService.findIdByName("실버세대");
+        Tag tag1 = tagService.findIdByFullName("기부니가좋을걸d");
+        Tag tag2 = tagService.findIdByFullName("모두의교육");
+        Tag tag3 = tagService.findIdByFullName("실버세대");
         TagPost tagPost1 = new TagPost(tag1, post1);
         tagPostService.save(tagPost1);
         TagPost tagPost2 = new TagPost(tag2, post1);
