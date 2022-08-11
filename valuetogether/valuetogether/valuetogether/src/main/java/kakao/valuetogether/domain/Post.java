@@ -23,6 +23,8 @@ public class Post {
 
     @OneToOne(mappedBy = "post")
     private Donation donation;
+    @OneToOne(mappedBy = "post")
+    private DonationDetail donationDetail;
 
     @Column(nullable = false)
     private String title;
