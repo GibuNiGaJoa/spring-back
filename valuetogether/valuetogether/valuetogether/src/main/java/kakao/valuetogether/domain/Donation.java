@@ -1,12 +1,15 @@
 package kakao.valuetogether.domain;
 
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Donation {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,25 +21,30 @@ public class Donation {
     private Post post;
 
     @Column(name = "direct_donation")
-    private Integer amountDirect = 0;
+    private Integer amountDirect;
 
     @Column(name = "cheer_donation")
-    private Integer amountCheer = 0;
+    private Integer amountCheer;
 
     @Column(name = "share_donation")
-    private Integer amountShare = 0;
+    private Integer amountShare;
 
     @Column(name = "comment_donation")
-    private Integer amountComment = 0;
+    private Integer amountComment;
 
     @Column(name = "count_direct_donation")
-    private Integer countDirect = 0;
+    private Integer countDirect;
+
+    public Donation() {}
 
     public Donation(Post post) {
         this.post = post;
+        this.amountDirect = 0;
+        this.amountCheer = 0;
+        this.amountShare = 0;
+        this.amountComment = 0;
+        this.countDirect = 0;
     }
-
-    public Donation() {}
 
     public void addAmountDirect(Integer amount) {
         this.amountDirect += amount;

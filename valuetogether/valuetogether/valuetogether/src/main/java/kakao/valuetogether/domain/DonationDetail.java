@@ -1,13 +1,16 @@
 package kakao.valuetogether.domain;
 
 import kakao.valuetogether.domain.enums.DonationType;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class DonationDetail {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +32,16 @@ public class DonationDetail {
     private Integer donationAmount;
 
     @Column(name = "donation_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DonationType donationType;
 
+    public DonationDetail() {}
+
+    public DonationDetail(Member member, Post post, Date donationDate, Integer donationAmount, DonationType donationType) {
+        this.member = member;
+        this.post = post;
+        this.donationDate = donationDate;
+        this.donationAmount = donationAmount;
+        this.donationType = donationType;
+    }
 }
