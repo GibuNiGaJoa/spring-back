@@ -31,6 +31,7 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
 
+    //제안하기 전 로그인검증
     @GetMapping("fundraisings/propose")
     public ProposeResponse propose(@RequestHeader(value = "Authorization") String token) {
         Long findId = jwtService.parseJwtToken("Bearer " + token);//토큰 검증
@@ -193,10 +194,10 @@ public class PostApiController {
 
     //게시글카테고리별랜덤조회
     @GetMapping("fundraisings/now/sort1/{id}")
-    public PostResult findAllRandomCategory(@PathVariable("id") Long id) {
+    public PostResult findAllPostRandomCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
-        List<Post> findPosts = tagPostService.findAllRandomByCategory(findTag);
+        List<Post> findPosts = tagPostService.findAllPostRandomByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
                 .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
@@ -206,10 +207,10 @@ public class PostApiController {
 
     //전체게시글카테고리별최신순조회
     @GetMapping("fundraisings/now/sort2/{id}")
-    public PostResult findAllNewCategory(@PathVariable("id") Long id) {
+    public PostResult findAllPostNewCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
-        List<Post> findPosts = tagPostService.findAllNewByCategory(findTag);
+        List<Post> findPosts = tagPostService.findAllPostNewByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
                 .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
@@ -219,10 +220,10 @@ public class PostApiController {
 
     //전체게시글카테고리별종료임박순조회
     @GetMapping("fundraisings/now/sort3/{id}")
-    public PostResult findAllEndCategory(@PathVariable("id") Long id) {
+    public PostResult findAllPostEndCategory(@PathVariable("id") Long id) {
 
         Tag findTag = tagService.findById(id);
-        List<Post> findPosts = tagPostService.findAllEndByCategory(findTag);
+        List<Post> findPosts = tagPostService.findAllPostEndByCategory(findTag);
         List<PostDto> postList = findPosts.stream()
                 .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
                 .collect(Collectors.toList());
@@ -246,5 +247,37 @@ public class PostApiController {
         private Date endDate;
     }
 
+    //태그키워드로 게시글조회
+    @GetMapping("tags/{tagName}")
+    public PostResult searchPostByTag(@PathVariable("tagName") String tagName) {
+        Tag findTag = tagService.findIdByFullName(tagName);
+        List<Post> findPosts = tagPostService.findAllPostByTag(findTag);
+        List<PostDto> postList = findPosts.stream()
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
+                .collect(Collectors.toList());
 
+        return new PostResult(postList);
+    }
+
+//    @RequestMapping(value = "/tags/{tagName}", method = RequestMethod.POST)
+//    public PostResult searchPostByTagPhase(@PathVariable("tagName") String tagName,@RequestParam("phase") Long number) {
+//        Tag findTag = tagService.findIdByFullName(tagName);
+//        if (number == 2) {
+//            List<Post> findPosts = tagPostService.findNowPostByTag(findTag);
+//            List<PostDto> postList = findPosts.stream()
+//                    .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
+//                    .collect(Collectors.toList());
+//
+//            return new PostResult(postList);
+//
+//        } else if (number == 3) {
+//            List<Post> findPosts = tagPostService.findEndPostByTag(findTag);
+//            List<PostDto> postList = findPosts.stream()
+//                    .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
+//                    .collect(Collectors.toList());
+//
+//            return new PostResult(postList);
+//        }
+//        return null;
+//    }
 }

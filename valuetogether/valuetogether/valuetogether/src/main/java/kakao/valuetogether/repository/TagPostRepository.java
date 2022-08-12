@@ -28,19 +28,19 @@ public class TagPostRepository {
         return findTagPost.stream().findAny();
     }
 
-    public List<Post> findAllRandomByCategory(Tag tag) {
+    public List<Post> findAllPostRandomByCategory(Tag tag) {
         List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by rand()", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
     }
-    public List<Post> findAllNewByCategory(Tag tag) {
+    public List<Post> findAllPostNewByCategory(Tag tag) {
         List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.startDate desc", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
     }
-    public List<Post> findAllEndByCategory(Tag tag) {
+    public List<Post> findAllPostEndByCategory(Tag tag) {
         List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.endDate", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
@@ -52,5 +52,26 @@ public class TagPostRepository {
                 .setParameter("post", post)
                 .getResultList();
         return tagList;
+    }
+
+    public List<Post> findAllPostByTag(Tag tag) {
+        List<Post> postList = em.createQuery("select t.post from TagPost t where t.tag =:tag order by t.post.endDate", Post.class)
+                .setParameter("tag", tag)
+                .getResultList();
+        return postList;
+    }
+
+    public List<Post> findNowPostByTag(Tag tag) {
+        List<Post> postList = em.createQuery("select t.post from TagPost t where t.tag =:tag and t.post.endDate>=now() order by t.post.endDate", Post.class)
+                .setParameter("tag", tag)
+                .getResultList();
+        return postList;
+    }
+
+    public List<Post> findEndPostByTag(Tag tag) {
+        List<Post> postList = em.createQuery("select t.post from TagPost t where t.tag =:tag and t.post.endDate<=now() order by t.post.endDate", Post.class)
+                .setParameter("tag", tag)
+                .getResultList();
+        return postList;
     }
 }

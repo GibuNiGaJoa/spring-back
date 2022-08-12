@@ -1,6 +1,5 @@
 package kakao.valuetogether.api;
 
-import io.jsonwebtoken.Claims;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.service.JwtService;
 import kakao.valuetogether.service.MemberService;
@@ -108,14 +107,12 @@ public class MemberApiController {
         private Boolean status;
     }
 
-    //==Response DTO==//
     @Data
     @AllArgsConstructor
     static class TokenDataResponse {
         private String token;
     }
 
-    //==Response DTO==//
     @Data
     @AllArgsConstructor
     static class TokenResponseNoData<T> {

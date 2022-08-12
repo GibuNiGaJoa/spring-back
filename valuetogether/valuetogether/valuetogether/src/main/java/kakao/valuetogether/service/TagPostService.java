@@ -23,20 +23,31 @@ public class TagPostService {
         return tagPostRepository.save(tagPost);
     }
 
-    public List<Post> findAllRandomByCategory(Tag tag) {
-        return tagPostRepository.findAllRandomByCategory(tag);
+    public List<Post> findAllPostRandomByCategory(Tag tag) {
+        return tagPostRepository.findAllPostRandomByCategory(tag);
     }
 
-    public List<Post> findAllNewByCategory(Tag tag) {
-        return tagPostRepository.findAllNewByCategory(tag);
+    public List<Post> findAllPostNewByCategory(Tag tag) {
+        return tagPostRepository.findAllPostNewByCategory(tag);
     }
 
-    public List<Post> findAllEndByCategory(Tag tag) {
-        return tagPostRepository.findAllEndByCategory(tag);
+    public List<Post> findAllPostEndByCategory(Tag tag) {
+        return tagPostRepository.findAllPostEndByCategory(tag);
     }
 
     public List<Tag> findTagByPost(Post post) {
         return tagPostRepository.findTagByPost(post);
+    }
+
+    public List<Post> findAllPostByTag(Tag tag) {
+        return tagPostRepository.findAllPostByTag(tag);
+    }
+
+    public List<Post> findNowPostByTag(Tag tag) {
+        return tagPostRepository.findNowPostByTag(tag);
+    }
+    public List<Post> findEndPostByTag(Tag tag) {
+        return tagPostRepository.findEndPostByTag(tag);
     }
 
 
