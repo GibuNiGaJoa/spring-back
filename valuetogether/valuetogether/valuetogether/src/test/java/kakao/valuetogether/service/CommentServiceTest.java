@@ -1,8 +1,6 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.*;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.repository.CommentRepository;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
@@ -95,7 +93,7 @@ public class CommentServiceTest {
     }
 
     public Post getFindPost(Member findMember) {
-        Post post = new Post(findMember, "title", "subtitle", "article", "static/image", Topic.건강한삶, Target.아동ㅣ청소년, 100000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
+        Post post = new Post(findMember, "titke", "proposer", "content", 1000, new Date(1111), new Date(2222), "image", false);
         Long postSavedId = postRepository.save(post);
         return postRepository.findOneById(postSavedId);
     }

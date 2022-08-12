@@ -1,11 +1,14 @@
 package kakao.valuetogether.repository;
 
 import kakao.valuetogether.domain.Tag;
+import kakao.valuetogether.domain.TagPost;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TagRepository {
@@ -13,25 +16,36 @@ public class TagRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void save() {
-        ArrayList<Tag> tags = new ArrayList<>();
+    public Long save(Tag tag) {
+        em.persist(tag);
+        return tag.getId();
+    }
 
-        tags.add(new Tag("어려운이웃"));
-        tags.add(new Tag("행복한노후"));
-        tags.add(new Tag("여성인권"));
-        tags.add(new Tag("심리상담"));
-        tags.add(new Tag("환경교육"));
-        tags.add(new Tag("학대아동지원"));
-        tags.add(new Tag("환경을위한실천"));
-        tags.add(new Tag("우크라이나긴급모금"));
-        tags.add(new Tag("세상을바꾸는여성"));
-        tags.add(new Tag("언택트프로젝트"));
+    public Tag findOne(Long id) {
+        return em.find(Tag.class, id);
+    }
 
-        for (int i = 0; i < tags.size(); i++) {
-            em.persist(tags.get(i));
-        }
+    //태그10개 랜덤으로 조회하기
+    public List<Tag> findTen() {
+        return em.createQuery("select t from Tag t order by rand()", Tag.class)
+                .setFirstResult(0)
+                .setMaxResults(10)
+                .getResultList();
 
-        em.flush();
-        em.clear();
+    }
+
+    //이름으로 태그조회하기
+    public Optional<Tag> findByFullName(String name) {
+        List<Tag> findTag = em.createQuery("select t from Tag t where t.tagName = :tagName", Tag.class)
+                .setParameter("tagName", name)
+                .getResultList();
+
+        return findTag.stream().findAny();
+    }
+
+    public List<Tag> findTagByKeyword(String keyword) {
+        return em.createQuery("select t from Tag t where t.tagName like :keyword", Tag.class)
+                .setParameter("keyword", "%" + keyword + "%")
+                .getResultList();
     }
 }

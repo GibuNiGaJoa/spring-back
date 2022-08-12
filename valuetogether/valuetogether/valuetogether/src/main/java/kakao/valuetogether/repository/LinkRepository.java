@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class LinkRepository {
@@ -16,5 +17,12 @@ public class LinkRepository {
     public Long save(Link link) {
         em.persist(link);
         return link.getId();
+    }
+
+    public List<Link> findLinkByPost(Post post) {
+        List<Link> linkList = em.createQuery("select l from Link l where l.post = :post", Link.class)
+                .setParameter("post", post)
+                .getResultList();
+        return linkList;
     }
 }

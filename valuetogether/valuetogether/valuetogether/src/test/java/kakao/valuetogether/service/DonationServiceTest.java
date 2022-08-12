@@ -5,8 +5,6 @@ import kakao.valuetogether.domain.DonationDetail;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.enums.DonationType;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
@@ -48,7 +46,7 @@ public class DonationServiceTest {
         Long memberId = memberRepository.save(member);
         this.savedMember = memberRepository.findById(memberId);
 
-        Post post = new Post(savedMember, "title", "subtitle", "article", "static/image", Topic.건강한삶, Target.실버세대, 10000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
+        Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1111), new Date(2222), "image", false);
         Long postId = postRepository.save(post);
         this.savedPost = postRepository.findOneById(postId);
 

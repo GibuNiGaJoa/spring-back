@@ -92,4 +92,5 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.delete(id);
     }
+
 }

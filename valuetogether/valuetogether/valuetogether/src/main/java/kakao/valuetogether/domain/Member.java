@@ -60,4 +60,15 @@ public class Member  {
     public Member() {
 
     }
+
+    public Member(String email, String pw, String name, String phone, String address, String gender, String nickname, String birthday) {
+        this.email = email;
+        this.pw = pw;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.gender = gender;
+        this.nickname = nickname;
+        this.birthday = birthday;
+    }
 }

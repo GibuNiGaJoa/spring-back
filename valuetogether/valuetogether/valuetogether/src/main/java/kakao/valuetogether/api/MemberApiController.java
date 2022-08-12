@@ -100,4 +100,14 @@ public class MemberApiController {
     public void deleteMember(@PathVariable("id") Long id) {
         memberService.deleteMember(id);
     }
+
+    @Data
+    static class DeleteResponse {
+        private Boolean status;
+
+        public DeleteResponse(Boolean status) {
+            this.status = status;
+        }
+    }
+
 }

@@ -19,7 +19,8 @@ public class Link {
 
     private String link;
 
-    public Link(String link) {
+    public Link(Post post, String link) {
+        this.post = post;
         this.link = link;
     }
 

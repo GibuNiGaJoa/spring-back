@@ -1,16 +1,17 @@
 package kakao.valuetogether.domain;
 
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
 import lombok.Getter;
+import lombok.Setter;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Post {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,55 +31,47 @@ public class Post {
     private String title;
 
     @Column(nullable = false)
-    private String subTitle;
+    private String proposer;
 
+    @Lob
     @Column(nullable = false)
-    private String article;
+    private String content;
 
-    private String image;
-
-    @Enumerated(EnumType.STRING)
-    private Topic topic;
-
-    @Enumerated(EnumType.STRING)
-    private Target target;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Link> links = new ArrayList<>();
-
-    @Column(name = "target_amount", nullable = false)
+    @Column(name = "target_amount",nullable = false)
     private Integer targetAmount;
 
-    @Column(name = "start_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "start_date",nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Column(name = "end_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "end_date",nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
-    @Column(name = "is_confirm", nullable = false)
-    private Boolean isConfirm = false;
+    @Column(nullable = false)
+    private String image;
 
-    public Post(Member member, String title, String subTitle, String article, String image, Topic topic, Target target, Integer targetAmount, Date startDate, Date endDate, Boolean isConfirm) {
+    @Column(name = "is_confirm")
+    private Boolean isConfirm;
+
+    public Post(Member member, String title, String proposer, String content, Integer targetAmount, Date startDate, Date endDate, String image, Boolean isConfirm) {
         this.member = member;
         this.title = title;
-        this.subTitle = subTitle;
-        this.article = article;
-        this.image = image;
-        this.topic = topic;
-        this.target = target;
+        this.proposer = proposer;
+        this.content = content;
         this.targetAmount = targetAmount;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.image = image;
         this.isConfirm = isConfirm;
     }
+
     public Post() {
     }
 
     public void addLink(Link link) {
         link.setPost(this);
-        this.links.add(link);
+        //this.links.add(link);
     }
 
     public static Post createPost(Post post, Link... links) {

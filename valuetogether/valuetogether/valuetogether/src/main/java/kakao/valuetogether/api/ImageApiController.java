@@ -17,4 +17,5 @@ public class ImageApiController {
     public String uploadImg(@RequestParam("img") MultipartFile imageFile) {
         return awsS3Service.uploadFileV1(imageFile);
     }
+
 }
