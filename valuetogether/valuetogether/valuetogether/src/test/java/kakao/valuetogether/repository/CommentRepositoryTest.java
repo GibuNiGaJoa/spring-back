@@ -33,7 +33,7 @@ public class CommentRepositoryTest {
     private Long savedCommentId;
 
     @BeforeEach
-    void beforeEach() {
+    public void setUp() {
         findMember = getFindMember();
         findPost = getFindPost(findMember);
         comment = createComment(findMember, findPost);

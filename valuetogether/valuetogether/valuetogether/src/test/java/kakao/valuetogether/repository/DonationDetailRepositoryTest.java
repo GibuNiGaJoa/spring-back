@@ -34,7 +34,7 @@ class DonationDetailRepositoryTest {
     DonationDetail savedDonationDetail;
 
     @BeforeEach
-    public void beforeEach() {
+    public void setUp() {
         Member member = Member.builder().email("email").name("name").pw("pw").nickname("nickname").birthday("birthday").gender("man").address("address").phone("01077239811").build();
         Long memberId = memberRepository.save(member);
         this.savedMember = memberRepository.findById(memberId);

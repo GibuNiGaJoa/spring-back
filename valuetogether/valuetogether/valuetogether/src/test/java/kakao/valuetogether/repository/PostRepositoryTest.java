@@ -27,7 +27,7 @@ public class PostRepositoryTest {
     Post savedPost;
 
     @BeforeEach
-    public void beforeEach() {
+    public void setUp() {
         Member member = Member.builder().email("hkim4410@naver.com").pw("pw").name("name").phone("0177239811").address("adress").gender("man").birthday("birthday").nickname("nickname").build();
         Long savedMemberId = memberRepository.save(member);
         findMember = memberRepository.findById(savedMemberId);

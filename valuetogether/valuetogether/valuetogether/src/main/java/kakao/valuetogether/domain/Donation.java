@@ -1,5 +1,6 @@
 package kakao.valuetogether.domain;
 
+import kakao.valuetogether.domain.enums.DonationType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,18 +23,16 @@ public class Donation {
 
     @Column(name = "direct_donation")
     private Integer amountDirect;
-
     @Column(name = "cheer_donation")
     private Integer amountCheer;
-
     @Column(name = "share_donation")
     private Integer amountShare;
-
     @Column(name = "comment_donation")
     private Integer amountComment;
-
     @Column(name = "count_direct_donation")
     private Integer countDirect;
+    @Column(name = "total_amount")
+    private Integer totalAmount;
 
     public Donation() {}
 
@@ -44,26 +43,27 @@ public class Donation {
         this.amountShare = 0;
         this.amountComment = 0;
         this.countDirect = 0;
+        this.totalAmount = 0;
     }
 
-    public void addAmountDirect(Integer amount) {
-        this.amountDirect += amount;
-    }
+    public void donate(DonationType type, Integer amount) {
+        switch (type) {
+            case 직접참여:
+                this.amountDirect += amount;
+                this.countDirect += 1;
+                break;
+            case 응원참여:
+                this.amountCheer += 100;
+                break;
+            case 공유참여:
+                this.amountShare += 100;
+                break;
+            case 댓글참여:
+                this.amountComment += 100;
+                break;
+        }
 
-    public void addAmountCheer() {
-        this.amountCheer += 100;
-    }
-
-    public void addAmountShare() {
-        this.amountShare += 100;
-    }
-
-    public void addAmountComment() {
-        this.amountComment += 100;
-    }
-
-    public void addCountDirect() {
-        this.countDirect += 1;
+        this.totalAmount = getTotalAmount();
     }
 
     public Integer getTotalAmount() {

@@ -14,6 +14,7 @@ import java.util.Date;
 public class DonationDetail {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "donation_detail_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

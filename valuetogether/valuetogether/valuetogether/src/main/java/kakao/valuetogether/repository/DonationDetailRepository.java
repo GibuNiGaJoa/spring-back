@@ -7,13 +7,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * TODO
- * 기부내역 생성
- * 기부내역 수정
- * 기부내역 조회
- * 기부내역 삭제
- */
 @Repository
 public class DonationDetailRepository {
 
