@@ -259,7 +259,7 @@ public class PostApiController {
         return new PostResult(postList);
     }
 
-    @RequestMapping(value = "/tags/{tagName}", method = RequestMethod.POST)
+    @RequestMapping(value = "/tags/{tagName}", method = RequestMethod.GET)
     public PostResult searchPostByTagPhase(@PathVariable("tagName") String tagName,@RequestParam("phase") Long number) {
         Tag findTag = tagService.findIdByFullName(tagName);
         if (number == 2) {

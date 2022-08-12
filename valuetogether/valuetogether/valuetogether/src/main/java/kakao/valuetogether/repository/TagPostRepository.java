@@ -69,7 +69,7 @@ public class TagPostRepository {
     }
 
     public List<Post> findEndPostByTag(Tag tag) {
-        List<Post> postList = em.createQuery("select t.post from TagPost t where t.tag =:tag and t.post.endDate<=now() order by t.post.endDate", Post.class)
+        List<Post> postList = em.createQuery("select t.post from TagPost t where t.tag =:tag and t.post.endDate<now() order by t.post.endDate", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
