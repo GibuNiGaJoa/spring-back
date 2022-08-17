@@ -31,6 +31,8 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
 
+    private final CommentService commentService;
+
     //제안하기 전 로그인검증
     @GetMapping("fundraisings/propose")
     public ProposeResponse propose(@RequestHeader(value = "Authorization") String token) {
@@ -122,6 +124,8 @@ public class PostApiController {
         List<LinkDto> linkList = findLinks.stream()
                 .map(m -> new LinkDto(m.getLink()))
                 .collect(Collectors.toList());
+
+        //List<Comment> findComments = commentService.findComment(findPost);
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),

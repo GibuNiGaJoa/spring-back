@@ -26,7 +26,7 @@ public class CommentApiController {
 
     @PostMapping("fundraisings/{id}/comment")
     public CreatedCommentResponse enrollComment(@RequestHeader(value = "Authorization") String token, @PathVariable("id") Long id, @RequestBody @Valid CreatedCommentRequest request) {
-        Long memberId = jwtService.parseJwtToken(token);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
         Post findPost = postService.findOneById(id);
         Comment comment = new Comment(findMember, findPost);
