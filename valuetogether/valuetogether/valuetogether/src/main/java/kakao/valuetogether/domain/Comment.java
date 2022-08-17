@@ -1,6 +1,7 @@
 package kakao.valuetogether.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @Getter
+@Setter
 @ToString
 public class Comment implements Serializable {
 
@@ -34,12 +36,9 @@ public class Comment implements Serializable {
 
     private Integer likes = 0;
 
-    public Comment(Member member, Post post, String content, Date date, Integer likes) {
+    public Comment(Member member, Post post) {
         this.member = member;
         this.post = post;
-        this.content = content;
-        this.date = date;
-        this.likes = likes;
     }
 
     public Comment() {}

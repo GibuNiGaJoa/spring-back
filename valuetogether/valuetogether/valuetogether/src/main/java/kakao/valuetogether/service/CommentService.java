@@ -11,24 +11,18 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    public Long enrollComment(Comment comment) {
-        commentRepository.saveComment(comment);
+    public Long enroll(Comment comment) {
+        commentRepository.save(comment);
         return comment.getId();
     }
 
-    public Long editComment(Comment comment, String content) {
-        return commentRepository.updateComment(comment, content);
+    public void addLikes(Long id) {
+        Comment findComment = commentRepository.findById(id);
+        commentRepository.addLikes(findComment);
     }
 
-    public void removeComment(Comment comment) {
-        commentRepository.deleteComment(comment);
-    }
-
-    public void clickLike(Comment comment) {
-        commentRepository.addLikes(comment);
-    }
-
-    public void disLike(Comment comment) {
-        commentRepository.minusLikes(comment);
+    public void removeLikes(Long id) {
+        Comment findComment = commentRepository.findById(id);
+        commentRepository.removeLikes(findComment);
     }
 }
