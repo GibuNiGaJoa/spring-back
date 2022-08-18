@@ -125,11 +125,14 @@ public class PostApiController {
                 .map(m -> new LinkDto(m.getLink()))
                 .collect(Collectors.toList());
 
-        //List<Comment> findComments = commentService.findComment(findPost);
+        List<Comment> findComments = commentService.findComment(findPost);
+        List<CommentDto> commentList = findComments.stream()
+                .map(m -> new CommentDto(m.getId(),m.getMember().getNickname(),m.getContent(),m.getDate(),m.getLikes()))
+                .collect(Collectors.toList());
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
-                findPost.getTargetAmount(), findPost.getStartDate(), findPost.getEndDate(), tagList, linkList, findPost.getImage());
+                findPost.getTargetAmount(), findPost.getStartDate(), findPost.getEndDate(), tagList, linkList, findPost.getImage(),commentList);
         return findPostResponse;
     }
 
@@ -145,6 +148,7 @@ public class PostApiController {
         private T tag;
         private T link;
         private String image;
+        private T comment;
     }
 
     @Data
@@ -158,6 +162,17 @@ public class PostApiController {
     static class LinkDto {
         private String name;
     }
+
+    @Data
+    @AllArgsConstructor
+    static class CommentDto {
+        private Long id;
+        private String name;
+        private String content;
+        private Date date;
+        private Integer likes;
+    }
+
 
 
     //전체게시글랜덤조회
