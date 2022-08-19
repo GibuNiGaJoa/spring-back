@@ -1,12 +1,10 @@
 package kakao.valuetogether.api;
 
 import kakao.valuetogether.domain.Comment;
+import kakao.valuetogether.domain.LikeDetail;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
-import kakao.valuetogether.service.CommentService;
-import kakao.valuetogether.service.JwtService;
-import kakao.valuetogether.service.MemberService;
-import kakao.valuetogether.service.PostService;
+import kakao.valuetogether.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +21,7 @@ public class CommentApiController {
     private final JwtService jwtService;
 
     private final PostService postService;
+    private final LikeDetailService likeDetailService;
 
     @PostMapping("fundraisings/{id}/comment")
     public CreatedCommentResponse enrollComment(@RequestHeader(value = "Authorization") String token, @PathVariable("id") Long id, @RequestBody @Valid CreatedCommentRequest request) {
@@ -34,6 +33,10 @@ public class CommentApiController {
         comment.setDate(request.getDate());
 
         commentService.enroll(comment);
+
+        LikeDetail likeDetail = new LikeDetail(comment, findMember);
+        likeDetailService.save(likeDetail);
+
         return new CreatedCommentResponse(true);
     }
 
@@ -53,13 +56,13 @@ public class CommentApiController {
     }
     @GetMapping("fundraisings/{id}/addlike")
     public LikeResponse addLike(@RequestHeader(value = "Authorization") String token,@PathVariable("id") Long id) {
-        Long memberId = jwtService.parseJwtToken(token);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         commentService.addLikes(id);
         return new LikeResponse(true);
     }
     @GetMapping("fundraisings/{id}/removelike")
     public LikeResponse removeLike(@RequestHeader(value = "Authorization") String token,@PathVariable("id") Long id) {
-        Long memberId = jwtService.parseJwtToken(token);
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         commentService.removeLikes(id);
         return new LikeResponse(true);
     }
