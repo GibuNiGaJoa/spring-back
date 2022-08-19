@@ -34,9 +34,6 @@ public class CommentApiController {
 
         commentService.enroll(comment);
 
-        LikeDetail likeDetail = new LikeDetail(comment, findMember);
-        likeDetailService.save(likeDetail);
-
         return new CreatedCommentResponse(true);
     }
 
@@ -58,12 +55,24 @@ public class CommentApiController {
     public LikeResponse addLike(@RequestHeader(value = "Authorization") String token,@PathVariable("id") Long id) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         commentService.addLikes(id);
+        Member findMember = memberService.findOne(memberId);
+        Comment comment = commentService.findOne(id);
+
+        LikeDetail likeDetail = new LikeDetail(comment, findMember);
+        likeDetailService.save(likeDetail);
+
         return new LikeResponse(true);
     }
     @GetMapping("fundraisings/{id}/removelike")
     public LikeResponse removeLike(@RequestHeader(value = "Authorization") String token,@PathVariable("id") Long id) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         commentService.removeLikes(id);
+        Member findMember = memberService.findOne(memberId);
+        Comment comment = commentService.findOne(id);
+
+        LikeDetail findLikeDetail = likeDetailService.findOne(comment, findMember);
+        likeDetailService.delete(findLikeDetail);
+
         return new LikeResponse(true);
     }
     @Data

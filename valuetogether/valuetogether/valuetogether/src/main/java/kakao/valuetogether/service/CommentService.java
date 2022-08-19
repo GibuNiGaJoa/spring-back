@@ -32,4 +32,8 @@ public class CommentService {
     public List<Comment> findComment(Post post) {
         return commentRepository.findCommentByPost(post);
     }
+
+    public Comment findOne(Long id) {
+        return commentRepository.findById(id);
+    }
 }
