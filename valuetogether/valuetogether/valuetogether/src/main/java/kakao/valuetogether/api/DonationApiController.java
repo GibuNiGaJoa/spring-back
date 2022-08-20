@@ -29,8 +29,9 @@ public class DonationApiController {
     }
 
     @GetMapping("/my/donations")
-    public List<DonationResponseDTO> requestDonationDetails(@RequestBody @Valid DonationRequestDTO request) {
-        List<DonationResponseDTO> result = donationService.findDonationDetailByMember(request);
+    public List<DonationResponseDTO> requestDonationDetails(@RequestHeader(value = "Authorization") String token) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        List<DonationResponseDTO> result = donationService.findDonationDetailByMember(memberId);
         return result;
     }
 

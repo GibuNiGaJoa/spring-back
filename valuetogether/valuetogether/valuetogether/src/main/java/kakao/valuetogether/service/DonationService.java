@@ -64,11 +64,11 @@ public class DonationService {
         return donationRepository.findByPostId(post.getId());
     }
 
-    public List<DonationResponseDTO> findDonationDetailByMember(DonationRequestDTO request) {
-        List<DonationResponseDTO> result = new ArrayList<>();
-
-        Member member = memberService.findOne(request.getMemberId());
+    public List<DonationResponseDTO> findDonationDetailByMember(Long memberId) {
+        Member member = memberService.findOne(memberId);
         List<DonationDetail> findResult = (ArrayList)donationDetailRepository.findDonationDetailsByMember(member);
+
+        List<DonationResponseDTO> result = new ArrayList<>();
 
         findResult.forEach(donationDetail -> {
             result.add(DonationResponseDTO.builder()
