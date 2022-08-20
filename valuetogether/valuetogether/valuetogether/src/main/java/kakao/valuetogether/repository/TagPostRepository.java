@@ -48,7 +48,7 @@ public class TagPostRepository {
     }
 
     public List<Tag> findTagByPost(Post post) {
-        List<Tag> tagList = em.createQuery("select t.tag from TagPost t where t.post = :post and t.tag.id > 20", Tag.class)
+        List<Tag> tagList = em.createQuery("select t.tag from TagPost t where t.post = :post", Tag.class)
                 .setParameter("post", post)
                 .getResultList();
         return tagList;
