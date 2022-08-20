@@ -17,18 +17,18 @@ public class CommentRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long saveComment(Comment comment) {
+    public Long save(Comment comment) {
         em.persist(comment);
         return comment.getId();
     }
 
-    public Long updateComment(Comment comment, String newContent) {
+    public Long update(Comment comment, String newContent) {
         comment.editContent(newContent);
         em.persist(comment);
         return comment.getId();
     }
 
-    public Long deleteComment(Comment comment) {
+    public Long delete(Comment comment) {
         Long deletedCommentId = comment.getId();
         em.remove(comment);
         return deletedCommentId;
@@ -39,30 +39,18 @@ public class CommentRepository {
         em.persist(comment);
     }
 
-    public void minusLikes(Comment comment) {
+    public void removeLikes(Comment comment) {
         comment.minusLikes();
         em.persist(comment);
-    }
-
-    public Comment findByPost(Post post) {
-        return em.createQuery("select c from Comment c where c.post = :post", Comment.class)
-                .setParameter("post", post)
-                .getSingleResult();
     }
 
     public Comment findById(Long id) {
         return em.find(Comment.class, id);
     }
 
-    public List<Comment> findAllCommentsByPost(Post post) {
-        return em.createQuery("select c from Comment c where c.post = :post", Comment.class)
+    public List<Comment> findCommentByPost(Post post) {
+        return em.createQuery("select c from Comment c where c.post = :post order by c.date", Comment.class)
                 .setParameter("post", post)
-                .getResultList();
-    }
-
-    public List<Comment> findAllCommentsByMember(Member member) {
-        return em.createQuery("select c from Comment c where c.member = :member", Comment.class)
-                .setParameter("member", member)
                 .getResultList();
     }
 }

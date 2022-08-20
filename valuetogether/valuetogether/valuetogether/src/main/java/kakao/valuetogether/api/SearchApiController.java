@@ -6,10 +6,7 @@ import kakao.valuetogether.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -29,6 +26,17 @@ public class SearchApiController {
 
     private final LinkService linkService;
     private final JwtService jwtService;
+
+    //검색시 랜덤으로 태그10개 제공하기
+    @GetMapping("/search")
+    public TagResult randomShowTag() {
+        List<Tag> findTags = tagService.findTenTag();
+        List<TagDto> tagList = findTags.stream()
+                .map(m-> new TagDto(m.getTagName()))
+                .collect(Collectors.toList());
+
+        return new TagResult(tagList);
+    }
 
     //검색어로 태그 및 게시글(제목+본문, 제목) 조회하기
     @RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -84,4 +92,5 @@ public class SearchApiController {
         private String proposer;
         private Date endDate;
     }
+
 }

@@ -1,9 +1,12 @@
 package kakao.valuetogether.service;
 
 import kakao.valuetogether.domain.Comment;
+import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -11,24 +14,26 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    public Long enrollComment(Comment comment) {
-        commentRepository.saveComment(comment);
+    public Long enroll(Comment comment) {
+        commentRepository.save(comment);
         return comment.getId();
     }
 
-    public Long editComment(Comment comment, String content) {
-        return commentRepository.updateComment(comment, content);
+    public void addLikes(Long id) {
+        Comment findComment = commentRepository.findById(id);
+        commentRepository.addLikes(findComment);
     }
 
-    public void removeComment(Comment comment) {
-        commentRepository.deleteComment(comment);
+    public void removeLikes(Long id) {
+        Comment findComment = commentRepository.findById(id);
+        commentRepository.removeLikes(findComment);
     }
 
-    public void clickLike(Comment comment) {
-        commentRepository.addLikes(comment);
+    public List<Comment> findComment(Post post) {
+        return commentRepository.findCommentByPost(post);
     }
 
-    public void disLike(Comment comment) {
-        commentRepository.minusLikes(comment);
+    public Comment findOne(Long id) {
+        return commentRepository.findById(id);
     }
 }

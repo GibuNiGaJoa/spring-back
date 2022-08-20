@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * TODO
  * 1. (테스트 필요) 게시글 생성 시 기부 생성 요청 API 0-> PostApiController.proposePost()
- * 2. (토큰 추가 및 테스트 필요) 기부하기 API -> @param: postId, memberId, donationType, donationAmount, donationDate
+ * 2. (완료) 기부하기 API -> @param: postId, memberId, donationType, donationAmount, donationDate
  * 3. (완료) 기부 조회 API -> PostApiController.findPost()
  * 4. (완료) 기부내역 조회 API -> @param: memberId
  *
