@@ -21,7 +21,7 @@ public class MemberApiController {
     private final MemberService memberService;
     private final JwtService jwtService;
 
-    @PostMapping("/join")
+    @PostMapping("/login/create_account")
     public ResponseEntity<MemberResponseDTO> joinMember(@RequestBody @Valid MemberRequestDTO request) {
         return new ResponseEntity<>(memberService.join(request), HttpStatus.CREATED);
     }
