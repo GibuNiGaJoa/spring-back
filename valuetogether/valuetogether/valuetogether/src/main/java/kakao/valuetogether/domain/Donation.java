@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Donation {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")

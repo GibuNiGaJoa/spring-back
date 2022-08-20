@@ -20,11 +20,10 @@ public class PostService {
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
     private final LinkRepository linkRepository;
-
     private final TagPostRepository tagPostRepository;
+
     public Long propose(Post post) {
         Long postSavedId = postRepository.save(post);
-
         return postSavedId;
     }
 

@@ -4,25 +4,20 @@ import kakao.valuetogether.domain.DonationDetail;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.enums.DonationType;
-import kakao.valuetogether.domain.enums.Target;
-import kakao.valuetogether.domain.enums.Topic;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
+//@Rollback(value = false)
 class DonationDetailRepositoryTest {
 
     @Autowired DonationDetailRepository donationDetailRepository;
@@ -39,7 +34,7 @@ class DonationDetailRepositoryTest {
         Long memberId = memberRepository.save(member);
         this.savedMember = memberRepository.findById(memberId);
 
-        Post post = new Post(savedMember, "title", "subtitle", "article", "static/image", Topic.건강한삶, Target.실버세대, 10000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
+        Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1000), new Date(2000), "image", false);
         Long postId = postRepository.save(post);
         this.savedPost = postRepository.findOneById(postId);
 
@@ -50,7 +45,7 @@ class DonationDetailRepositoryTest {
 
     @Test
     public void findDonationDetailByMember() {
-        DonationDetail result = donationDetailRepository.findDonationDetailByMember(savedMember);
-        Assertions.assertThat(this.savedDonationDetail).isEqualTo(result);
+        List<DonationDetail> result = donationDetailRepository.findDonationDetailsByMember(savedMember);
+        result.forEach(donationDetail -> System.out.println("donationDetail = " + donationDetail));
     }
 }

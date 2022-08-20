@@ -1,5 +1,6 @@
 package kakao.valuetogether.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kakao.valuetogether.domain.enums.DonationType;
 import lombok.*;
 
@@ -19,11 +20,12 @@ public class DonationDetail {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    Member member;
+    private Member member;
 
-    @JoinColumn(name = "post_id")
     @OneToOne(fetch = FetchType.LAZY)
-    Post post;
+    @JoinColumn(name = "post_id", unique = true)
+//    @JsonIgnore
+    private Post post;
 
     @Column(name = "donation_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)

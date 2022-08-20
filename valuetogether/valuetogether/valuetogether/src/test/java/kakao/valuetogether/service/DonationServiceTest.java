@@ -6,6 +6,7 @@ import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.enums.DonationType;
 import kakao.valuetogether.dto.DonationRequestDTO;
+import kakao.valuetogether.dto.DonationResponseDTO;
 import kakao.valuetogether.repository.MemberRepository;
 import kakao.valuetogether.repository.PostRepository;
 import org.assertj.core.api.Assertions;
@@ -17,9 +18,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,8 +50,14 @@ public class DonationServiceTest {
         Long postId = postRepository.save(post);
         this.savedPost = postRepository.findOneById(postId);
 
-        request = new DonationRequestDTO(this.savedPost, this.savedMember, donationType, donationAmount, donationDate);
+        request = new DonationRequestDTO(this.savedPost.getId(), this.savedMember.getId(), donationType, donationAmount, donationDate);
         donationService.createDonation(request);
+    }
+
+    @Test
+    public void createDonation_Post() {
+        Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1111), new Date(2222), "image", false);
+        donationService.createDonation(post);
     }
 
     @Test
@@ -68,11 +74,11 @@ public class DonationServiceTest {
     }
 
     @Test
-    public void findDonationDetailByMember() {
+    public void findDonationDetailsByMember() {
         donationService.donate(request);
 
-        DonationDetail findDonationDetail = donationService.findDonationDetailByMember(request);
-        assertThat(findDonationDetail.getDonationType()).isEqualTo(DonationType.직접참여);
+        List<DonationResponseDTO> result = donationService.findDonationDetailByMember(request);
+        result.forEach(donationDetail -> System.out.println("donationDetail = " + donationDetail));
     }
 
     @Test

@@ -10,11 +10,9 @@ import lombok.ToString;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
-@ToString
+//@AllArgsConstructor
 public class DonationRequestDTO {
-    private Post post;
-    private Member member;
+    private Long postId, MemberId;
     private DonationType donationType;
     private Integer donationAmount;
     private Date donationDate;

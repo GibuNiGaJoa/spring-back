@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class DonationDetailRepository {
@@ -22,10 +24,10 @@ public class DonationDetailRepository {
         return em.find(DonationDetail.class, id);
     }
 
-    public DonationDetail findDonationDetailByMember(Member member) {
-        return (DonationDetail) em.createQuery("select d from DonationDetail d where d.member = :member")
+    public List<DonationDetail> findDonationDetailsByMember(Member member) {
+        return em.createQuery("select d from DonationDetail d where d.member = :member")
                 .setParameter("member", member)
-                .getSingleResult();
+                .getResultList();
     }
 
     public Long updateDonationDetail(DonationDetail donationDetail) {
