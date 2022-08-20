@@ -32,17 +32,14 @@ public class JwtService {
                 .compact();
     }
 
-
-    //==Jwt 토큰의 유효성 체크 메소드==//
     public Long parseJwtToken(String token) {
-        String findToken = BearerRemove(token);// Bearer 제거
+        String findToken = BearerRemove(token);
         return Jwts.parser()
                 .setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes()))
-                .parseClaimsJws(findToken) //token을 가지고 풀어주기=해석하기
+                .parseClaimsJws(findToken)
                 .getBody().get("id", Long.class);
     }
 
-    //==토큰 앞 부분('Bearer') 제거 메소드==//
     private String BearerRemove(String token) {
         return token.substring("Bearer ".length());
     }

@@ -24,7 +24,12 @@ public class PostRepositoryTest {
 
     @Autowired TagRepository tagRepository;
 
-
+    @BeforeEach
+    public void setUp() {
+        Member member = Member.builder().email("hkim4410@naver.com").pw("pw").name("name").phone("0177239811").address("adress").gender("man").birthday("birthday").nickname("nickname").build();
+        Long savedMemberId = memberRepository.save(member);
+        Member findMember = memberRepository.findById(savedMemberId);
+    }
 //    @BeforeEach
 //    public void beforeEach() {
 //        Member member = new Member("email", "pw", "name", "01077239811", "address", "man", "nickname", "birthday");

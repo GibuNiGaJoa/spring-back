@@ -6,7 +6,6 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +20,7 @@ public class AwsS3Service {
     private final AmazonS3Client amazonS3Client;
 
 //    @Value("${profiles.include.cloud.aws.s3.bucket}")
-    private static String bucketName = "valuetogether-bucket";
+    private String bucketName = "valuetogether-bucket";
 
     public String uploadFileV1(MultipartFile imageFile) {
         validateFileExists(imageFile);

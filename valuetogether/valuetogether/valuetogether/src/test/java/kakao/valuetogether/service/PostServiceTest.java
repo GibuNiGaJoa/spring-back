@@ -36,6 +36,7 @@ public class PostServiceTest {
     @Autowired MemberService memberService;
 
     @Test
+
     public void save(){
 
         Post post = new Post();

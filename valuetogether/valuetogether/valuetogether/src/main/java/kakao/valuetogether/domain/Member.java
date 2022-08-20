@@ -4,9 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-
 @Entity
 @Getter @Setter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Member  {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +39,29 @@ public class Member  {
     @Column(nullable = false, name = "member_birthday")
     private String birthday;
 
-    public Member(String email,
-                  String pw,
-                  String name,
-                  String phone,
-                  String address,
-                  String gender,
-                  String nickname,
-                  String birthday) {
+//    public Member(String email,
+//                  String pw,
+//                  String name,
+//                  String phone,
+//                  String address,
+//                  String gender,
+//                  String nickname,
+//                  String birthday) {
+//        this.email = email;
+//        this.pw = pw;
+//        this.name = name;
+//        this.phone = phone;
+//        this.address = address;
+//        this.gender = gender;
+//        this.nickname = nickname;
+//        this.birthday = birthday;
+//    }
+
+    public Member() {
+
+    }
+
+    public Member(String email, String pw, String name, String phone, String address, String gender, String nickname, String birthday) {
         this.email = email;
         this.pw = pw;
         this.name = name;
@@ -54,10 +71,4 @@ public class Member  {
         this.nickname = nickname;
         this.birthday = birthday;
     }
-
-    public Member() {
-
-    }
-
-
 }

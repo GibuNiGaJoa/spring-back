@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.176s</div>
+<div class="counter">0.585s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,32 +79,32 @@
 </thead>
 <tr>
 <td class="success">donateCheer()</td>
-<td class="success">0.022s</td>
+<td class="success">0.070s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">donateComment()</td>
-<td class="success">0.021s</td>
+<td class="success">0.078s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">donateDirect()</td>
-<td class="success">0.034s</td>
+<td class="success">0.100s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">donateShare()</td>
-<td class="success">0.020s</td>
+<td class="success">0.112s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">saveAndFindByMember()</td>
-<td class="success">0.021s</td>
+<td class="success">0.079s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">saveAndFindByPost()</td>
-<td class="success">0.058s</td>
+<td class="success">0.146s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -112,85 +112,64 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2022-08-05 09:42:36.976  INFO 31248 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [kakao.valuetogether.repository.DonationRepositoryTest], using SpringBootContextLoader
-2022-08-05 09:42:36.977  INFO 31248 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [kakao.valuetogether.repository.DonationRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-08-05 09:42:36.978  INFO 31248 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [kakao.valuetogether.repository.DonationRepositoryTest]: DonationRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-08-05 09:42:36.981  INFO 31248 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration kakao.valuetogether.ValuetogetherApplication for test class kakao.valuetogether.repository.DonationRepositoryTest
-2022-08-05 09:42:36.983  INFO 31248 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-08-05 09:42:36.983  INFO 31248 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@d41518b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4708acc6, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@59cc46a4, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@750448fb, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@724e82d9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@70a26eca, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4b60ff1c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1c74251b, org.springframework.test.context.event.EventPublishingTestExecutionListener@1aaa3406, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@791dcda7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@35c95587, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@828e2d8, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@43e9eddf, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@548e70f0, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2b14628b]
-2022-08-05 09:42:36.988  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@8ba7408, testMethod = saveAndFindByPost@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:36.990 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+<pre>2022-08-05 09:50:23.827  INFO 12336 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [kakao.valuetogether.repository.DonationRepositoryTest], using SpringBootContextLoader
+2022-08-05 09:50:23.828  INFO 12336 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [kakao.valuetogether.repository.DonationRepositoryTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-08-05 09:50:23.828  INFO 12336 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [kakao.valuetogether.repository.DonationRepositoryTest]: DonationRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-08-05 09:50:23.830  INFO 12336 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration kakao.valuetogether.ValuetogetherApplication for test class kakao.valuetogether.repository.DonationRepositoryTest
+2022-08-05 09:50:23.833  INFO 12336 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-08-05 09:50:23.834  INFO 12336 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5d267575, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6e512d7f, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2be49c8c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5f160341, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@31f5580b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@56a8b19f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5927473a, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@36c45b54, org.springframework.test.context.event.EventPublishingTestExecutionListener@2d6a6887, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3e5d10fc, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5da08e9a, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@49aa6081, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@377a1763, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@61f62b80, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@387bbd7a]
+2022-08-05 09:50:23.849  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2914f916, testMethod = saveAndFindByPost@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:23.851 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:36.991 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:36.994 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:23.851 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:23.851 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:23.852 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:23.864 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:36.9938542]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [10]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:36.9938542]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:36.996 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.020 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:23.865 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:23.865 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:23.8637519]
+2022-08-05 09:50:23.865 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:23.865 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:23.865 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2452]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:23.8637519]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:23.866 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:23.900 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         donation
         (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.021 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [10]
-2022-08-05 09:42:37.022 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [10]
-2022-08-05 09:42:37.029 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:23.900 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1783]
+2022-08-05 09:50:23.901 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2452]
+2022-08-05 09:50:23.919 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -206,26 +185,10 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.030 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [10]
-2022-08-05 09:42:37.032 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [10]
-2022-08-05 09:42:37.032 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [10]
-2022-08-05 09:42:37.037 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:23.920 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2452]
+2022-08-05 09:50:23.930 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1783]
+2022-08-05 09:50:23.930 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2452]
+2022-08-05 09:50:23.937 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -241,99 +204,62 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.post_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.post_id=?
-2022-08-05 09:42:37.038 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [10]
-2022-08-05 09:42:37.039 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [10]
-2022-08-05 09:42:37.039 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [10]
-2022-08-05 09:42:37.045  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@8ba7408, testMethod = saveAndFindByPost@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
-2022-08-05 09:42:37.048  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@27b9d5b7, testMethod = donateCheer@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:37.050 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:23.940 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1783]
+2022-08-05 09:50:23.947 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1783]
+2022-08-05 09:50:23.948 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2452]
+2022-08-05 09:50:23.984  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2914f916, testMethod = saveAndFindByPost@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:23.994  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@761d679f, testMethod = donateCheer@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:23.996 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:37.051 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:37.053 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:23.996 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:23.997 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:24.004 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:37.0523922]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [11]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:37.0523922]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:37.054 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.056 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:24.0040709]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2453]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:24.0040709]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:24.005 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:24.016 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         donation
         (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.057 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [11]
-2022-08-05 09:42:37.058 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [11]
-2022-08-05 09:42:37.059 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.017 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1784]
+2022-08-05 09:50:24.018 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2453]
+2022-08-05 09:50:24.025 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -349,99 +275,62 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.060 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [11]
-2022-08-05 09:42:37.061 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [11]
-2022-08-05 09:42:37.062 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [11]
-2022-08-05 09:42:37.067  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@27b9d5b7, testMethod = donateCheer@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
-2022-08-05 09:42:37.070  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2fc7c36a, testMethod = donateShare@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:37.073 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.026 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2453]
+2022-08-05 09:50:24.036 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1784]
+2022-08-05 09:50:24.036 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2453]
+2022-08-05 09:50:24.055  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@761d679f, testMethod = donateCheer@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:24.065  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@628190ec, testMethod = donateShare@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:24.067 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:37.074 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:37.076 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:24.068 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:24.076 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:37.0756055]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [12]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:37.0756055]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:37.077 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.080 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.076 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:24.0767138]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2454]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:24.0767138]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:24.077 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:24.086 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         donation
         (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.080 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [12]
-2022-08-05 09:42:37.081 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [12]
-2022-08-05 09:42:37.082 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1785]
+2022-08-05 09:50:24.086 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2454]
+2022-08-05 09:50:24.096 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -457,99 +346,133 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.083 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [12]
-2022-08-05 09:42:37.084 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [12]
-2022-08-05 09:42:37.084 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [12]
-2022-08-05 09:42:37.089  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2fc7c36a, testMethod = donateShare@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
-2022-08-05 09:42:37.092  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2582e213, testMethod = donateComment@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:37.094 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.096 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2454]
+2022-08-05 09:50:24.105 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1785]
+2022-08-05 09:50:24.105 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2454]
+2022-08-05 09:50:24.169  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@628190ec, testMethod = donateShare@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:24.180  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@53d3ae89, testMethod = donateComment@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:24.182 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.183 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:24.184 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:24.192 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        post
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:24.1916591]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2455]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:24.1916591]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:24.193 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:24.194 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:24.194 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:24.209 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        donation
+        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1786]
+2022-08-05 09:50:24.210 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2455]
+2022-08-05 09:50:24.217 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        donation0_.post_id as post_id10_1_,
+        donation0_.member_id as member_i9_1_,
+        donation0_.cheer_donation as cheer_do1_1_,
+        donation0_.comment_donation as comment_2_1_,
+        donation0_.direct_donation as direct_d3_1_,
+        donation0_.share_donation as share_do4_1_,
+        donation0_.count_cheer_donation as count_ch5_1_,
+        donation0_.count_comment_donation as count_co6_1_,
+        donation0_.count_direct_donation as count_di7_1_,
+        donation0_.count_share_donation as count_sh8_1_ 
+    from
+        donation donation0_ 
+    where
+        donation0_.member_id=?
+2022-08-05 09:50:24.219 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2455]
+2022-08-05 09:50:24.230 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1786]
+2022-08-05 09:50:24.231 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2455]
+2022-08-05 09:50:24.250  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@53d3ae89, testMethod = donateComment@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:24.258  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@77227b1f, testMethod = donateDirect@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:24.260 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:37.095 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:37.097 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:24.261 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:24.262 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:24.276 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.097 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:37.0966449]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [13]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:37.0966449]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:37.098 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.100 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:24.275208]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2456]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:24.275208]
+2022-08-05 09:50:24.276 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:24.277 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:24.277 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:24.277 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:24.277 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:24.286 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         donation
         (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [13]
-2022-08-05 09:42:37.101 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [13]
-2022-08-05 09:42:37.102 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.286 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.286 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.286 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:24.286 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1787]
+2022-08-05 09:50:24.287 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2456]
+2022-08-05 09:50:24.296 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -565,134 +488,10 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.103 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
-2022-08-05 09:42:37.104 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [13]
-2022-08-05 09:42:37.105 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [13]
-2022-08-05 09:42:37.110  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@2582e213, testMethod = donateComment@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
-2022-08-05 09:42:37.116  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@6db99c79, testMethod = donateDirect@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:37.118 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.119 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:37.119 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.119 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:37.119 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.120 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:37.120 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:37.120 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:37.120 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:37.122 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.122 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:37.1220352]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [14]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:37.1220352]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:37.123 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.126 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.127 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.128 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.128 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [14]
-2022-08-05 09:42:37.128 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [14]
-2022-08-05 09:42:37.129 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.130 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
-2022-08-05 09:42:37.131 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [14]
-2022-08-05 09:42:37.131 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [14]
-2022-08-05 09:42:37.134 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.296 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2456]
+2022-08-05 09:50:24.308 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1787]
+2022-08-05 09:50:24.308 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2456]
+2022-08-05 09:50:24.312 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     update
         donation 
     set
@@ -707,32 +506,17 @@ Hibernate:
     where
         post_id=? 
         and member_id=?
-Hibernate: 
-    update
-        donation 
-    set
-        cheer_donation=?,
-        comment_donation=?,
-        direct_donation=?,
-        share_donation=?,
-        count_cheer_donation=?,
-        count_comment_donation=?,
-        count_direct_donation=?,
-        count_share_donation=? 
-    where
-        post_id=? 
-        and member_id=?
-2022-08-05 09:42:37.135 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1000]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [14]
-2022-08-05 09:42:37.136 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [14]
-2022-08-05 09:42:37.139 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.312 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.312 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.312 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [1000]
+2022-08-05 09:50:24.312 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.312 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.313 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.313 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.313 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.313 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1787]
+2022-08-05 09:50:24.313 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2456]
+2022-08-05 09:50:24.321 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -748,99 +532,62 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.140 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
-2022-08-05 09:42:37.141 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [14]
-2022-08-05 09:42:37.141 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [14]
-2022-08-05 09:42:37.147  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@6db99c79, testMethod = donateDirect@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
-2022-08-05 09:42:37.150  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@6db160b4, testMethod = saveAndFindByMember@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@a1be5cb]; rollback [true]
-2022-08-05 09:42:37.152 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.322 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2456]
+2022-08-05 09:50:24.331 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1787]
+2022-08-05 09:50:24.331 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2456]
+2022-08-05 09:50:24.351  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@77227b1f, testMethod = donateDirect@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:24.360  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@5fe7454c, testMethod = saveAndFindByMember@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@c8d20bb]; rollback [true]
+2022-08-05 09:50:24.362 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
+        (member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        member
-        (member_id, member_address, member_birthday, member_email, member_gender, member_name, member_nickname, member_phone, member_pw) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
-2022-08-05 09:42:37.153 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
-2022-08-05 09:42:37.155 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [asdfasd]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [email]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [asdf]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [name]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [asfsa]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [111]
+2022-08-05 09:50:24.363 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [pw]
+2022-08-05 09:50:24.370 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
+        (article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
     values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        post
-        (post_id, article, end_date, image, is_confirm, member_id, start_date, sub_title, target, target_amount, title, topic) 
-    values
-        (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.155 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
-2022-08-05 09:42:37.155 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:42:37.154425]
-2022-08-05 09:42:37.155 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [15]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:42:37.154425]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
-2022-08-05 09:42:37.156 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
-2022-08-05 09:42:37.158 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [article]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [TIMESTAMP] - [2022-08-05 09:50:24.370316]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [static/image]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [BOOLEAN] - [false]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [BIGINT] - [2457]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [TIMESTAMP] - [2022-08-05 09:50:24.370316]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [VARCHAR] - [subTitle]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [VARCHAR] - [실버세대]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [INTEGER] - [100000]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [VARCHAR] - [title]
+2022-08-05 09:50:24.371 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [11] as [VARCHAR] - [건강한삶]
+2022-08-05 09:50:24.379 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         donation
         (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: 
-    insert 
-    into
-        donation
-        (cheer_donation, comment_donation, direct_donation, share_donation, count_cheer_donation, count_comment_donation, count_direct_donation, count_share_donation, post_id, member_id) 
-    values
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [15]
-2022-08-05 09:42:37.159 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [15]
-2022-08-05 09:42:37.160 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [8] as [INTEGER] - [0]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [9] as [BIGINT] - [1788]
+2022-08-05 09:50:24.380 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [10] as [BIGINT] - [2457]
+2022-08-05 09:50:24.387 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -856,7 +603,10 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-Hibernate: 
+2022-08-05 09:50:24.387 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2457]
+2022-08-05 09:50:24.397 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1788]
+2022-08-05 09:50:24.397 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2457]
+2022-08-05 09:50:24.398 DEBUG 12336 --- [    Test worker] org.hibernate.SQL                        : 
     select
         donation0_.post_id as post_id10_1_,
         donation0_.member_id as member_i9_1_,
@@ -872,45 +622,10 @@ Hibernate:
         donation donation0_ 
     where
         donation0_.member_id=?
-2022-08-05 09:42:37.161 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
-2022-08-05 09:42:37.163 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [15]
-2022-08-05 09:42:37.163 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [15]
-2022-08-05 09:42:37.164 DEBUG 31248 --- [    Test worker] org.hibernate.SQL                        : 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-Hibernate: 
-    select
-        donation0_.post_id as post_id10_1_,
-        donation0_.member_id as member_i9_1_,
-        donation0_.cheer_donation as cheer_do1_1_,
-        donation0_.comment_donation as comment_2_1_,
-        donation0_.direct_donation as direct_d3_1_,
-        donation0_.share_donation as share_do4_1_,
-        donation0_.count_cheer_donation as count_ch5_1_,
-        donation0_.count_comment_donation as count_co6_1_,
-        donation0_.count_direct_donation as count_di7_1_,
-        donation0_.count_share_donation as count_sh8_1_ 
-    from
-        donation donation0_ 
-    where
-        donation0_.member_id=?
-2022-08-05 09:42:37.164 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
-2022-08-05 09:42:37.166 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [15]
-2022-08-05 09:42:37.166 TRACE 31248 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [15]
-2022-08-05 09:42:37.169  INFO 31248 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@47483211 testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@6db160b4, testMethod = saveAndFindByMember@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@17616c07 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@129b4fe2, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@60dce7ea, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1ef3efa8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5c3b6c6e, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@14c01636, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@34b9f960], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
+2022-08-05 09:50:24.399 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [2457]
+2022-08-05 09:50:24.407 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([post_id10_1_] : [BIGINT]) - [1788]
+2022-08-05 09:50:24.407 TRACE 12336 --- [    Test worker] o.h.type.descriptor.sql.BasicExtractor   : extracted value ([member_i9_1_] : [BIGINT]) - [2457]
+2022-08-05 09:50:24.432  INFO 12336 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@7066c00a testClass = DonationRepositoryTest, testInstance = kakao.valuetogether.repository.DonationRepositoryTest@5fe7454c, testMethod = saveAndFindByMember@DonationRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2140de63 testClass = DonationRepositoryTest, locations = '{}', classes = '{class kakao.valuetogether.ValuetogetherApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@19ae6bb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@fd8294b, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6f8f9349, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@75f5fd58, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b9ce1bf, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@19b89d4], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true, 'org.springframework.test.context.event.ApplicationEventsTestExecutionListener.recordApplicationEvents' -&gt; false]]
 </pre>
 </span>
 </div>
@@ -922,7 +637,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4.1</a> at 2022. 8. 5. 오전 9:42:38</p>
+<a href="http://www.gradle.org">Gradle 7.4.1</a> at 2022. 8. 5. 오전 9:50:27</p>
 </div>
 </div>
 </body>

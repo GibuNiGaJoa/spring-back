@@ -1,6 +1,6 @@
 package kakao.valuetogether.repository;
 
-import kakao.valuetogether.domain.Donation;
+import kakao.valuetogether.domain.DonationDetail;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.enums.DonationType;
@@ -8,27 +8,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
 
 @SpringBootTest
 @Transactional
-@Rollback(value = false)
-public class DonationRepositoryTest {
+//@Rollback(value = false)
+class DonationDetailRepositoryTest {
 
-    @Autowired private DonationRepository donationRepository;
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private PostRepository postRepository;
+    @Autowired DonationDetailRepository donationDetailRepository;
+    @Autowired MemberRepository memberRepository;
+    @Autowired PostRepository postRepository;
 
     Member savedMember;
     Post savedPost;
-    Donation savedDonation;
+    DonationDetail savedDonationDetail;
 
     @BeforeEach
     public void setUp() {
@@ -38,25 +36,16 @@ public class DonationRepositoryTest {
 
         Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1000), new Date(2000), "image", false);
         Long postId = postRepository.save(post);
-        savedPost = postRepository.findOneById(postId);
+        this.savedPost = postRepository.findOneById(postId);
 
-        Donation donation = new Donation(savedPost);
-        donationRepository.createDonation(donation);
-        savedDonation = donationRepository.findByPostId(savedPost.getId());
+        DonationDetail donationDetail = new DonationDetail(savedMember, savedPost, Timestamp.valueOf(LocalDateTime.now()), 100, DonationType.응원참여);
+        Long donationDetailId = donationDetailRepository.createDonationDetail(donationDetail);
+        this.savedDonationDetail = donationDetailRepository.findById(donationDetailId);
     }
 
     @Test
-    public void updateDonation() {
-        Donation findDonation = donationRepository.findByPostId(savedPost.getId());
-        assertThat(findDonation.getAmountCheer()).isEqualTo(0);
-
-        findDonation.donate(DonationType.응원참여, 100);
-        donationRepository.updateDonation(findDonation);
-        assertThat(findDonation.getAmountCheer()).isEqualTo(100);
-    }
-
-    @Test
-    public void deleteDonation() {
-        donationRepository.deleteDonation(savedDonation);
+    public void findDonationDetailByMember() {
+        List<DonationDetail> result = donationDetailRepository.findDonationDetailsByMember(savedMember);
+        result.forEach(donationDetail -> System.out.println("donationDetail = " + donationDetail));
     }
 }

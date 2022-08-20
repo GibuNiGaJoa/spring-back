@@ -1,122 +1,90 @@
-//package kakao.valuetogether.service;
-//
-//import kakao.valuetogether.domain.*;
-//import kakao.valuetogether.domain.enums.Target;
-//import kakao.valuetogether.domain.enums.Topic;
-//import kakao.valuetogether.repository.DonationRepository;
-//import kakao.valuetogether.repository.MemberRepository;
-//import kakao.valuetogether.repository.PostRepository;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.sql.Timestamp;
-//import java.time.LocalDateTime;
-//import java.util.Date;
-//import java.util.Optional;
-//
-//import static org.assertj.core.api.Assertions.assertThat;
-//import static org.assertj.core.api.Assertions.fail;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
-//
-//@SpringBootTest
-//@Transactional
-//public class DonationServiceTest {
-//
-//    @Autowired MemberRepository memberRepository;
-//    @Autowired PostRepository postRepository;
-//    @Autowired DonationRepository donationRepository;
-//    @Autowired DonationService donationService;
-//
-//    private Member findMember;
-//    private Post findPost;
-//    private Donation donation, findDonation;
-//
-//    @BeforeEach
-//    void beforeEach() {
-//        findMember = getFindMember();
-//        findPost = getFindPost(findMember);
-//        donation = getDonation(findMember, findPost);
-//        findDonation = donationRepository.findByMember(findMember);
-//    }
-//
-//    @Test
-//    public void donateByDirect() {
-//        donationService.donateByDirect(Optional.of(findMember), null, 1000);
-//        Donation donationByMember = donationRepository.findByMember(findMember);
-//        assertThat(donationByMember.getAmountDirect()).isEqualTo(1000);
-//        assertThat(donationByMember.getCountDirect()).isEqualTo(1);
-//
-//        // TODO: member 파라미터에 null을 주었을 때 오류 발생 원인 알아보기
-//        donationService.donateByDirect(Optional.empty(), Optional.of(findPost), 10000);
-//        Donation donationByPost = donationRepository.findByPost(findPost);
-//        assertThat(donationByPost.getAmountDirect()).isEqualTo(11000);
-//        assertThat(donationByPost.getCountDirect()).isEqualTo(2);
-//    }
-//
-//    @Test
-//    public void donateByDirect_Exception() {
-//        assertThrows(RuntimeException.class, () -> {
-//            donationService.donateByDirect(Optional.empty(), Optional.empty(), 5000);
-//        });
-//    }
-//
-//    @Test
-//    public void donateByCheer() {
-//        donationService.donateByCheer(Optional.empty(), Optional.of(findPost));
-//        Donation donationByPost = donationRepository.findByPost(findPost);
-//        assertThat(donationByPost.getAmountCheer()).isEqualTo(100);
-//        assertThat(donationByPost.getCountCheer()).isEqualTo(1);
-//
-//        donationService.donateByCheer(Optional.of(findMember), Optional.empty());
-//        Donation donationByMember = donationRepository.findByMember(findMember);
-//        assertThat(donationByMember.getAmountCheer()).isEqualTo(200);
-//        assertThat(donationByMember.getCountCheer()).isEqualTo(2);
-//    }
-//
-//    @Test
-//    public void donateByShare() {
-//        donationService.donateByShare(Optional.empty(), Optional.of(findPost));
-//        Donation donationByPost = donationRepository.findByPost(findPost);
-//        assertThat(donationByPost.getAmountShare()).isEqualTo(100);
-//        assertThat(donationByPost.getCountShare()).isEqualTo(1);
-//
-//        donationService.donateByShare(Optional.of(findMember), Optional.empty());
-//        Donation donationByMember = donationRepository.findByMember(findMember);
-//        assertThat(donationByMember.getAmountShare()).isEqualTo(200);
-//        assertThat(donationByMember.getCountShare()).isEqualTo(2);
-//    }
-//
-//    @Test
-//    public void donateByComment() {
-//        donationService.donateByComment(Optional.empty(), Optional.of(findPost));
-//        Donation donationByPost = donationRepository.findByPost(findPost);
-//        assertThat(donationByPost.getAmountComment()).isEqualTo(100);
-//        assertThat(donationByPost.getCountComment()).isEqualTo(1);
-//
-//        donationService.donateByComment(Optional.of(findMember), Optional.empty());
-//        Donation donationByMember = donationRepository.findByMember(findMember);
-//        assertThat(donationByMember.getAmountComment()).isEqualTo(200);
-//        assertThat(donationByMember.getCountComment()).isEqualTo(2);
-//    }
-//
-//    public Member getFindMember() {
-//        Member member = new Member("email", "pw", "name", "111", "asdfasd", "asdf", "asfsa", "asdf");
-//        Long memberSavedId = memberRepository.save(member);
-//        return memberRepository.findById(memberSavedId);
-//    }
-//
-//    public Post getFindPost(Member findMember) {
-//        Post post = new Post(findMember, "title", "subTitle", "article", "static/image", Topic.건강한삶, Target.실버세대, 100000, Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()), false);
-//        Long postSavedId = postRepository.save(post);
-//        return postRepository.findOneById(postSavedId);
-//    }
-//
-//    public Donation getDonation(Member findMember, Post findPost) {
-//        Donation donation = new Donation(findMember, findPost);
-//        donationRepository.save(donation);
-//        return donationRepository.findByMember(findMember);
-//    }
-//}
+package kakao.valuetogether.service;
+
+import kakao.valuetogether.domain.Donation;
+import kakao.valuetogether.domain.DonationDetail;
+import kakao.valuetogether.domain.Member;
+import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.enums.DonationType;
+import kakao.valuetogether.dto.DonationRequestDTO;
+import kakao.valuetogether.dto.DonationResponseDTO;
+import kakao.valuetogether.repository.MemberRepository;
+import kakao.valuetogether.repository.PostRepository;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
+@Transactional
+@Rollback(value = false)
+public class DonationServiceTest {
+
+    @Autowired private DonationService donationService;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private PostRepository postRepository;
+
+    Member savedMember;
+    Post savedPost;
+    DonationRequestDTO request;
+
+    DonationType donationType = DonationType.직접참여;
+    Integer donationAmount = 6666;
+    Date donationDate = Date.valueOf(LocalDate.now());
+
+    @BeforeEach
+    public void setUp() {
+        Member member = Member.builder().email("email").name("name").pw("pw").nickname("nickname").birthday("birthday").gender("man").address("address").phone("01077239811").build();
+        Long memberId = memberRepository.save(member);
+        this.savedMember = memberRepository.findById(memberId);
+
+        Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1111), new Date(2222), "image", false);
+        Long postId = postRepository.save(post);
+        this.savedPost = postRepository.findOneById(postId);
+
+        request = new DonationRequestDTO(this.savedPost.getId(), this.savedMember.getId(), donationType, donationAmount, donationDate);
+        donationService.createDonation(request);
+    }
+
+    @Test
+    public void createDonation_Post() {
+        Post post = new Post(savedMember, "title", "proposer", "content", 1000, new Date(1111), new Date(2222), "image", false);
+        donationService.createDonation(post);
+    }
+
+    @Test
+    public void donate() {
+        donationService.donate(request);
+    }
+
+    @Test
+    public void findDonationByPost() {
+        donationService.donate(request);
+
+        Donation findDonation = donationService.findDonationByPost(request);
+        assertThat(findDonation.getAmountDirect()).isEqualTo(donationAmount);
+    }
+
+    @Test
+    public void findDonationDetailsByMember() {
+        donationService.donate(request);
+
+        List<DonationResponseDTO> result = donationService.findDonationDetailByMember(request);
+        result.forEach(donationDetail -> System.out.println("donationDetail = " + donationDetail));
+    }
+
+    @Test
+    public void removeDonation() {
+        donationService.removeDonation(request);
+        Donation result = donationService.findDonationByPost(request);
+        Assertions.assertThat(result).isEqualTo(null);
+    }
+}

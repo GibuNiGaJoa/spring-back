@@ -3,6 +3,8 @@ package kakao.valuetogether.api;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.dto.DonationRequestDTO;
+import kakao.valuetogether.dto.DonationResponseDTO;
 import kakao.valuetogether.service.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,21 +17,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-@RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
+@RestController
 @RequiredArgsConstructor
 public class PostApiController {
 
     private final PostService postService;
-
     private final MemberService memberService;
-
     private final TagService tagService;
-
     private final TagPostService tagPostService;
-
     private final LinkService linkService;
     private final JwtService jwtService;
+    private final DonationService donationService;
 
     private final CommentService commentService;
 
@@ -44,7 +42,6 @@ public class PostApiController {
     @Data
     static class ProposeResponse {
         private String proposer;
-
         public ProposeResponse(String proposer) {
             this.proposer = proposer;
         }
@@ -52,7 +49,8 @@ public class PostApiController {
 
     //기부 제안하기
     @PostMapping("fundraisings/propose/project")
-    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid CreatedPostRequest request) {
+    public CreatedPostResponse proposePost(@RequestHeader(value = "Authorization") String token,
+                                           @RequestBody @Valid CreatedPostRequest request) {
 
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
@@ -67,6 +65,9 @@ public class PostApiController {
         post.setImage(request.getImage());
         Long postId = postService.propose(post);
         Post findPost = postService.findOneById(postId);
+
+        // TODO: test
+        donationService.createDonation(findPost);
 
         tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTopic()), findPost));
         tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTarget()), findPost));
@@ -115,6 +116,7 @@ public class PostApiController {
     @GetMapping("fundraisings/{id}")
     public FindPostResponse findPost(@PathVariable("id") Long id) {
         Post findPost = postService.findOneById(id);
+
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
         List<TagDto> tagList = findTags.stream()
                 .map(m -> new TagDto(m.getTagName()))
@@ -125,14 +127,19 @@ public class PostApiController {
                 .map(m -> new LinkDto(m.getLink()))
                 .collect(Collectors.toList());
 
+        Donation donation = donationService.findDonationByPost(findPost);
+        DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
+
         List<Comment> findComments = commentService.findComment(findPost);
         List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(),m.getMember().getNickname(),m.getContent(),m.getDate(),m.getLikes()))
+                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getCommentSaveDate(), m.getLikes()))
                 .collect(Collectors.toList());
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
-                findPost.getTargetAmount(), findPost.getStartDate(), findPost.getEndDate(), tagList, linkList, findPost.getImage(),commentList);
+                findPost.getTargetAmount(), findPost.getStartDate(),
+                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
+                donationResponse,commentList);
         return findPostResponse;
     }
 
@@ -148,6 +155,9 @@ public class PostApiController {
         private T tag;
         private T link;
         private String image;
+
+        private DonationResponseDTO donation;
+
         private T comment;
     }
 
