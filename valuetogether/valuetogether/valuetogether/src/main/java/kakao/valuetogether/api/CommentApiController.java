@@ -30,7 +30,7 @@ public class CommentApiController {
         Post findPost = postService.findOneById(id);
         Comment comment = new Comment(findMember, findPost);
         comment.setContent(request.getContent());
-        comment.setDate(request.getDate());
+        comment.setCommentSaveDate(request.getDate());
 
         commentService.enroll(comment);
 
