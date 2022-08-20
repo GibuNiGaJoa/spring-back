@@ -139,7 +139,7 @@ public class PostApiController {
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
                 findPost.getTargetAmount(), findPost.getStartDate(),
                 findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-                donationResponse,commentList);
+                donationResponse, commentList);
         return findPostResponse;
     }
 

@@ -44,19 +44,4 @@ public class DonationRepositoryTest {
         donationRepository.createDonation(donation);
         savedDonation = donationRepository.findByPostId(savedPost.getId());
     }
-
-    @Test
-    public void updateDonation() {
-        Donation findDonation = donationRepository.findByPostId(savedPost.getId());
-        assertThat(findDonation.getAmountCheer()).isEqualTo(0);
-
-        findDonation.donate(DonationType.응원참여, 100);
-        donationRepository.updateDonation(findDonation);
-        assertThat(findDonation.getAmountCheer()).isEqualTo(100);
-    }
-
-    @Test
-    public void deleteDonation() {
-        donationRepository.deleteDonation(savedDonation);
-    }
 }
