@@ -131,7 +131,7 @@ public class PostApiController {
 
         List<Comment> findComments = commentService.findComment(findPost);
         List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.date(), m.getLikes()))
+                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes()))
                 .collect(Collectors.toList());
 
         FindPostResponse findPostResponse = new FindPostResponse(

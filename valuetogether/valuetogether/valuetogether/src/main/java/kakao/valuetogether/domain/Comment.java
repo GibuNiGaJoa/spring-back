@@ -31,15 +31,15 @@ public class Comment implements Serializable {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date commentSaveDate;
+    private Date date;
 
     private Integer likes = 0;
 
-    public Comment(Member member, Post post, String content, Date commentSaveDate, Integer likes) {
+    public Comment(Member member, Post post, String content, Date date, Integer likes) {
         this.member = member;
         this.post = post;
         this.content = content;
-        this.commentSaveDate = commentSaveDate;
+        this.date = date;
         this.likes = likes;
     }
 
