@@ -1,9 +1,7 @@
 package kakao.valuetogether.service;
 
-import kakao.valuetogether.domain.Donation;
-import kakao.valuetogether.domain.DonationDetail;
-import kakao.valuetogether.domain.Member;
-import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.api.CommentApiController;
+import kakao.valuetogether.domain.*;
 import kakao.valuetogether.domain.enums.DonationType;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.dto.DonationResponseDTO;
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,6 +24,7 @@ public class DonationService {
     private final DonationDetailRepository donationDetailRepository;
     private final PostService postService;
     private final MemberService memberService;
+    private final CommentService commentService;
 
     public void createDonation(DonationRequestDTO request) {
         Donation donation = new Donation(postService.findOneById(request.getPostId()));
@@ -37,23 +37,48 @@ public class DonationService {
     }
 
     public void donate(DonationRequestDTO request, Long memberId) {
+        Member findMember = memberService.findOne(memberId);
+
+        if(request.getDonationType() == DonationType.직접참여) {
+            Post findPost = postService.findOneById(request.getPostId());
+            Comment comment = new Comment(findMember, findPost);
+            comment.setContent(request.getContent());
+            comment.setDate(request.getDonationDate());
+            commentService.enroll(comment);
+        }
+
         Donation findDonation = donationRepository.findByPostId(request.getPostId());
         findDonation.donate(request.getDonationType(), request.getDonationAmount());
         donationRepository.updateDonation(findDonation);
 
         DonationDetail donationDetail = DonationDetail.builder()
-                .member(memberService.findOne(memberId))
+                .member(findMember)
                 .post(postService.findOneById(request.getPostId()))
                 .donationType(request.getDonationType())
                 .donationAmount(defineDonationAmount(request.getDonationType(), request.getDonationAmount()))
                 .donationDate(request.getDonationDate()).build();
         donationDetailRepository.createDonationDetail(donationDetail);
     }
+
     private Integer defineDonationAmount(DonationType donationType, Integer donationAmount) {
         if(donationType == DonationType.직접참여)
             return donationAmount;
         else
             return 100;
+    }
+
+    public void donateComment(Long postId, Long memberId, Date donationDate) {
+        Donation findDonation = donationRepository.findByPostId(postId);
+        findDonation.donate(DonationType.댓글참여, 100);
+        donationRepository.updateDonation(findDonation);
+
+        DonationDetail donationDetail = DonationDetail.builder()
+                .member(memberService.findOne(memberId))
+                .post(postService.findOneById(postId))
+                .donationType(DonationType.댓글참여)
+                .donationAmount(100)
+                .donationDate(donationDate).build();
+        donationDetailRepository.createDonationDetail(donationDetail);
     }
 
     public Donation findDonationByPost(DonationRequestDTO request) {

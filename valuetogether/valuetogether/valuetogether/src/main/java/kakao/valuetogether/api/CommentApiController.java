@@ -4,6 +4,8 @@ import kakao.valuetogether.domain.Comment;
 import kakao.valuetogether.domain.LikeDetail;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.enums.DonationType;
+import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.service.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,17 +24,21 @@ public class CommentApiController {
 
     private final PostService postService;
     private final LikeDetailService likeDetailService;
+    private final DonationService donationService;
 
     @PostMapping("fundraisings/{id}/comment")
     public CreatedCommentResponse enrollComment(@RequestHeader(value = "Authorization") String token, @PathVariable("id") Long id, @RequestBody @Valid CreatedCommentRequest request) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
         Post findPost = postService.findOneById(id);
+
         Comment comment = new Comment(findMember, findPost);
         comment.setContent(request.getContent());
         comment.setDate(request.getDate());
 
         commentService.enroll(comment);
+
+        donationService.donateComment(findPost.getId(), memberId, request.getDate());
 
         return new CreatedCommentResponse(true);
     }
@@ -41,6 +47,10 @@ public class CommentApiController {
     static class CreatedCommentRequest {
         private String content;
         private Date date;
+
+        private DonationType donationType = DonationType.댓글참여;
+        private Integer donationAmount = 100;
+        private Date donationDate;
     }
 
     @Data

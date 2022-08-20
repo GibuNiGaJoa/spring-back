@@ -24,7 +24,6 @@ public class DonationDetail {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", unique = true)
-//    @JsonIgnore
     private Post post;
 
     @Column(name = "donation_date", nullable = false)

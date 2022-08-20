@@ -20,12 +20,15 @@ public class DonationApiController {
     private final DonationService donationService;
     private final JwtService jwtService;
 
+    /**
+     * @param token
+     * @param request: postId, donationType, donationDate, donationAmount
+     */
     @PostMapping("/donate")
-    public ResponseEntity donate(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid DonationRequestDTO request) {
+    public void donate(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid DonationRequestDTO request) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
 
         donationService.donate(request, memberId);
-        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/my/donations")
