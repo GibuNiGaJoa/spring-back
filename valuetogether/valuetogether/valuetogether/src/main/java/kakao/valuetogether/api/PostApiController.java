@@ -66,7 +66,6 @@ public class PostApiController {
         Long postId = postService.propose(post);
         Post findPost = postService.findOneById(postId);
 
-        // TODO: test
         donationService.createDonation(findPost);
 
         tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTopic()), findPost));
@@ -132,7 +131,7 @@ public class PostApiController {
 
         List<Comment> findComments = commentService.findComment(findPost);
         List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getCommentSaveDate(), m.getLikes()))
+                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.date(), m.getLikes()))
                 .collect(Collectors.toList());
 
         FindPostResponse findPostResponse = new FindPostResponse(

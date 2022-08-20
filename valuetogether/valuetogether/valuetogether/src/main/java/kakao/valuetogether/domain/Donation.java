@@ -23,14 +23,14 @@ public class Donation {
 
     @Column(name = "direct_donation")
     private Integer amountDirect;
+    @Column(name = "count_direct_donation")
+    private Integer countDirect;
     @Column(name = "cheer_donation")
     private Integer amountCheer;
     @Column(name = "share_donation")
     private Integer amountShare;
     @Column(name = "comment_donation")
     private Integer amountComment;
-    @Column(name = "count_direct_donation")
-    private Integer countDirect;
     @Column(name = "total_amount")
     private Integer totalAmount;
 
