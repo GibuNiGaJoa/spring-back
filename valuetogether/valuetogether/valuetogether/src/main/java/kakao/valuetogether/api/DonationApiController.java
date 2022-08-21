@@ -27,7 +27,6 @@ public class DonationApiController {
     @PostMapping("/donate")
     public void donate(@RequestHeader(value = "Authorization") String token, @RequestBody @Valid DonationRequestDTO request) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
-
         donationService.donate(request, memberId);
     }
 

@@ -39,13 +39,13 @@ public class DonationService {
     public void donate(DonationRequestDTO request, Long memberId) {
         Member findMember = memberService.findOne(memberId);
 
-        if(request.getDonationType() == DonationType.직접참여) {
-            Post findPost = postService.findOneById(request.getPostId());
-            Comment comment = new Comment(findMember, findPost);
-            comment.setContent(request.getContent());
-            comment.setDate(request.getDonationDate());
-            commentService.enroll(comment);
-        }
+//        if(request.getDonationType() == DonationType.직접참여) {
+//            Post findPost = postService.findOneById(request.getPostId());
+//            Comment comment = new Comment(findMember, findPost);
+//            comment.setContent(request.getContent());
+//            comment.setDate(request.getDonationDate());
+//            commentService.enroll(comment);
+//        }
 
         Donation findDonation = donationRepository.findByPostId(request.getPostId());
         findDonation.donate(request.getDonationType(), request.getDonationAmount());
@@ -102,6 +102,7 @@ public class DonationService {
                     .donationDate(donationDetail.getDonationDate())
                     .donationAmount(donationDetail.getDonationAmount())
                     .donationType(donationDetail.getDonationType())
+                    .postTitle(donationDetail.getPost().getTitle())
                     .build());
         });
 
