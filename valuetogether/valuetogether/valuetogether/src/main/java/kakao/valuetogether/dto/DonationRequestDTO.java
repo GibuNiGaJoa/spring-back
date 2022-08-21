@@ -17,5 +17,5 @@ public class DonationRequestDTO {
     private Integer donationAmount;
     private Date donationDate;
 
-    private String content;
+    private String commentContent;
 }

@@ -30,7 +30,6 @@ public class DonationService {
         Donation donation = new Donation(postService.findOneById(request.getPostId()));
         donationRepository.createDonation(donation);
     }
-
     public void createDonation(Post post) {
         Donation donation = new Donation(post);
         donationRepository.createDonation(donation);
@@ -39,13 +38,14 @@ public class DonationService {
     public void donate(DonationRequestDTO request, Long memberId) {
         Member findMember = memberService.findOne(memberId);
 
-//        if(request.getDonationType() == DonationType.직접참여) {
-//            Post findPost = postService.findOneById(request.getPostId());
-//            Comment comment = new Comment(findMember, findPost);
-//            comment.setContent(request.getContent());
-//            comment.setDate(request.getDonationDate());
-//            commentService.enroll(comment);
-//        }
+        if(request.getDonationType() == DonationType.직접참여) {
+            Post findPost = postService.findOneById(request.getPostId());
+
+            Comment comment = new Comment(findMember, findPost);
+            comment.setContent(request.getCommentContent());
+            comment.setDate(request.getDonationDate());
+            commentService.enroll(comment);
+        }
 
         Donation findDonation = donationRepository.findByPostId(request.getPostId());
         findDonation.donate(request.getDonationType(), request.getDonationAmount());
@@ -67,13 +67,13 @@ public class DonationService {
             return 100;
     }
 
-    public void donateComment(Long postId, Long memberId, Date donationDate) {
+    public void donateComment(Member member, Long postId, Date donationDate) {
         Donation findDonation = donationRepository.findByPostId(postId);
         findDonation.donate(DonationType.댓글참여, 100);
         donationRepository.updateDonation(findDonation);
 
         DonationDetail donationDetail = DonationDetail.builder()
-                .member(memberService.findOne(memberId))
+                .member(member)
                 .post(postService.findOneById(postId))
                 .donationType(DonationType.댓글참여)
                 .donationAmount(100)
