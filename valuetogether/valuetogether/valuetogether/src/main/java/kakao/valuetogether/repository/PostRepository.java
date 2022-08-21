@@ -25,17 +25,17 @@ public class PostRepository {
     }
 
     public List<Post> findAllRandom() {
-        return em.createQuery("select p from Post p where p.endDate>=now() order by rand()", Post.class)
+        return em.createQuery("select distinct p from Post p where p.endDate>=now() order by rand()", Post.class)
                 .getResultList();
     }
 
     public List<Post> findAllNew() {
-        return em.createQuery("select p from Post p where p.endDate>=now() order by p.startDate desc", Post.class)
+        return em.createQuery("select distinct p from Post p where p.endDate>=now() order by p.startDate desc", Post.class)
                 .getResultList();
     }
 
     public List<Post> findAllEnd() {
-        return em.createQuery("select p from Post p where p.endDate>=now() order by p.endDate", Post.class)
+        return em.createQuery("select distinct p from Post p where p.endDate>=now() order by p.endDate", Post.class)
                 .getResultList();
     }
 

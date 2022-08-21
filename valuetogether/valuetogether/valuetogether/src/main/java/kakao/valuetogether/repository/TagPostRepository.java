@@ -29,19 +29,19 @@ public class TagPostRepository {
     }
 
     public List<Post> findAllPostRandomByCategory(Tag tag) {
-        List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by rand()", Post.class)
+        List<Post> postList = em.createQuery("select distinct p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by rand()", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
     }
     public List<Post> findAllPostNewByCategory(Tag tag) {
-        List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.startDate desc", Post.class)
+        List<Post> postList = em.createQuery("select distinct p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.startDate desc", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
     }
     public List<Post> findAllPostEndByCategory(Tag tag) {
-        List<Post> postList = em.createQuery("select p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.endDate", Post.class)
+        List<Post> postList = em.createQuery("select distinct p from TagPost t inner join t.post p on t.tag = :tag and t.post = p.id and p.endDate>=now() order by p.endDate", Post.class)
                 .setParameter("tag", tag)
                 .getResultList();
         return postList;
