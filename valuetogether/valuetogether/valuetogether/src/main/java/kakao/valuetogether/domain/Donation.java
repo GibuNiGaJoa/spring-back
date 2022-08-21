@@ -21,17 +21,17 @@ public class Donation {
     @MapsId
     private Post post;
 
-    @Column(name = "direct_donation")
+    @Column(name = "amount_direct")
     private Integer amountDirect;
-    @Column(name = "cheer_donation")
-    private Integer amountCheer;
-    @Column(name = "share_donation")
-    private Integer amountShare;
-    @Column(name = "comment_donation")
-    private Integer amountComment;
-    @Column(name = "count_direct_donation")
+    @Column(name = "count_direct")
     private Integer countDirect;
-    @Column(name = "total_amount")
+    @Column(name = "amount_cheer")
+    private Integer amountCheer;
+    @Column(name = "amount_share")
+    private Integer amountShare;
+    @Column(name = "amount_comment")
+    private Integer amountComment;
+    @Column(name = "amount_total")
     private Integer totalAmount;
 
     public Donation() {}

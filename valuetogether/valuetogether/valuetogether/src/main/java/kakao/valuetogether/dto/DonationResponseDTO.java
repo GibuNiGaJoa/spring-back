@@ -28,4 +28,6 @@ public class DonationResponseDTO {
     private Date donationDate;
     private Integer donationAmount;
     private DonationType donationType;
+
+    private String postTitle;
 }

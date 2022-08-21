@@ -5,6 +5,7 @@ import kakao.valuetogether.domain.enums.DonationType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-public class DonationDetail {
+public class DonationDetail implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "donation_detail_id")
@@ -23,8 +24,7 @@ public class DonationDetail {
     private Member member;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", unique = true)
-//    @JsonIgnore
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @Column(name = "donation_date", nullable = false)

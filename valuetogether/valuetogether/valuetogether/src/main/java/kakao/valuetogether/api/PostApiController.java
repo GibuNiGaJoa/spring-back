@@ -28,7 +28,6 @@ public class PostApiController {
     private final LinkService linkService;
     private final JwtService jwtService;
     private final DonationService donationService;
-
     private final CommentService commentService;
 
     //제안하기 전 로그인검증
@@ -38,7 +37,6 @@ public class PostApiController {
         Member findMember = memberService.findOne(findId);
         return new ProposeResponse(findMember.getName());
     }
-
     @Data
     static class ProposeResponse {
         private String proposer;
@@ -54,6 +52,7 @@ public class PostApiController {
 
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Member findMember = memberService.findOne(memberId);
+
         Post post = new Post();
         post.setMember(findMember);
         post.setTitle(request.getTitle());
@@ -63,10 +62,11 @@ public class PostApiController {
         post.setStartDate(request.getStartDate());
         post.setEndDate(request.getEndDate());
         post.setImage(request.getImage());
+        post.setIsConfirm(false);
+
         Long postId = postService.propose(post);
         Post findPost = postService.findOneById(postId);
 
-        // TODO: test
         donationService.createDonation(findPost);
 
         tagPostService.save(new TagPost(tagService.findIdByFullName(request.getTopic()), findPost));

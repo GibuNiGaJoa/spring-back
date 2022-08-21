@@ -12,8 +12,10 @@ import java.util.Date;
 @Data
 //@AllArgsConstructor
 public class DonationRequestDTO {
-    private Long postId, MemberId;
+    private Long postId;
     private DonationType donationType;
     private Integer donationAmount;
     private Date donationDate;
+
+    private String commentContent;
 }
