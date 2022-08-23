@@ -183,8 +183,6 @@ public class PostApiController {
         private Integer likes;
     }
 
-
-
     //전체게시글랜덤조회
     @GetMapping("fundraisings/now/sort1")
     public PostResult findAllRandomPost() {
