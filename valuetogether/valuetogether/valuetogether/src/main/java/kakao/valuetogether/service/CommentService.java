@@ -42,14 +42,24 @@ public class CommentService {
     public List<CommentResponseDTO> findComments(Post post, Member member) {
         List<Comment> findComments = commentRepository.findCommentByPost(post);
         List<CommentResponseDTO> commentList = null;
-        for (int i = 0; i < findComments.size(); i++) {
-            Optional<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(findComments.get(i), member);
-            if (findLikeDetail.isPresent()) {
-                commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
-                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(),true));
+//        for (int i = 0; i < findComments.size(); i++) {
+//            Optional<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(findComments.get(i), member);
+//            if (findLikeDetail.isPresent()) {
+//                commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
+//                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(),true));
+//            } else {
+//                commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
+//                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(), false));
+//            }
+//        }
+        for (Comment c : findComments) {
+            Optional<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(c, member);
+            if (findLikeDetail.isEmpty()) {
+                commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
+                        c.getContent(), c.getDate(), c.getLikes(), false));
             } else {
-                commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
-                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(), false));
+                commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
+                        c.getContent(), c.getDate(), c.getLikes(), true));
             }
         }
         return commentList;
