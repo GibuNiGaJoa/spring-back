@@ -34,4 +34,16 @@ public class LikeDetailRepository {
                 .getResultList();
         return findLikeDetail.stream().findAny();
     }
+
+    public List<LikeDetail> findStatus(Comment comment, Member member) {
+        List<LikeDetail> findLikeDetail = em.createQuery("select l from LikeDetail l where l.comment =:comment and l.member =:member", LikeDetail.class)
+                .setParameter("comment", comment)
+                .setParameter("member", member)
+                .getResultList();
+        return findLikeDetail;
+    }
+
+
+
+
 }
