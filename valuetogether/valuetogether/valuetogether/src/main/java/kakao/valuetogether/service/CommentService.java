@@ -46,10 +46,10 @@ public class CommentService {
             Optional<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(findComments.get(i), member);
             if (findLikeDetail.isPresent()) {
                 commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
-                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(),false));
-            } else if (findLikeDetail.isEmpty()) {
+                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(),true));
+            } else {
                 commentList.add(new CommentResponseDTO(findComments.get(i).getId(), findComments.get(i).getMember().getNickname(),
-                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(), true));
+                        findComments.get(i).getContent(), findComments.get(i).getDate(),findComments.get(i).getLikes(), false));
             }
         }
         return commentList;

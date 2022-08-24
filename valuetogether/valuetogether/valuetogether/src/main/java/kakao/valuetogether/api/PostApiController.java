@@ -134,14 +134,10 @@ public class PostApiController {
 
         List<CommentResponseDTO> commentList = null;
         if (token != null) {
-//            Long memberId = jwtService.parseJwtToken("Bearer " + token);
-//            Member findMember = memberService.findOne(memberId);
-//
-//            commentList = commentService.findComments(findPost, findMember);
-            List<Comment> findComments = commentService.findComment(findPost);
-            commentList = findComments.stream()
-                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false))
-                    .collect(Collectors.toList());
+            Long memberId = jwtService.parseJwtToken("Bearer " + token);
+            Member findMember = memberService.findOne(memberId);
+
+            commentList = commentService.findComments(findPost, findMember);
         }
 
         else {
