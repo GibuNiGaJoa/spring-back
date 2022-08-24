@@ -116,7 +116,7 @@ public class PostApiController {
 
     //게시글 정보 조회
     @GetMapping("fundraisings/{id}")
-    public FindPostResponse findPost(@RequestHeader(value = "Authorization",required = false) String token, @PathVariable("id") Long id) {
+    public FindPostResponse findPost(@PathVariable("id") Long id) {
         Post findPost = postService.findOneById(id);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
