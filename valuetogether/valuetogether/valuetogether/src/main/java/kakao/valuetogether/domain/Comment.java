@@ -30,7 +30,7 @@ public class Comment implements Serializable {
     private String content;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     private Integer likes = 0;
