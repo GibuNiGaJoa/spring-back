@@ -35,6 +35,9 @@ public class Comment implements Serializable {
 
     private Integer likes = 0;
 
+    @Column(name = "donation_amount")
+    private Integer donationAmount;
+
     public Comment(Member member, Post post, String content, Date date, Integer likes) {
         this.member = member;
         this.post = post;

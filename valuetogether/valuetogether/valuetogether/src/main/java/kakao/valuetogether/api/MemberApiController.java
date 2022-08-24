@@ -70,8 +70,12 @@ public class MemberApiController {
         private Boolean status;
     }
 
-    @PostMapping("/login/find_account")
+    @PostMapping("/login/find_account_guide/first")
     public ResponseEntity<MemberResponseDTO> findEmail(@RequestBody @Valid MemberRequestDTO request) {
+        return new ResponseEntity<>(memberService.findEmailByPhone(request), HttpStatus.FOUND);
+    }
+    @PostMapping("/login/find_account_guide/second")
+    public ResponseEntity<MemberResponseDTO> findEmail2(@RequestBody @Valid MemberRequestDTO request) {
         return new ResponseEntity<>(memberService.findEmailByPhone(request), HttpStatus.FOUND);
     }
 

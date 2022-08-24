@@ -10,7 +10,6 @@ import lombok.ToString;
 import java.util.Date;
 
 @Data
-//@AllArgsConstructor
 public class DonationRequestDTO {
     private Long postId;
     private DonationType donationType;

@@ -132,7 +132,7 @@ public class PostApiController {
 
         List<Comment> findComments = commentService.findComment(findPost);
         List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes()))
+                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(), m.getDonationAmount()))
                 .collect(Collectors.toList());
 
         FindPostResponse findPostResponse = new FindPostResponse(
@@ -181,6 +181,7 @@ public class PostApiController {
         private String content;
         private Date date;
         private Integer likes;
+        private Integer donationAmount;
     }
 
     //전체게시글랜덤조회

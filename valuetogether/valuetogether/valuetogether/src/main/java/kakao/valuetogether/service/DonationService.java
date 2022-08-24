@@ -44,6 +44,8 @@ public class DonationService {
             Comment comment = new Comment(findMember, findPost);
             comment.setContent(request.getCommentContent());
             comment.setDate(request.getDonationDate());
+            comment.setLikes(0);
+            comment.setDonationAmount(request.getDonationAmount());
             commentService.enroll(comment);
         }
 

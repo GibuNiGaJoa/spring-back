@@ -39,6 +39,8 @@ public class CommentApiController {
         Comment comment = new Comment(findMember, findPost);
         comment.setContent(request.getContent());
         comment.setDate(request.getDate());
+        comment.setLikes(0);
+        comment.setDonationAmount(100);
 
         commentService.enroll(comment);
 
