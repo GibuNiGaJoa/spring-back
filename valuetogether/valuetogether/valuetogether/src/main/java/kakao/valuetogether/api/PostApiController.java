@@ -7,10 +7,12 @@ import kakao.valuetogether.dto.CommentResponseDTO;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.dto.DonationResponseDTO;
 import kakao.valuetogether.service.*;
+import kakao.valuetogether.validation.RequestHeaderNonNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -115,7 +117,7 @@ public class PostApiController {
 
     //게시글 정보 조회
     @GetMapping("fundraisings/{id}")
-    public FindPostResponse findPost(@RequestHeader(value = "Authorization", required = false) String token, @PathVariable("id") Long id) {
+    public FindPostResponse findPost(@RequestHeader(value = "Authorization") @RequestHeaderNonNull String token, @PathVariable("id") Long id) {
         Post findPost = postService.findOneById(id);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
