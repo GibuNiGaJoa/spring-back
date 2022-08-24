@@ -40,7 +40,7 @@ public class LikeDetailRepository {
                 .setParameter("comment", comment)
                 .setParameter("member", member)
                 .getResultList();
-        return findLikeDetail.;
+        return findLikeDetail;
     }
 
 
