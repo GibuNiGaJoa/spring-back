@@ -53,7 +53,7 @@ public class CommentService {
 //            }
 //        }
         for (Comment c : findComments) {
-            Optional<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(c, member);
+            List<LikeDetail> findLikeDetail = likeDetailRepository.findStatus(c, member);
             if (findLikeDetail.isEmpty()) {
                 commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
                         c.getContent(), c.getDate(), c.getLikes(), false));

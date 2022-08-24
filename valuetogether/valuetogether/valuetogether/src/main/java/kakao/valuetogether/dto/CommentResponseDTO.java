@@ -10,7 +10,7 @@ import java.util.Date;
 public class CommentResponseDTO {
 
     private Long id;
-    private String name;
+    private String nickname;
     private String content;
     private Date date;
     private Integer likes;

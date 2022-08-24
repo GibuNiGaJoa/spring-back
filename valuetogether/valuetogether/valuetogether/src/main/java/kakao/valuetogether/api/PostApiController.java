@@ -189,7 +189,7 @@ public class PostApiController {
     @AllArgsConstructor
     static class CommentDto {
         private Long id;
-        private String name;
+        private String nickname;
         private String content;
         private Date date;
         private Integer likes;
