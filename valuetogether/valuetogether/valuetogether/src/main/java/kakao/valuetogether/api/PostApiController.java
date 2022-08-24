@@ -3,6 +3,7 @@ package kakao.valuetogether.api;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import kakao.valuetogether.domain.*;
+import kakao.valuetogether.dto.CommentResponseDTO;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.dto.DonationResponseDTO;
 import kakao.valuetogether.service.*;
@@ -114,7 +115,7 @@ public class PostApiController {
 
     //게시글 정보 조회
     @GetMapping("fundraisings/{id}")
-    public FindPostResponse findPost(@PathVariable("id") Long id) {
+    public FindPostResponse findPost(@RequestHeader(value = "Authorization", required = false) String token, @PathVariable("id") Long id) {
         Post findPost = postService.findOneById(id);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
@@ -130,10 +131,20 @@ public class PostApiController {
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
 
-        List<Comment> findComments = commentService.findComment(findPost);
-        List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes()))
-                .collect(Collectors.toList());
+        List<CommentResponseDTO> commentList = null;
+        if (token != null) {
+            Long memberId = jwtService.parseJwtToken("Bearer " + token);
+            Member findMember = memberService.findOne(memberId);
+
+            commentList = commentService.findComments(findPost, findMember);
+        }
+
+        else {
+            List<Comment> findComments = commentService.findComment(findPost);
+            commentList = findComments.stream()
+                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false))
+                    .collect(Collectors.toList());
+        }
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
