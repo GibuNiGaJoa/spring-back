@@ -132,6 +132,11 @@ public class PostApiController {
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
 
+//        List<Comment> findComments = commentService.findComment(findPost);
+//        List<CommentDto> commentList = findComments.stream()
+//                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(), m.getDonationAmount()))
+//                .collect(Collectors.toList());
+        
         List<CommentResponseDTO> commentList = null;
         if (token != null) {
             Long memberId = jwtService.parseJwtToken("Bearer " + token);
@@ -193,6 +198,7 @@ public class PostApiController {
         private String content;
         private Date date;
         private Integer likes;
+        private Integer donationAmount;
     }
 
     //전체게시글랜덤조회

@@ -1,10 +1,10 @@
 package kakao.valuetogether.service;
 
-import kakao.valuetogether.api.CommentApiController;
 import kakao.valuetogether.domain.*;
 import kakao.valuetogether.domain.enums.DonationType;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.dto.DonationResponseDTO;
+import kakao.valuetogether.dto.MyPageDonationDetailDTO;
 import kakao.valuetogether.repository.DonationDetailRepository;
 import kakao.valuetogether.repository.DonationRepository;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @AllArgsConstructor
@@ -44,6 +45,8 @@ public class DonationService {
             Comment comment = new Comment(findMember, findPost);
             comment.setContent(request.getCommentContent());
             comment.setDate(request.getDonationDate());
+            comment.setLikes(0);
+            comment.setDonationAmount(request.getDonationAmount());
             commentService.enroll(comment);
         }
 
@@ -133,4 +136,29 @@ public class DonationService {
                 .build();
     }
 
+    public MyPageDonationDetailDTO getMyPageDonationDetailDTO(Member member) {
+        AtomicInteger totalAmount = new AtomicInteger(0);
+        AtomicInteger countDonation = new AtomicInteger(0);
+        AtomicInteger amountDirect = new AtomicInteger(0);
+        AtomicInteger amountParticipation = new AtomicInteger(0);
+
+        List<DonationDetail> donationDetails = donationDetailRepository.findDonationDetailsByMember(member);
+        donationDetails.forEach(donationDetail -> {
+            totalAmount.addAndGet(donationDetail.getDonationAmount());
+            countDonation.incrementAndGet();
+
+            if(donationDetail.getDonationType() == DonationType.직접참여)
+                amountDirect.addAndGet(donationDetail.getDonationAmount());
+            else
+                amountParticipation.addAndGet(donationDetail.getDonationAmount());
+        });
+
+        MyPageDonationDetailDTO result = MyPageDonationDetailDTO.builder()
+                .totalAmount(totalAmount.intValue())
+                .countDonation(countDonation.intValue())
+                .amountDirect(amountDirect.intValue())
+                .amountParticipation(amountParticipation.intValue())
+                .build();
+        return result;
+    }
 }

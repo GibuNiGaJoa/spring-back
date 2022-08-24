@@ -54,6 +54,12 @@ public class CommentRepository {
                 .getResultList();
     }
 
+    public List<Comment> findCommentsByMember(Member member) {
+        return em.createQuery("select c from Comment c where c.member = :member order by c.date", Comment.class)
+                .setParameter("member", member)
+                .getResultList();
+    }
+
 //    public List<Object> findComments(Post post) {
 //        return em.createQuery("select c,l from Comment c inner join LikeDetail l on c.post = :post order by c.date")
 //                .setParameter("post", post)

@@ -20,6 +20,8 @@ public class DonationApiController {
     private final DonationService donationService;
     private final JwtService jwtService;
 
+    // TODO: 기부내역 총 금액 추가
+
     /**
      * @param token
      * @param request: postId, donationType, donationDate, donationAmount
