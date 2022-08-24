@@ -53,4 +53,10 @@ public class CommentRepository {
                 .setParameter("post", post)
                 .getResultList();
     }
+
+    public List<Comment> findCommentsByMember(Member member) {
+        return em.createQuery("select c from Comment c where c.member = :member order by c.date", Comment.class)
+                .setParameter("member", member)
+                .getResultList();
+    }
 }
