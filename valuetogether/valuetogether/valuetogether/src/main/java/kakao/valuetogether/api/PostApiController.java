@@ -132,25 +132,25 @@ public class PostApiController {
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
 
-//        List<Comment> findComments = commentService.findComment(findPost);
-//        List<CommentDto> commentList = findComments.stream()
-//                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(), m.getDonationAmount()))
-//                .collect(Collectors.toList());
-        
-        List<CommentResponseDTO> commentList = null;
-        if (token != null) {
-            Long memberId = jwtService.parseJwtToken("Bearer " + token);
-            Member findMember = memberService.findOne(memberId);
+        List<Comment> findComments = commentService.findComment(findPost);
+        List<CommentDto> commentList = findComments.stream()
+                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(), m.getDonationAmount()))
+                .collect(Collectors.toList());
 
-            commentList = commentService.findComments(findPost, findMember);
-        }
-
-        else {
-            List<Comment> findComments = commentService.findComment(findPost);
-            commentList = findComments.stream()
-                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false))
-                    .collect(Collectors.toList());
-        }
+//        List<CommentResponseDTO> commentList = null;
+//        if (token != null) {
+//            Long memberId = jwtService.parseJwtToken("Bearer " + token);
+//            Member findMember = memberService.findOne(memberId);
+//
+//            commentList = commentService.findComments(findPost, findMember);
+//        }
+//
+//        else {
+//            List<Comment> findComments = commentService.findComment(findPost);
+//            commentList = findComments.stream()
+//                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false))
+//                    .collect(Collectors.toList());
+//        }
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
