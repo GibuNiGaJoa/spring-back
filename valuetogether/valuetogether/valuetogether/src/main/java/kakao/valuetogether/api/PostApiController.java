@@ -116,8 +116,10 @@ public class PostApiController {
 
     //게시글 정보 조회
     @GetMapping("fundraisings/{id}")
-    public FindPostResponse findPost(@PathVariable("id") Long id) {
-        Post findPost = postService.findOneById(id);
+    public FindPostResponse findPost(@RequestHeader(value = "Authorization") String token,
+                                     @PathVariable("id") Long postId) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        Post findPost = postService.findOneById(postId);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
         List<TagDto> tagList = findTags.stream()
@@ -131,6 +133,7 @@ public class PostApiController {
 
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
+        boolean isDonateCheer = donationService.isDonateCheer(memberId, postId);
 
         List<Comment> findComments = commentService.findComment(findPost);
         List<CommentDto> commentList = findComments.stream()
@@ -156,7 +159,13 @@ public class PostApiController {
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
                 findPost.getTargetAmount(), findPost.getStartDate(),
                 findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-                donationResponse, commentList);
+                donationResponse, commentList, isDonateCheer);
+
+//        FindPostResponse findPostResponse = new FindPostResponse(
+//                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
+//                findPost.getTargetAmount(), findPost.getStartDate(),
+//                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
+//                donationResponse, commentList);
         return findPostResponse;
     }
 
@@ -176,6 +185,8 @@ public class PostApiController {
         private DonationResponseDTO donation;
 
         private T comment;
+
+        private boolean isDonateCheer;
     }
 
     @Data

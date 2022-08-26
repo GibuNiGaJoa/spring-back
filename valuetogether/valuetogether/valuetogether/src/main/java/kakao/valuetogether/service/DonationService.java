@@ -27,10 +27,6 @@ public class DonationService {
     private final MemberService memberService;
     private final CommentService commentService;
 
-    public void createDonation(DonationRequestDTO request) {
-        Donation donation = new Donation(postService.findOneById(request.getPostId()));
-        donationRepository.createDonation(donation);
-    }
     public void createDonation(Post post) {
         Donation donation = new Donation(post);
         donationRepository.createDonation(donation);
@@ -62,7 +58,6 @@ public class DonationService {
                 .donationDate(request.getDonationDate()).build();
         donationDetailRepository.createDonationDetail(donationDetail);
     }
-
     private Integer defineDonationAmount(DonationType donationType, Integer donationAmount) {
         if(donationType == DonationType.직접참여)
             return donationAmount;
@@ -82,10 +77,6 @@ public class DonationService {
                 .donationAmount(100)
                 .donationDate(donationDate).build();
         donationDetailRepository.createDonationDetail(donationDetail);
-    }
-
-    public Donation findDonationByPost(DonationRequestDTO request) {
-        return donationRepository.findByPostId(request.getPostId());
     }
 
     public Donation findDonationByPost(Post post) {
@@ -110,11 +101,6 @@ public class DonationService {
         });
 
         return result;
-    }
-
-    public void removeDonation(DonationRequestDTO request) {
-        Donation findDonation = donationRepository.findByPostId(request.getPostId());
-        donationRepository.deleteDonation(findDonation);
     }
 
     public DonationResponseDTO createDonationResponse(Donation donation) {
@@ -160,5 +146,19 @@ public class DonationService {
                 .amountParticipation(amountParticipation.intValue())
                 .build();
         return result;
+    }
+
+    public boolean isDonateCheer(Long memberId, Long postId) {
+        Member member = memberService.findOne(memberId);
+        Post post = postService.findOneById(postId);
+
+        if(donationDetailRepository.existsByMemberAndPost(member, post, DonationType.응원참여))
+            return true;
+        return false;
+    }
+
+    public void removeDonation(DonationRequestDTO request) {
+        Donation findDonation = donationRepository.findByPostId(request.getPostId());
+        donationRepository.deleteDonation(findDonation);
     }
 }
