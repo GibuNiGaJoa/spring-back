@@ -44,7 +44,7 @@ public class CommentApiController {
 
         commentService.enroll(comment);
 
-        donationService.donateComment(findMember, memberId, request.getDate());
+        donationService.donateComment(findMember, postId, request.getDate());
 
         return new CreatedCommentResponse(true);
     }
