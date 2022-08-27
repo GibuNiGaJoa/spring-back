@@ -52,19 +52,19 @@ public class CommentService {
             if (c.getMember() == member) {
                 if (findLikeDetail.isEmpty()) {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), false, true));
+                            c.getContent(), c.getDate(), c.getLikes(), false, true,c.getDonationAmount()));
                 } else {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), true, true));
+                            c.getContent(), c.getDate(), c.getLikes(), true, true,c.getDonationAmount()));
                 }
 
             } else {
                 if (findLikeDetail.isEmpty()) {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), false, false));
+                            c.getContent(), c.getDate(), c.getLikes(), false, false,c.getDonationAmount()));
                 } else {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), true, false));
+                            c.getContent(), c.getDate(), c.getLikes(), true, false,c.getDonationAmount()));
                 }
             }
         }
