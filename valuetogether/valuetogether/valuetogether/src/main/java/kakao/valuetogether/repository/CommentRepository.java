@@ -28,10 +28,8 @@ public class CommentRepository {
         return comment.getId();
     }
 
-    public Long delete(Comment comment) {
-        Long deletedCommentId = comment.getId();
+    public void delete(Comment comment) {
         em.remove(comment);
-        return deletedCommentId;
     }
 
     public void addLikes(Comment comment) {
@@ -59,10 +57,4 @@ public class CommentRepository {
                 .setParameter("member", member)
                 .getResultList();
     }
-
-//    public List<Object> findComments(Post post) {
-//        return em.createQuery("select c,l from Comment c inner join LikeDetail l on c.post = :post order by c.date")
-//                .setParameter("post", post)
-//                .getResultList();
-//    }
 }

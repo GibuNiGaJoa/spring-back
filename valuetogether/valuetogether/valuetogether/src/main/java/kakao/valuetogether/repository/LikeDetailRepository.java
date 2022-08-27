@@ -23,9 +23,7 @@ public class LikeDetailRepository {
         return likeDetail.getId();
     }
 
-    public void delete(LikeDetail likeDetail) {
-        em.remove(likeDetail);
-    }
+
 
     public Optional<LikeDetail> findOne(Comment comment, Member member) {
         List<LikeDetail> findLikeDetail = em.createQuery("select l from LikeDetail l where l.comment =:comment and l.member =:member", LikeDetail.class)
@@ -35,15 +33,21 @@ public class LikeDetailRepository {
         return findLikeDetail.stream().findAny();
     }
 
-    public List<LikeDetail> findStatus(Comment comment, Member member) {
+    public Optional<LikeDetail> findStatus(Comment comment, Member member) {
         List<LikeDetail> findLikeDetail = em.createQuery("select l from LikeDetail l where l.comment =:comment and l.member =:member", LikeDetail.class)
                 .setParameter("comment", comment)
                 .setParameter("member", member)
                 .getResultList();
-        return findLikeDetail;
+        return findLikeDetail.stream().findAny();
+    }
+    public void deleteOne(LikeDetail likeDetail) {
+        em.remove(likeDetail);
     }
 
-
-
-
+    public void deleteAll(Comment comment) {
+        int resultCount = em.createQuery("delete from LikeDetail l where l.comment =: comment")
+                .setParameter("comment", comment)
+                .executeUpdate();
+//        em.clear();
+    }
 }

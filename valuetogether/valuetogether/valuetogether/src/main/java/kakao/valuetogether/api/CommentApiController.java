@@ -83,7 +83,7 @@ public class CommentApiController {
         Comment comment = commentService.findOne(id);
 
         LikeDetail findLikeDetail = likeDetailService.findOne(comment, findMember);
-        likeDetailService.delete(findLikeDetail);
+        likeDetailService.deleteOne(findLikeDetail);
 
         return new LikeResponse(true);
     }
@@ -92,6 +92,24 @@ public class CommentApiController {
         private Boolean status;
 
         public LikeResponse(Boolean status) {
+            this.status = status;
+        }
+    }
+
+    @GetMapping("fundraisings/{id}/delete")
+    public CommentDeleteResponse delete(@RequestHeader(value = "Authorization") String token, @PathVariable("id") Long id) {
+        Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        Comment findComment = commentService.findOne(id);
+        likeDetailService.deleteAll(findComment);
+        commentService.delete(findComment);
+
+        return new CommentDeleteResponse(true);
+    }
+    @Data
+    static class CommentDeleteResponse {
+        private Boolean status;
+
+        public CommentDeleteResponse(Boolean status) {
             this.status = status;
         }
     }

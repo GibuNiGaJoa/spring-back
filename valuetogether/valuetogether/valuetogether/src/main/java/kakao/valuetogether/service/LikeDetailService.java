@@ -21,8 +21,12 @@ public class LikeDetailService {
         return likeDetailRepository.save(likeDetail);
     }
 
-    public void delete(LikeDetail likeDetail) {
-        likeDetailRepository.delete(likeDetail);
+    public void deleteOne(LikeDetail likeDetail) {
+        likeDetailRepository.deleteOne(likeDetail);
+    }
+
+    public void deleteAll(Comment comment) {
+        likeDetailRepository.deleteAll(comment);
     }
 
     public LikeDetail findOne(Comment comment, Member member) {

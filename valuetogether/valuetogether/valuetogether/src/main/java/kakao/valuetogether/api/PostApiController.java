@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -116,9 +117,9 @@ public class PostApiController {
 
     //게시글 정보 조회
     @GetMapping("fundraisings/{id}")
-    public FindPostResponse findPost(@RequestHeader(value = "Authorization") String token,
+    public FindPostResponse findPost(@RequestHeader(value = "Authorization",required = false) String token,
                                      @PathVariable("id") Long postId) {
-        Long memberId = jwtService.parseJwtToken("Bearer " + token);
+//        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Post findPost = postService.findOneById(postId);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
@@ -133,39 +134,35 @@ public class PostApiController {
 
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
-        boolean isDonateCheer = donationService.isDonateCheer(memberId, postId);
+//        boolean isDonateCheer = donationService.isDonateCheer(memberId, postId);
 
-        List<Comment> findComments = commentService.findComment(findPost);
-        List<CommentDto> commentList = findComments.stream()
-                .map(m -> new CommentDto(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(), m.getDonationAmount()))
-                .collect(Collectors.toList());
 
-//        List<CommentResponseDTO> commentList = null;
-//        if (token != null) {
-//            Long memberId = jwtService.parseJwtToken("Bearer " + token);
-//            Member findMember = memberService.findOne(memberId);
-//
-//            commentList = commentService.findComments(findPost, findMember);
-//        }
-//
-//        else {
-//            List<Comment> findComments = commentService.findComment(findPost);
-//            commentList = findComments.stream()
-//                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false))
-//                    .collect(Collectors.toList());
-//        }
+        List<CommentResponseDTO> commentList;
+        if (token != null) {
+            Long memberId = jwtService.parseJwtToken("Bearer " + token);
+            Member findMember = memberService.findOne(memberId);
 
-        FindPostResponse findPostResponse = new FindPostResponse(
-                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
-                findPost.getTargetAmount(), findPost.getStartDate(),
-                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-                donationResponse, commentList, isDonateCheer);
+            commentList = commentService.findComments(findPost, findMember);
+        }
+
+        else {
+            List<Comment> findComments = commentService.findComment(findPost);
+            commentList = findComments.stream()
+                    .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false,false))
+                    .collect(Collectors.toList());
+        }
 
 //        FindPostResponse findPostResponse = new FindPostResponse(
 //                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
 //                findPost.getTargetAmount(), findPost.getStartDate(),
 //                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-//                donationResponse, commentList);
+//                donationResponse, commentList, isDonateCheer);
+
+        FindPostResponse findPostResponse = new FindPostResponse(
+                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
+                findPost.getTargetAmount(), findPost.getStartDate(),
+                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
+                donationResponse, commentList);
         return findPostResponse;
     }
 
@@ -186,7 +183,7 @@ public class PostApiController {
 
         private T comment;
 
-        private boolean isDonateCheer;
+//        private boolean isDonateCheer;
     }
 
     @Data

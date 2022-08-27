@@ -14,5 +14,6 @@ public class CommentResponseDTO {
     private String content;
     private Date date;
     private Integer likes;
+    private Boolean likeStatus;
     private Boolean status;
 }
