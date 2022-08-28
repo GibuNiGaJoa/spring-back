@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class MyPageResponseDTO {
+public class MyPageResponseDTO<T> {
     private String memberName;
     private String gender;
 
@@ -23,5 +23,5 @@ public class MyPageResponseDTO {
     private Integer amountParticipation;
 
     private Integer countComment;
-    private List<CommentVO> comments;
+    private T comments;
 }
