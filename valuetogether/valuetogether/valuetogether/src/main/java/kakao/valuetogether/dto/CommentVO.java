@@ -12,16 +12,17 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@Builder
+@AllArgsConstructor
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommentVO {
-    private Member member;
+    private Long id;
+//    private Member member;
     private Post post;
     private String content;
     private Date date;
     private Integer likes;
-    private Integer donationAmount;
-
+//    private Integer donationAmount;
     private String postTitle;
+    private boolean likeStatus;
 }

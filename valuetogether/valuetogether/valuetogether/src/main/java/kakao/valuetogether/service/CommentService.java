@@ -76,26 +76,38 @@ public class CommentService {
     }
 
     public MyPageCommentDTO getMyPageCommentDTO(Member member) {
-        AtomicInteger countComment = new AtomicInteger();
-
-        List<CommentVO> commentVOs = new ArrayList<>();
-
-        List<Comment> comments = commentRepository.findCommentsByMember(member);
-        comments.forEach(comment -> {
-            countComment.incrementAndGet();
-
-            CommentVO commentVO = CommentVO.builder()
-                    .postTitle(comment.getPost().getTitle())
-                    .content(comment.getContent())
-                    .date(comment.getDate())
-                    .likes(comment.getLikes())
-                    .build();
-            commentVOs.add(commentVO);
-        });
+//        AtomicInteger countComment = new AtomicInteger();
+//
+//        List<CommentVO> commentVOs = new ArrayList<>();
+//
+//        List<Comment> comments = commentRepository.findCommentsByMember(member);
+//        comments.forEach(comment -> {
+//            countComment.incrementAndGet();
+//
+//            CommentVO commentVO = CommentVO.builder()
+//                    .postTitle(comment.getPost().getTitle())
+//                    .content(comment.getContent())
+//                    .date(comment.getDate())
+//                    .likes(comment.getLikes())
+//                    .build();
+//            commentVOs.add(commentVO);
+//        });
+        List<CommentVO> commentList = new ArrayList<>();
+        Optional<LikeDetail> findLikeDetail;
+        List<Comment> findComments = commentRepository.findCommentsByMember(member);
+        for (Comment c : findComments){
+            findLikeDetail = likeDetailRepository.findStatus(c, member);
+            if (findLikeDetail.isEmpty()) {
+                commentList.add(new CommentVO(c.getId(), c.getPost(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), false));
+            } else {
+                commentList.add(new CommentVO(c.getId(), c.getPost(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), true));
+            }
+        }
+        Integer countComment = findComments.size();
 
         MyPageCommentDTO result = MyPageCommentDTO.builder()
-                .countComment(countComment.intValue())
-                .commentVOs(commentVOs).build();
+                .countComment(countComment)
+                .commentVOs(commentList).build();
         return result;
     }
 
