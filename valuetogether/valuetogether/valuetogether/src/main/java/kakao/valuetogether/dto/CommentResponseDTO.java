@@ -17,4 +17,5 @@ public class CommentResponseDTO {
     private Boolean likeStatus;
     private Boolean status;
     private Integer donationAmount;
+    private String gender;
 }

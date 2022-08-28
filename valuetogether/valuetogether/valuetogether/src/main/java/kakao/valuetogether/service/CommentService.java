@@ -52,19 +52,19 @@ public class CommentService {
             if (c.getMember() == member) {
                 if (findLikeDetail.isEmpty()) {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), false, true,c.getDonationAmount()));
+                            c.getContent(), c.getDate(), c.getLikes(), false, true,c.getDonationAmount(),c.getMember().getGender()));
                 } else {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), true, true,c.getDonationAmount()));
+                            c.getContent(), c.getDate(), c.getLikes(), true, true,c.getDonationAmount(),c.getMember().getGender()));
                 }
 
             } else {
                 if (findLikeDetail.isEmpty()) {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), false, false,c.getDonationAmount()));
+                            c.getContent(), c.getDate(), c.getLikes(), false, false,c.getDonationAmount(),c.getMember().getGender()));
                 } else {
                     commentList.add(new CommentResponseDTO(c.getId(), c.getMember().getNickname(),
-                            c.getContent(), c.getDate(), c.getLikes(), true, false,c.getDonationAmount()));
+                            c.getContent(), c.getDate(), c.getLikes(), true, false,c.getDonationAmount(),c.getMember().getGender()));
                 }
             }
         }

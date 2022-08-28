@@ -34,7 +34,7 @@ public class MemberApiController {
         jwtService.parseJwtToken("Bearer " + token);
 
         TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
-        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true, findMember.getGender());
 
         return tokenResponse;
     }
@@ -54,6 +54,7 @@ public class MemberApiController {
         private String msg;
         private String token;
         private Boolean status;
+        private String gender;
     }
 
     @Data
@@ -87,7 +88,7 @@ public class MemberApiController {
         jwtService.parseJwtToken("Bearer " + token);//토큰 검증
 
         TokenDataResponse tokenDataResponse = new TokenDataResponse(token);
-        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true);
+        TokenResponse tokenResponse = new TokenResponse("200", "OK", tokenDataResponse.getToken(),true,findMember.getGender());
 
         return tokenResponse;
     }
