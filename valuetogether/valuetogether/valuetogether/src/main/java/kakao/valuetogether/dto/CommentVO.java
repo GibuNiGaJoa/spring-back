@@ -16,9 +16,9 @@ import java.util.Date;
 @AllArgsConstructor
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommentVO {
-    private Long id;
+    private Long commentId;
 //    private Member member;
-    private Post post;
+    private Long postId;
     private String content;
     private Date date;
     private Integer likes;

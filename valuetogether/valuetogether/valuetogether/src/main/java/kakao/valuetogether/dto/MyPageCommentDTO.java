@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class MyPageCommentDTO<T> {
+public class MyPageCommentDTO {
     private Integer countComment;
-    private T commentVOs;
+    private List<CommentVO> commentVOs;
 }

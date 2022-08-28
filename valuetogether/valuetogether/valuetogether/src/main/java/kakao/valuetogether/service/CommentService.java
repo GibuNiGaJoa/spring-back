@@ -98,16 +98,17 @@ public class CommentService {
         for (Comment c : findComments){
             findLikeDetail = likeDetailRepository.findStatus(c, member);
             if (findLikeDetail.isEmpty()) {
-                commentList.add(new CommentVO(c.getId(), c.getPost(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), false));
+                commentList.add(new CommentVO(c.getId(), c.getPost().getId(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), false));
             } else {
-                commentList.add(new CommentVO(c.getId(), c.getPost(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), true));
+                commentList.add(new CommentVO(c.getId(), c.getPost().getId(), c.getContent(), c.getDate(), c.getLikes(), c.getPost().getTitle(), true));
             }
         }
         Integer countComment = findComments.size();
 
         MyPageCommentDTO result = MyPageCommentDTO.builder()
                 .countComment(countComment)
-                .commentVOs(commentList).build();
+                .commentVOs(commentList)
+                .build();
         return result;
     }
 
