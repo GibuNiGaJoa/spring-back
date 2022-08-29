@@ -4,30 +4,25 @@ import kakao.valuetogether.domain.Post;
 import kakao.valuetogether.domain.Tag;
 import kakao.valuetogether.service.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-@RestController // @Controller + @ResponseBody가 이 어노테이션에 포함된다.
+@RestController
 @RequestMapping("/tags")
 @RequiredArgsConstructor
 public class TagApiController {
-    private final PostService postService;
-
-    private final MemberService memberService;
 
     private final TagService tagService;
-
     private final TagPostService tagPostService;
-
-    private final LinkService linkService;
-    private final JwtService jwtService;
-
 
 //    //태그키워드로 게시글조회
 //    @RequestMapping(value = "/{tagName}",method = RequestMethod.GET)
@@ -41,46 +36,58 @@ public class TagApiController {
 //        return new PostResult(postList);
 //    }
 
-
     @RequestMapping(value = "/{tagName}", method = RequestMethod.GET)
-    public PostResult searchPostByTagPhase(@PathVariable("tagName") String tagName,@RequestParam(name = "phase", required = false) Long number) {
+    public PostResult searchPostByTagPhase(@PathVariable("tagName") String tagName, @RequestParam(name = "phase", required = false) Long number) {
         Tag findTag = tagService.findIdByFullName(tagName);
-        //tagPostService.findAllPostByTag(findTag) 하면 태그에 해당하는 전체 게시글이 리스트로 조회됨;
-        if (number == null) {
-            List<Post> findPosts = tagPostService.findAllPostByTag(findTag);
-            List<PostDto> postList = findPosts.stream()
-                    .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
-                    .collect(Collectors.toList());
 
-            return new PostResult(postList);
-        }
-        else if (number == 2) {
-            List<Post> findPosts = tagPostService.findNowPostByTag(findTag);
-            List<PostDto> postList = findPosts.stream()
-                    .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
-                    .collect(Collectors.toList());
+        List<Post> findPosts;
+        List<PostDto> postDtos = new ArrayList<>();
 
-            return new PostResult(postList);
+        AtomicInteger totalDonationAmount = new AtomicInteger(0);
+        AtomicInteger totalDonationCount = new AtomicInteger(0);
 
-        }
-        else {
-            List<Post> findPosts = tagPostService.findEndPostByTag(findTag);
-            List<PostDto> postList = findPosts.stream()
-                    .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
-                    .collect(Collectors.toList());
+        if (number == null)
+            findPosts = tagPostService.findAllPostByTag(findTag);
+        else if (number == 2)
+            findPosts = tagPostService.findNowPostByTag(findTag);
+        else
+            findPosts = tagPostService.findEndPostByTag(findTag);
 
-            return new PostResult(postList);
-        }
+        findPosts.forEach(post -> {
+            PostDto postDto = PostDto.builder()
+                    .id(post.getId())
+                    .image(post.getImage())
+                    .title(post.getTitle())
+                    .proposer(post.getProposer())
+                    .endDate(post.getEndDate())
+                    .build();
+            postDtos.add(postDto);
+        });
+
+        List<Post> allPostsByTag = tagPostService.findAllPostByTag(findTag);
+        allPostsByTag.forEach(post -> {
+            totalDonationAmount.addAndGet(post.getDonation().getTotalAmount());
+            totalDonationCount.addAndGet(post.getDonation().getTotalCount());
+        });
+
+        PostResult result = PostResult.builder()
+                .posts(postDtos)
+                .totalDonationAmount(totalDonationAmount.intValue())
+                .totalDonationCount(totalDonationCount.intValue()).build();
+        return result;
     }
 
     @Data
-    @AllArgsConstructor
-    static class PostResult<T> {
-        private T post;
+    @Builder
+    static class PostResult {
+        private List<PostDto> posts;
+
+        private Integer totalDonationAmount;
+        private Integer totalDonationCount;
     }
 
     @Data
-    @AllArgsConstructor
+    @Builder
     static class PostDto {
         private Long id;
         private String image;

@@ -89,6 +89,13 @@ public class Donation {
         return 0;
     }
 
+    public Integer getTotalCount() {
+        return this.countDirect
+                + this.getCountCheer()
+                + this.getCountComment()
+                + this.getCountShare();
+    }
+
     public void minusAmountComment() {
         this.amountComment -= 100;
         this.totalAmount -= 100;
