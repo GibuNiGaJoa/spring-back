@@ -19,7 +19,7 @@ public class JwtService {
     //==토큰 생성 메소드==//
     public String createToken(Long id) {
         Date now = new Date();
-        Date expiration = new Date(now.getTime() + (30 * 60 * 1000L)); // 만료기간 30분
+        Date expiration = new Date(now.getTime() + (1 * 60 * 1000L)); // 만료기간 30분
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // (1)
