@@ -89,4 +89,11 @@ public class Donation {
         return 0;
     }
 
+    public Integer getTotalCount() {
+        return this.countDirect
+                + this.getCountCheer()
+                + this.getCountComment()
+                + this.getCountShare();
+    }
+
 }
