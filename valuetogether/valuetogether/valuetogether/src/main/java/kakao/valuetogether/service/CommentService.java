@@ -96,9 +96,9 @@ public class CommentService {
         return result;
     }
 
-    public Post findPostByComment(Long id) {
-        return commentRepository.findPostByComment(id);
-    }
+//    public Post findPostByComment(Long id) {
+//        return commentRepository.findPostByComment(id);
+//    }
 
     public void delete(Comment comment) {
         commentRepository.delete(comment);
