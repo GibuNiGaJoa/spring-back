@@ -21,9 +21,18 @@ public class DonationRepository {
         return em.find(Donation.class, id);
     }
 
+    public Donation findOneByPost(Long id) {
+        return em.find(Donation.class, id);
+    }
+
     public Donation updateDonation(Donation donation) {
         em.persist(donation);
         return donation;
+    }
+
+    public void minusAmountComment(Donation donation) {
+        donation.minusAmountComment();
+        em.persist(donation);
     }
 
     public void deleteDonation(Donation donation) {

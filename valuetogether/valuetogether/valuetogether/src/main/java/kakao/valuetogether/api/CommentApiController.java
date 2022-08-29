@@ -1,9 +1,6 @@
 package kakao.valuetogether.api;
 
-import kakao.valuetogether.domain.Comment;
-import kakao.valuetogether.domain.LikeDetail;
-import kakao.valuetogether.domain.Member;
-import kakao.valuetogether.domain.Post;
+import kakao.valuetogether.domain.*;
 import kakao.valuetogether.domain.enums.DonationType;
 import kakao.valuetogether.dto.DonationRequestDTO;
 import kakao.valuetogether.service.*;
@@ -99,7 +96,12 @@ public class CommentApiController {
     @GetMapping("fundraisings/{id}/delete")
     public CommentDeleteResponse delete(@RequestHeader(value = "Authorization") String token, @PathVariable("id") Long id) {
         Long memberId = jwtService.parseJwtToken("Bearer " + token);
+        Member findMember = memberService.findOne(memberId);
         Comment findComment = commentService.findOne(id);
+//        Post findPost = commentService.findPostByComment(id);
+        Donation findDonation = donationService.findOneByPost(findComment.getPost().getId());
+        donationService.minusAmountComment(findDonation);
+        donationService.deleteDonationDetail(findMember, DonationType.댓글참여);
         likeDetailService.deleteAll(findComment);
         commentService.delete(findComment);
 

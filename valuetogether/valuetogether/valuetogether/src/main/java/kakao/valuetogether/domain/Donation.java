@@ -96,4 +96,8 @@ public class Donation {
                 + this.getCountShare();
     }
 
+    public void minusAmountComment() {
+        this.amountComment -= 100;
+        this.totalAmount -= 100;
+    }
 }
