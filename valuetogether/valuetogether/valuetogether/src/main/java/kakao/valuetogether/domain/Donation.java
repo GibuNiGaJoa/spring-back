@@ -89,4 +89,7 @@ public class Donation {
         return 0;
     }
 
+    public void minusAmountComment() {
+        this.amountComment -= 1;
+    }
 }

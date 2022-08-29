@@ -50,7 +50,9 @@ public class DonationDetailRepository {
         return donationDetail.getId();
     }
 
-    public void deleteDonationDetail(DonationDetail donationDetail) {
-        em.remove(donationDetail);
+    public void deleteDonationDetail(Member member, DonationType donationType) {
+        em.createQuery("delete from DonationDetail d where d.donationType = :donationType")
+                .setParameter("donationType", donationType)
+                .executeUpdate();
     }
 }

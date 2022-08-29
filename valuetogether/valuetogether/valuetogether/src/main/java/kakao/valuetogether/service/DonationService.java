@@ -161,4 +161,16 @@ public class DonationService {
         Donation findDonation = donationRepository.findByPostId(request.getPostId());
         donationRepository.deleteDonation(findDonation);
     }
+
+    public void minusAmountComment(Donation donation) {
+        donationRepository.minusAmountComment(donation);
+    }
+
+    public Donation findOneByPost(Post post) {
+        return donationRepository.findOneByPost(post);
+    }
+
+    public void deleteDonationDetail(Member member, DonationType donationType) {
+        donationDetailRepository.deleteDonationDetail(member, donationType);
+    }
 }

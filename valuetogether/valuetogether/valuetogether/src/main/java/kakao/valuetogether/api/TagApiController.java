@@ -45,6 +45,7 @@ public class TagApiController {
     @RequestMapping(value = "/{tagName}", method = RequestMethod.GET)
     public PostResult searchPostByTagPhase(@PathVariable("tagName") String tagName,@RequestParam(name = "phase", required = false) Long number) {
         Tag findTag = tagService.findIdByFullName(tagName);
+        //tagPostService.findAllPostByTag(findTag) 하면 태그에 해당하는 전체 게시글이 리스트로 조회됨;
         if (number == null) {
             List<Post> findPosts = tagPostService.findAllPostByTag(findTag);
             List<PostDto> postList = findPosts.stream()

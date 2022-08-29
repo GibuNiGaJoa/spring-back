@@ -76,22 +76,6 @@ public class CommentService {
     }
 
     public MyPageCommentDTO getMyPageCommentDTO(Member member) {
-//        AtomicInteger countComment = new AtomicInteger();
-//
-//        List<CommentVO> commentVOs = new ArrayList<>();
-//
-//        List<Comment> comments = commentRepository.findCommentsByMember(member);
-//        comments.forEach(comment -> {
-//            countComment.incrementAndGet();
-//
-//            CommentVO commentVO = CommentVO.builder()
-//                    .postTitle(comment.getPost().getTitle())
-//                    .content(comment.getContent())
-//                    .date(comment.getDate())
-//                    .likes(comment.getLikes())
-//                    .build();
-//            commentVOs.add(commentVO);
-//        });
         List<CommentVO> commentList = new ArrayList<>();
         Optional<LikeDetail> findLikeDetail;
         List<Comment> findComments = commentRepository.findCommentsByMember(member);
@@ -110,6 +94,10 @@ public class CommentService {
                 .commentVOs(commentList)
                 .build();
         return result;
+    }
+
+    public Post findPostByComment(Long id) {
+        return commentRepository.findPostByComment(id);
     }
 
     public void delete(Comment comment) {

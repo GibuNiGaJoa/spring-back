@@ -46,6 +46,10 @@ public class CommentRepository {
         return em.find(Comment.class, id);
     }
 
+    public Post findPostByComment(Long id) {
+        return em.find(Post.class, id);
+    }
+
     public List<Comment> findCommentByPost(Post post) {
         return em.createQuery("select c from Comment c where c.post = :post order by c.date", Comment.class)
                 .setParameter("post", post)
