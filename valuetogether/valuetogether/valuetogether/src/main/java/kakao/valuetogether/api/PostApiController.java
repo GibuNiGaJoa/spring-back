@@ -119,7 +119,6 @@ public class PostApiController {
     @GetMapping("fundraisings/{id}")
     public FindPostResponse findPost(@RequestHeader(value = "Authorization",required = false) String token,
                                      @PathVariable("id") Long postId) {
-//        Long memberId = jwtService.parseJwtToken("Bearer " + token);
         Post findPost = postService.findOneById(postId);
 
         List<Tag> findTags = tagPostService.findTagByPost(findPost);
@@ -134,35 +133,33 @@ public class PostApiController {
 
         Donation donation = donationService.findDonationByPost(findPost);
         DonationResponseDTO donationResponse = donationService.createDonationResponse(donation);
-//        boolean isDonateCheer = donationService.isDonateCheer(memberId, postId);
-
 
         List<CommentResponseDTO> commentList;
+
+        Boolean isDonateCheer;
+
         if (token != null) {
             Long memberId = jwtService.parseJwtToken("Bearer " + token);
             Member findMember = memberService.findOne(memberId);
 
             commentList = commentService.findComments(findPost, findMember);
-        }
 
+            isDonateCheer = donationService.isDonateCheer(memberId, postId);
+        }
         else {
             List<Comment> findComments = commentService.findComment(findPost);
             commentList = findComments.stream()
                     .map(m -> new CommentResponseDTO(m.getId(), m.getMember(). getNickname(), m.getContent(), m.getDate(), m.getLikes(),false,false, m.getDonationAmount(),m.getMember().getGender()))
                     .collect(Collectors.toList());
-        }
 
-//        FindPostResponse findPostResponse = new FindPostResponse(
-//                findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
-//                findPost.getTargetAmount(), findPost.getStartDate(),
-//                findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-//                donationResponse, commentList, isDonateCheer);
+            isDonateCheer = false;
+        }
 
         FindPostResponse findPostResponse = new FindPostResponse(
                 findPost.getTitle(), findPost.getProposer(), findPost.getContent(),
                 findPost.getTargetAmount(), findPost.getStartDate(),
                 findPost.getEndDate(), tagList, linkList, findPost.getImage(),
-                donationResponse, commentList);
+                donationResponse, commentList, isDonateCheer);
         return findPostResponse;
     }
 
@@ -183,7 +180,7 @@ public class PostApiController {
 
         private T comment;
 
-//        private boolean isDonateCheer;
+        private boolean isDonateCheer;
     }
 
     @Data
