@@ -166,8 +166,8 @@ public class DonationService {
         donationRepository.minusAmountComment(donation);
     }
 
-    public Donation findOneByPost(Post post) {
-        return donationRepository.findOneByPost(post);
+    public Donation findOneByPost(Long id) {
+        return donationRepository.findOneByPost(id);
     }
 
     public void deleteDonationDetail(Member member, DonationType donationType) {

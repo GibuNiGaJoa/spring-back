@@ -21,8 +21,8 @@ public class DonationRepository {
         return em.find(Donation.class, id);
     }
 
-    public Donation findOneByPost(Post post) {
-        return em.find(Donation.class, post);
+    public Donation findOneByPost(Long id) {
+        return em.find(Donation.class, id);
     }
 
     public Donation updateDonation(Donation donation) {

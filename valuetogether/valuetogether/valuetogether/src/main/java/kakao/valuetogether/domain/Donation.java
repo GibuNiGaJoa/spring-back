@@ -90,6 +90,7 @@ public class Donation {
     }
 
     public void minusAmountComment() {
-        this.amountComment -= 1;
+        this.amountComment -= 100;
+        this.totalAmount -= 100;
     }
 }

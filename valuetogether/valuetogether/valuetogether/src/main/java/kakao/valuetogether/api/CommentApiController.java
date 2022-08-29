@@ -99,7 +99,7 @@ public class CommentApiController {
         Member findMember = memberService.findOne(memberId);
         Comment findComment = commentService.findOne(id);
         Post findPost = commentService.findPostByComment(id);
-        Donation findDonation = donationService.findOneByPost(findPost);
+        Donation findDonation = donationService.findOneByPost(findPost.getId());
         donationService.minusAmountComment(findDonation);
         donationService.deleteDonationDetail(findMember, DonationType.댓글참여);
         likeDetailService.deleteAll(findComment);
