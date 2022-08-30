@@ -39,6 +39,11 @@ public class PostRepository {
                 .getResultList();
     }
 
+    public List<Post> findAllEpilogue () {
+        return em.createQuery("select distinct p from Post p where p.endDate<=now() order by p.endDate", Post.class)
+                .getResultList();
+    }
+
     //키워드로 게시글 조회(제목+본문)
     public List<Post> findPostByKeyword(String keyword) {
         return em.createQuery("select p from Post p where p.title like :keyword or p.content like :keyword order by p.endDate", Post.class)

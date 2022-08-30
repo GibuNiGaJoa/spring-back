@@ -41,6 +41,10 @@ public class PostService {
         return postRepository.findAllEnd();
     }
 
+    public List<Post> findAllEpilogue() {
+        return postRepository.findAllEpilogue();
+    }
+
     public List<Post> findPostByKeyword(String keyword) {
         return postRepository.findPostByKeyword(keyword);
     }

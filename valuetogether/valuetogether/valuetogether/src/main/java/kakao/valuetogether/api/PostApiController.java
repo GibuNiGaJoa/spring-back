@@ -297,4 +297,15 @@ public class PostApiController {
         private Date endDate;
     }
 
+    @GetMapping("fundraisings/epilogue")
+    public PostResult findEpiloguePost() {
+
+        List<Post> findPosts = postService.findAllEpilogue();
+        List<PostDto> postList = findPosts.stream()
+                .map(m -> new PostDto(m.getId(), m.getImage(), m.getTitle(), m.getProposer(), m.getEndDate()))
+                .collect(Collectors.toList());
+
+        return new PostResult(postList);
+    }
+
 }
