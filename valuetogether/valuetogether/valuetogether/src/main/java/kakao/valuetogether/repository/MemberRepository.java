@@ -62,6 +62,18 @@ public class MemberRepository {
         return findMember.stream().findAny();
     }
 
+    //닉네임 또는 이름과 폰번호로 조회
+    public Optional<Member> findByNNP(String nickname, String name, String phone){
+        List<Member> findMember = em.createQuery("select m from Member m where (m.nickname = :nickname or " +
+                        "m.name = :name) and m.phone = :phone")
+                .setParameter("nickname", nickname)
+                .setParameter("name", name)
+                .setParameter("phone", phone)
+                .getResultList();
+        return findMember.stream().findAny();
+    }
+
+
     //이메일 또는 전화번호로 조회
     public Optional<Member> findByEP(String email, String phone){
         List<Member> findMember = em.createQuery("select m from Member m where m.email = :email and " +

@@ -1,7 +1,5 @@
 package kakao.valuetogether.service;
 
-import kakao.valuetogether.dto.MemberRequestDTO;
-import kakao.valuetogether.dto.MemberResponseDTO;
 import kakao.valuetogether.domain.Member;
 import kakao.valuetogether.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,33 +24,21 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public MemberResponseDTO join(MemberRequestDTO request) {
-        Member member = Member.builder()
-                .email(request.getEmail())
-                .pw(request.getPw())
-                .name(request.getName())
-                .phone(request.getPhone())
-                .address(request.getAddress())
-                .gender(request.getGender())
-                .nickname(request.getNickname())
-                .birthday(request.getBirthday()).build();
-
+    //회원가입
+    public Long join(Member member) {
         validateDuplicateMember(member);
-
-        MemberResponseDTO result = MemberResponseDTO.builder()
-                .id(memberRepository.save(member))
-                .build();
-        return result;
+        memberRepository.save(member);
+        return member.getId();
     }
 
+    //중복 이메일(회원) 검증
     public void validateDuplicateMember(Member member) {
-        Optional<Member> result = memberRepository.findByEmail(member.getEmail());
-
-        if(result.isEmpty())
-            return;
-        else
+        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
+        findMember.ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
     }
+
 
     public Member login(String email, String pw) {
         Optional<Member> findMember = memberRepository.findByEmailAndPw(email, pw);
@@ -63,16 +49,26 @@ public class MemberService {
         }
     }
 
-    public MemberResponseDTO findEmailByPhone(MemberRequestDTO request) {
-        String email = memberRepository.findByPhone(request.getPhone()).
-                orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다.")).getEmail();
+    //ID 찾기 첫번째 방법
+    public Member findIdByPhone(String phone) {
+        Optional<Member> findPhone = memberRepository.findByPhone(phone);
+        if(findPhone.isEmpty()){
+            throw new IllegalStateException("존재하지 않는 번호입니다.");
+        }
+        else {
+            return findPhone.get();
+        }
+    }
 
-        MemberResponseDTO result = MemberResponseDTO.builder()
-                .email(email)
-                .phone(request.getPhone())
-                .build();
-
-        return result;
+    //ID 찾기 두번째 방법
+    public Member findIdByNNP(String nickname, String name, String phone) {
+        Optional<Member> findMember = memberRepository.findByNNP(nickname, name, phone);
+        if (findMember.isEmpty()){
+            throw new IllegalStateException("존재하지 않는 계정입니다.");
+        }
+        else {
+            return findMember.get();
+        }
     }
 
     //PW 재설정 시 회원 검증
