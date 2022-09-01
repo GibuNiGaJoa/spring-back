@@ -13,7 +13,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://github-action3-bucket.s3-website-us-east-1.amazonaws.com")
 public class MemberApiController {
 
     private final MemberService memberService;
